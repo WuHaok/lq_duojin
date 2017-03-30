@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/style.css">
+    <title>流水及联系人</title>
+    <link rel="stylesheet" type="text/css" href="../s/c/instalment/authPageTn.css">
+    <style type="text/css">
+        .decoration-underline {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="nav">
+    <img src="../s/img/tn3@2x.png">
+</div>
+<p class="say">※请确保所填信息的真实性</p>
+<div class="form-group groupClass">
+    <label style="width:70px;">婚姻状况：</label>
+    <select   datatype="*" placeholder="" id="hunYin" class="inputClass">
+        <option value="0" selected >请选择婚姻状况</option>
+        <option value="未婚">未婚</option>
+        <option value="已婚">已婚</option>
+        <option value="离异">离异</option>
+        <option value="丧偶">丧偶</option>
+    </select>
+</div>
+<div class="form-group groupClass">
+    <label style="width:70px;">住宅类型：</label>
+    <select   datatype="*" placeholder="" id="homeType" class="inputClass">
+        <option value="0" selected >请选择住宅类型</option>
+        <option value="无">无</option>
+        <option value="有房无贷款">有房无贷款</option>
+        <option value="有房有贷款">有房有贷款</option>
+        <option value="租赁">租赁</option>
+        <option value="其他">其他</option>
+    </select>
+</div>
+<div class="form-group groupClass" style="background-color: #fff;margin-bottom:1px;">
+    <label for="">现居住地址：</label>
+    <select id="shengJi" class="inputClass" onchange="xianShiJi()" style="width:21%;margin-left:0" ></select>
+    <!--<span>省(直辖市)</span>-->
+    <select id="shiJi" class="inputClass" onchange="xianxianJi()" style="width:21%;margin-left:2.5%" ></select>
+    <!--<span>市</span>-->
+    <select id="xianji" class='inputClass' style="width:21%;margin-left:2.5%"></select>
+    <!--<span>县(区)</span>-->
+</div>
+<div class="form-group work groupClass">
+    <label for=""></label>
+    <input class="weui_input inputClass" id="work_detail" type="text" placeholder="详细地址">
+</div>
+
+<div class='form-text' style="padding:10px 15px">
+    <p style="font-size:16px;color:#000;font-weight: bolder">|&nbsp;紧急联系人</p>
+</div>
+<div class="form-group groupClass">
+    <label style="width: 110px;">与申请人关系：</label>
+    <select class="renZhen3 inputClass"  datatype="*" placeholder="" id="contact1_relation">
+        <option value="0"  select="select">请选择与申请人关系</option>
+        <option value="1100101 父亲">父亲</option>
+        <option value="1100102 母亲">母亲</option>
+        <option value="1100200 子女">子女</option>
+        <option value="1100300 配偶">配偶</option>
+        <option value="1100400 其他亲属">其他亲属</option>
+        <option value="1100500 朋友">朋友</option>
+        <option value="1100600 同事">同事</option>
+        <option value="1100700 其他">其他</option>
+    </select>
+</div>
+<div class="form-group groupClass">
+    <label>姓名：</label>
+    <input class="weui_input inputClass" id="contact1_name" type="text" datatype="*" placeholder="必填">
+</div>
+<div class="form-group groupClass">
+    <label>手机号：</label>
+    <input class="weui_input inputClass" id="contact1_phone" type="text" datatype="*" placeholder="必填">
+</div>
+<p class="say">※请确保所填信息的真实性</p>
+<div style="margin: 10px auto;font-size:12px;text-align: center;padding: 0 15px;">
+    <!--<input type="checkbox" id="checkbox" checked="checked">-->
+    <div class='xuanZe' style="display:inline-block;">
+        <span class="icon-weixuanzhong icon-xuanzhong" style="vertical-align: middle;"></span>
+        &nbsp;&nbsp;我已仔细阅读并同意
+    </div>
+        <a href="../help/service.html" style="vertical-align: middle;color:#0090FF">《居间服务协议》</a><span>以及</span>
+        <a href="../help/announce.html" style="vertical-align: middle;color:#0090FF">《征信及信息披露授权书》</a>
+</div>
+<p class="footed">如有疑问请致电朵金客服：400-8713677</p>
+<div id="buttonBox" style="box-shadow: 1px 0 7px 4px; #e2e2e2height:40px;  width:100%; text-align: center;  position: fixed;  left:0;  bottom: 0;  line-height: 40px;">
+    <span id="goback" style="display: inline-block;  height:40px;  width:40%;  color:#131313;background-color: #fff;">上一步</span>
+    <span id="confirm" style="display: inline-block;  height:40px;  width:58%;  color:#fff;  background-color: #000;">下一步</span>
+</div>
+<script src="../s/j/li/dj.js"></script>
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/jquery-weui.min.js"></script>
+<script src="../s/j/li/linkAge.js"></script>
+<script src="../s/j/fn/formText.js"></script>
+<script src="../s/j/fn/city-picker.js" charset="utf-8"></script>
+<script src="../s/j/fn/Validform_v5.3.2_min.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script src="../s/j/li/base.js"></script>
+<script type="text/javascript" src='../s/j/instalment/authPage-tn3.js'></script>
+<script id="chuanShu" type="text/javascript"></script>
+<script>
+    var addr_tel=localStorage.getItem('tel',$("#tel").val())
+    $("#chuanShu").attr("src","http://dev.newbenben.com/tongdun.php?token="+addr_tel)
+</script>
+</body>
+</html>

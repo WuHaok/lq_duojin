@@ -1,0 +1,102 @@
+.addr ,.good_detail,.ill ul,.logistics{
+    background-color: #ffffff;
+    padding: 0 .15rem;
+    margin-top: .05rem;
+    font-weight: 200;
+}
+.addr{
+    line-height: .35rem;
+}
+.addr .title{
+    line-height: .25rem;
+    padding-bottom: .08rem;
+}
+.quality{
+    display: inline-block;
+    font-size: .10rem;
+    height: .13rem;
+    line-height: .13rem;
+    width: .32rem;
+    border-radius: .02rem;
+    vertical-align: middle;
+}
+
+.good_detail img{
+    display:inline-block;
+    vertical-align: middle;
+    width: .6rem;
+    /*height: 1rem;*/
+}
+.good_detail div{
+    display:inline-block;
+    vertical-align: middle;
+}
+.good_detail .good{
+    margin: 0 .12rem;
+}
+.good_detail .amo{
+    float: right;
+    line-height: 1rem;
+}
+
+/*dingdanxinxi*/
+
+.ill{
+
+}
+.ill li {
+    line-height: .25rem;
+    height: .25rem;
+}
+.ill span{
+    display: inline-block;
+    font-size: .12rem;
+    color: #999999;
+    margin-right: .1rem;
+}
+
+/*订单跟踪*/
+.logistics{
+
+}
+.logistics h5{
+   color: #999999;
+    font-size: .14rem;
+}
+.logistics li{
+    position: relative;
+}
+.log-btn{
+    position: absolute;
+    top: .43rem;
+    right:.2rem;
+    font-size: .12rem;
+    height: .23rem;
+    line-height: .23rem;
+    width: .57rem;
+    border:1px solid #FF4C4E;
+    border-radius: .01rem;
+    text-align: center;
+    display: none;
+}
+.displayblock{
+    display: block;
+}
+.logistics li .date{
+    font-size: .12rem;
+    color: #999999;
+}
+.logistics li span{
+    margin-right: .20rem;
+}
+.logistics .free{
+    display: inline-block;
+    border:1px dashed #CCCCCC;
+    margin: 0 .3rem 0 .06rem;
+}
+.logistics .remark{
+    display: inline-block;
+    width: 2.2rem;
+    vertical-align: top;
+    padding-bottom: .3rem;
+}

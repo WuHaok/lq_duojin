@@ -1,0 +1,10 @@
+html,body,header,nav,article,section,main,footer,figure,figcaption,span,p,li,ul,ol,dl,h1,h2,h3,h4{
+    margin:0;
+    padding:0;
+    font-family:"PingFangSC-Regular";
+    color:#131313;
+}
+img{
+    border:0;
+}
+a{text-decoration:none;}

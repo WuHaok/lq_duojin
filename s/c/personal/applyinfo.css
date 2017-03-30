@@ -1,0 +1,304 @@
+*{
+  color:#131313;
+}
+body {
+  font-size: 14px;
+  background-color:#fff;
+}
+.weui_inputClass{
+  border:1px #ccc solid;
+}
+.form-group [type=number] {
+  outline: none;
+  border: none;
+  line-height: 25px;
+  height: 25px;
+  width: calc(30%);
+  float: left;
+  font-family: 'Microsoft YaHei', Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+}
+.form-group [type=text],
+.form-group [type=email],
+.form-group [type=password],
+.form-group .input,
+.my-form-group textarea {
+  font-size: 10px;
+}
+.navImg{
+  background-color:#F3F5F7;
+}
+.sex-box {
+  position: absolute;
+  top: 32px;
+  right: 5px;
+}
+.inco {
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  background-image: url('../../img/weixuanzhong@2x.png');
+  background-size: 100% 100%;
+  vertical-align: middle;
+  margin: -1px 3px 0;
+}
+.click {
+  height: 16px;
+  width: 16px;
+  background-image: url('../../img/xuanzhong@2x.png');
+  background-size: 100% 100%;
+}
+.clicked {
+  height: 16px;
+  width: 16px;
+  background: url('../../img/bukexuan@2x.png') no-repeat center center;
+  background-size: 87% 87%;
+}
+
+.red {
+  color: #FF4C4E;
+  font-size: 11px;
+  /*text-align: center;*/
+  background-color:#fff;
+  clear: both;
+  margin: 5px;
+  margin-left: 15px;
+}
+a.fff {
+  color: #fff;
+}
+/*第二页*/
+.card-box {
+  width: 300px;
+  margin: 0px auto;
+  background-color: #fff;
+  margin-top: 15px;
+  /*padding: 0 10px 20px 10px;*/
+  padding-bottom: 20px;
+  border:1px solid #F8F8F8;
+  border-radius: 6px;
+}
+.card-box .col-50 {
+  display: inline-block;
+  width: 49%;
+  vertical-align: top;
+}
+.card-box h5 {
+  text-align: center;
+  font-size: 14px;
+  height: 35px;
+  line-height: 35px;
+  border-bottom: 1px solid #F3F5F7;
+}
+.card-box .card-body {
+  padding: 10px 0;
+}
+.card-box p {
+  width: 130px;
+  font-size: 10px;
+  color: #8E8D8D;
+  font-weight: 200;
+}
+.btn-upload,
+.btn-uploads {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  text-align: center;
+  height: 23px;
+  width: 90px;
+  background-color: #fff;
+  color: #272636;
+  border:1px #ccc solid;
+  border-radius: 5px;
+  margin: 10px auto;
+}
+.btn-up {
+  position: absolute;
+  display: block;
+  top: -40px;
+  height: 60px;
+  width: 100px;
+  z-index: 999;
+}
+.img-sc,
+.img-sf-z,
+.img-sf-f,
+.img-ye {
+  height: 91px;
+  width: 91px;
+  margin: 0 auto;
+  background-image: url(../../img/icon-shenfenzheng@2x.png);
+  background-size: 100% 100%;
+}
+.img-sf-z {
+  background-image: url(../../img/zhengmian@2x.png);
+}
+.img-sf-f {
+  background-image: url(../../img/fanmian@2x.png);
+}
+/*第三页*/
+.form-group {
+  padding: 10px 15px;
+}
+.my-form-group .form-group {
+  padding: 5px 25px;
+}
+.my-form-group textarea {
+  padding: 5px 0;
+}
+.img {
+  width: 100%;
+  height: 100%;
+}
+/*disi*/
+.zhizhao {
+  background: #fff;
+}
+.zhizhao .text {
+  padding: 15px 25px;
+}
+.zhizhao .yingye {
+  width: 60%;
+  height: 150px;
+  border: 1px solid #ccc;
+  margin: 5px auto;
+  border-radius: 6px;
+}
+.img-ye {
+  margin: 10px auto 0;
+  background-image: url(../../img/tianjia@2x.png);
+  background-size: 100% 100%;
+}
+td{
+  height:65px;
+}
+#box0{
+  background-color:#fff;
+  padding-top:15px;
+}
+#box0 p{
+  margin:5px 30px;
+  text-align: center;
+}
+#box1{
+  display:none;
+  background-color: #fff;
+  position: relative;
+  padding-top: 15px;
+}
+#box3{
+  display:none;
+  background-color: #fff;
+  padding-top: 15px;
+}
+#box4{
+  background-color:#fff;
+  padding-top: 15px;
+  display:none
+}
+#box4 p{
+  padding:5px 15px;
+  background-color:#fff;
+}
+#duoJin_type .shop{
+  margin-top:9px;
+  font-size:14px;
+}
+.form-group{
+  border:none;
+}
+.sex-box button{
+  margin-right: 10px;
+  font-size:14px;
+}
+#box0 table{
+  border-collapse:collapse;
+  text-align: center;
+  margin:20px 25px;
+  border-color:#131313
+}
+.form-group  .shuRu{
+  font-size:14px;
+  border-radius: 6px;
+  padding-left:5px;
+  border:1px solid #ccc;
+  height: 35px;
+  color:#131313;
+}
+.form-group .bianQian{
+  height:35px;
+  line-height: 35px;
+  font-weight: normal;
+  color:#999999;
+}
+#getcode{
+  font-size: 10px;
+  z-index:20;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  border: 1px solid #ccc;
+  padding: 2px 5px;
+  border-radius: 6px;
+  height:30px;
+  width: 65px;
+  text-align:center;
+  line-height: 30px;
+}
+.form-group #shop_type{
+  line-height: 2.2;
+}
+.form-group #zhanghu_type{
+  line-height: 2.2;
+}
+.weui_input button{
+  margin-right: 13px;
+  font-size:14px;
+}
+.navImg{
+  text-align: center
+}
+.navImg img{
+  width:75%;margin:10px auto;
+}
+
+/*签名*/
+#box5{
+  background-color:#fff;
+  /*width:100%;*/
+  height:100%;
+  padding:15px;
+  position: relative;
+  top:0;
+  left:0;
+  display: none;
+}
+#box5 img{
+  position: absolute;
+  right:25px;
+  top:20px;
+  width: 20px;
+}
+#qianMin{
+  width:100%;
+  margin:0 auto;
+  background-color:#fff;
+  /*border:1px solid #e2e2e2;*/
+  /*display: none;*/
+  position: fixed;
+  z-index: 20;
+  /*left:50%;*/
+  top:50%;
+  /*margin-top:-100px;*/
+  margin-left:-4%;
+  /*margin-bottom:10% ;*/
+}
+#signature{
+  height:200px;
+  margin:0 auto;
+  overflow: hidden;
+  border-top: 1px solid #e2e2e2;
+  border-bottom: 1px solid #e2e2e2;
+  border-radius:10px;
+}

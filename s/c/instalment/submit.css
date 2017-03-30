@@ -1,0 +1,32 @@
+.list {
+  height: 45px;
+  line-height: 45px;
+  padding: 0  20px;
+  background-color: #fff;
+  margin-top: 1px;
+  font-size: 14px;
+  color: #333;
+}
+.list span {
+  font-weight: 600;
+}
+.marl-35 {
+  margin-left: 35px;
+}
+.huankuan {
+  font-size: 21px;
+  color: #CFA972;
+}
+.huankuan-box {
+  margin-top: 1px;
+  background: #fff;
+}
+.huankuan-box .huankuan-t {
+  padding: 22px 0 0;
+}
+.huankuan-box .huankuan {
+  padding-bottom: 21px;
+}
+.frame {
+  margin-top: 10px;
+}

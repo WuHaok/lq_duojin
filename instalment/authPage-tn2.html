@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/style.css">
+    <title>工作信息</title>
+    <link rel="stylesheet" type="text/css" href="../s/c/instalment/authPageTn.css">
+</head>
+<body>
+<div class="nav">
+    <img src="../s/img/tn2@2x.png">
+</div>
+<p class="say">※请确保所填信息的真实性</p>
+<div class="form-group work groupClass">
+    <label>单位名称：</label>
+    <input class="weui_input inputClass" id="work_name" type="text" datatype="*" placeholder="必填">
+</div>
+<div class="form-group groupClass"style="background-color: #fff;margin-bottom:1px;">
+    <label for="">单位地址：</label>
+    <select id="shengJi" class='inputClass' onchange="xianShiJi()" style="width:21%;"></select>
+    <!--<span>省(直辖市)</span>-->
+    <select id="shiJi" class='inputClass' onchange="xianxianJi()" style="width:21%;margin:0 8px;"></select>
+    <!--<span>市</span>-->
+    <select id="xianji" class='inputClass' style="width:21%;"></select>
+    <!--<span>县(区)</span>-->
+ </div>
+<div class="form-group work groupClass">
+    <label for=""></label>
+    <input class="weui_input inputClass" id="work_detail" type="text" placeholder="详细地址">
+</div>
+<div class="form-group work groupClass">
+    <label>单位电话：</label>
+    <input class="weui_input inputClass" id="work_mobile" type="text" datatype="*" placeholder="必填，区号-固定电话">
+</div>
+
+<div class="form-group groupClass">
+    <label style="width:70px;">职业：</label>
+    <select   datatype="*" placeholder="" id="workIng" class="inputClass">
+        <option value="0" select="select" >请选择职业</option>
+        <option value="4001 国企事业单位">国企事业单位</option>
+        <option value="4002 公务员">公务员</option>
+        <option value="4003 学生">学生</option>
+        <option value="4004 军人">军人</option>
+        <option value="4005 退休人员">退休人员</option>
+        <option value="4006 农林牧副渔人员">农林牧副渔人员</option>
+        <option value="4007 公司受雇员工">公司受雇员工</option>
+        <option value="4008 自雇创业人员">自雇创业人员</option>
+        <option value="4009 自由职业者">自由职业者</option>
+        <option value="4010 失业人员">失业人员</option>
+        <option value="4011 家庭主妇">家庭主妇</option>
+    </select>
+</div>
+<!--------->
+<div class="form-group groupClass">
+    <label>职位：</label>
+    <input class="weui_input inputClass" id="work_wei" type="text" datatype="*" placeholder="必填">
+</div>
+<div class="form-group groupClass">
+    <label>月均收入：</label>
+    <input class="weui_input inputClass" id='work_mony' type="number" datatype="*" placeholder="必填">元
+</div>
+<div class="form-group groupClass">
+    <label style="width:115px;">现单位工作时间：</label>
+    <input class="weui_input inputClass" id='work_time' type="number" datatype="*" placeholder="必填">月
+</div>
+<p class="footed">如有疑问请致电朵金客服：400-8713677</p>
+
+<div id="buttonBox" style="box-shadow:1px 0 7px 4px #e2e2e2;height:40px;  width:100%; text-align: center;  position: fixed;  left:0;  bottom: 0;  line-height: 40px;">
+    <span id="goback" style="display: inline-block;  height:40px;  width:40%;  color:#131313; background-color: #fff;">上一步</span>
+    <span id="confirm" style="display: inline-block;  height:40px;  width:58%;  color:#fff;  background-color: #000;">下一步</span>
+</div>
+<script src="../s/j/li/dj.js"></script>
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/jquery-weui.min.js"></script>
+<script src="../s/j/li/linkAge.js"></script>
+<script src="../s/j/fn/formText.js"></script>
+<script src="../s/j/fn/city-picker.js" charset="utf-8"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script src="../s/j/li/base.js"></script>
+<script type="text/javascript" src='../s/j/instalment/authPage-tn2.js'></script>
+<script id="chuanShu" type="text/javascript"></script>
+<script>
+    var addr_tel=localStorage.getItem('tel',$("#tel").val())
+    $("#chuanShu").attr("src","http://dev.newbenben.com/tongdun.php?token="+addr_tel)
+</script>
+</body>
+</html>

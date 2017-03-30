@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>我的分期</title>
+    <meta name="viewport"content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <script src="../s/j/li/init.js"></script>
+    <link href="../s/c/instalment/init.css" rel="stylesheet">
+    <link href="../s/c/instalment/allBills.css" rel="stylesheet">
+</head>
+<body>
+<div id="nav">
+    <p data-id='0' class="nav_click bianSe">近期待还</p>
+    <p data-id='1' class="nav_click">全部账单</p>
+</div>
+<div id="articleId">
+        <script type="text/html" id="scriptObj">
+            <a href="zhangDetail.html?sell_id={{sell_id}}&order_id={{fenUuid}}" style="display: block;text-decoration: none">
+            <div class='sectionTop'>
+                <p>账单编号：{{zhangHaoId}}</p>
+                <p class="{{classType}}">{{zhuangTaiStr}}</p>
+            </div>
+            <div class='sectionBottom'>
+                <p class='tuPian'>
+                    <img src="{{imgSrc}}"/>
+                </p>
+                <div>
+                    <p class='shopName detail'style="width:2.5rem;">
+                        {{shopName}}
+                    </p>
+                    <p class="chen_shop">
+                 <span class='chengSe'>
+                    {{chengSe}}
+                 </span>
+                        <span class='shopType detail' style="width:1.8rem;">
+                     {{shopType}}
+                 </span>
+                    </p>
+                </div>
+                <p class='jiaGe'>
+                    ￥{{jiaGe}}
+                </p>
+            </div>
+            </a>
+        </script>
+</div>
+<div class='moRen'>
+    <img src='../s/img/tishi.png'>
+    <h4></h4>
+</div>
+</div>
+</body>
+<script src="../s/j/li/dj.js"></script>
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/template.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script src="../s/j/instalment/allBills.js"></script>
+</html>

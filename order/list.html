@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <script src="../s/j/li/dj.js" type="text/javascript"></script>
+    <script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/newstyle.css">
+    <link rel="stylesheet" type="text/css" href="../s/c/order/list.css">
+    <title>我购买的</title>
+    <script>
+        //清除缓存
+        var _tt=window.location.href
+        if(_tt.indexOf("_tt")<0){
+            if(_tt.indexOf("?")<0){
+                window.location.href = window.location.href+"?_tt="+parseInt(Math.random()*1000);
+            }else{
+                window.location.href = window.location.href+"&_tt="+parseInt(Math.random()*1000);
+            }
+        }
+        //判断如果是浏览器，重新登录，保存当前的用户标示和token
+        var liuType=browser();
+        if(liuType=='liulanqi'){
+            var _dd=window.location.href
+            if(_dd.indexOf("_dd")<0){
+                var locationHref= window.location.href+"&_dd="+parseInt(Math.random()*1000);
+                clear.loc()
+                s_href.set(locationHref);
+                window.location.href = '../personal/land.html';
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="header">
+    <ul class="order-nav" id="order_nav">
+        <li><a data-id='' class="check">全部</a></li>
+        <li><a data-id='0'>待付款</a></li>
+        <li><a data-id='5'>分期认证</a></li>
+        <li><a data-id='1'>待发货</a></li>
+        <li><a data-id='2'>待收货</a></li>
+        <li><a data-id='3'>已完成</a></li>
+        <li><a data-id='4'>已关闭</a></li>
+    </ul>
+</div>
+<input type="hidden" id="weiXinUuid" value="">
+<input type="hidden" id="weiXinToken" value="">
+<div class="order-list">
+    <div class="no-data">
+        <img src="../s/img/tishi.png">
+        <h4>您还没有相关订单</h4>
+    </div>
+    <div id="frame">
+        <script type="text/html" id="page">
+            <div class="span-5">
+                <!--<i class="icon-jinru"></i>-->
+                <div class="frame ">
+                    <div class="weui-row order-goods-list"
+                         onclick="window.location.href='../order/detail.html?id={{order_id}}'">
+                        <div class="image"><img src="{{product_img}}"></div>
+                        <a class="goods">
+                            <div class="title"><span class="brand">{{brand_name}}</span><br><span class="label label-default">{{quality_name}}</span><span>{{product_name}}</span>
+                            </div>
+                            <div class="price">￥{{product_amount}}</div>
+                        </a>
+                    </div>
+                    <div class="order-time">
+                        {{time}}
+                    </div>
+                    <div class=" order-goods" style="color: red;font-size: 10px;background-color: #FFFFFF;padding: 0 .1rem">
+                        {{beizhu}}
+                    </div>
+                    <div class=" order-btn clearfix" data-canAs="{{can_as_apply}}" data-create='{{create_date}}'>
+                        <span class="icon-fenqi-sanjiao" style="display:{{fengQi}}"></span>
+                        {{order_btn}}
+                        <div class="pull-right">
+                            合计：￥<strong class="amount">{{order_amount}}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+    </div>
+    <div class="weui-infinite-scroll" id="scroll_wait" style="display:none">
+        <div class="infinite-preloader"></div>
+        正在加载...
+    </div>
+    <div class="weui-infinite-scroll" id="scroll_over" style="display:none"><i class="weui_icon_success_no_circle"></i>全部加载完成
+    </div>
+</div>
+<script src="../s/j/fn/jquery-weui.min.js"></script>
+<script src="../s/j/fn/template.js"></script>
+<script src="../s/j/fn/weixinpay.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script>
+    window.confirm = function (message) {
+        var iframe = document.createElement("IFRAME");
+        iframe.style.display = "none";
+        iframe.setAttribute("src", 'data:text/plain,');
+        document.documentElement.appendChild(iframe);
+        var alertFrame = window.frames[0];
+        var result = alertFrame.window.confirm(message);
+        iframe.parentNode.removeChild(iframe);
+        return result;
+    };
+    var data = {
+        member_uuid: user.uuid
+        , type: 0
+        , order_status: ''
+        , row: 10
+        , page: 1
+    }
+    $('#order_nav a').on('click', function (e) {
+        $('#order_nav a').removeClass('check');
+        $(this).addClass('check');
+        data.order_status = $(this).attr('data-id');
+        query(data)
+    })
+    $(function () {
+        query(data);
+        var order_status = GetQueryString('order_status');
+        if (order_status == 5) {
+            $('#order_nav a').removeClass('check');
+            $('.geex').addClass('check');
+            data.order_status = 5;
+            query(data)
+        }
+    })
+    function query(data) {
+        $.showLoading('正在加载');
+        $('#frame div').remove();
+        post('/adapter/wap/order/list', JSON.stringify(data), function (ds) {
+            console.log(ds);
+            if(ds.status==0){
+                var basePath = ds.result.order_list;
+                for (var i = 0; i < basePath.length; i++) {
+                    var regArr = {
+                        order_id: basePath[i].uuid,
+                        op_uuid: basePath[i].product_list_dto[0].uuid,
+                        product_img: basePath[i].product_list_dto[0].product_main_img,
+                        brand_name: basePath[i].product_list_dto[0].brand_name,
+                        quality_name: basePath[i].product_list_dto[0].quality_name,
+                        product_name: basePath[i].product_list_dto[0].product_name,
+                        product_amount: basePath[i].product_list_dto[0].amount,
+                        can_as_apply: basePath[i].can_as_apply,
+                        order_amount: basePath[i].finally_amount,
+                        time: '',
+                        tuihuostatus: basePath[i].product_list_dto[0].re_status,
+                        create_date: basePath[i].create_date,
+                        re_uuid: basePath[i].product_list_dto[0].re_uuid,
+                        beizhu: basePath[i].auth_remark_buyer,
+                        fengQi:basePath[i].is_instalment==1?"block":"none",
+                        delivery_to:basePath[i].delivery_to-0,
+                        delivery_status:basePath[i].delivery_status-0,
+                        order_btn: function () {
+                            var status =  basePath[i].order_status - 0;
+                            var canAsApp = basePath[i].can_as_apply - 0;
+                            var geex_dto = basePath[i].oi_dto == null ? 51 : 52;//51 为空 没有认证通过  需要重新认证
+                            if (geex_dto == 52) {
+                                var geex_sta = basePath[i].oi_dto.status - 0;
+                                switch (geex_sta) {
+                                    case 0 :
+                                    case 2 :
+                                        geex_dto = 51;
+                                        break;
+                                    default:
+                                        geex_dto = 52;
+                                }
+                            }
+                            var html;
+                            switch (status) {
+                                case 0:
+                                    html = '<a href="javascript:void(0)" class="order_pay btn-red" data-id="' + basePath[i].uuid + '" data-proid="'+basePath[i].product_list_dto[0].uuid+'" data-paystep="'+basePath[i].pay_step+'">支付订单</a>';
+                                    html += '<a href="javascript:void(0)" class="order_cancel btn-black" data-id="' + basePath[i].uuid + '">取消订单</a>';
+                                    break;
+                                case 1:
+                                    html = '<div class="tuihuobox" style="display:inline-block" ></div>';
+                                    if (geex_dto == 52) {
+                                        html += '<a href="zhangDetail.html?sell_id=null&huanType=1&order_id='+basePath[i].uuid+'" class="btn-black" style="display:{{fengQi}}">分期账单</a>';
+                                        // html += '<a href="javascript:void(0)" class="geex_res" data-id="'+basePath[i].uuid+'">取消订单</a>';
+                                    } else {
+                                        html = ''
+                                    }
+                                    break;
+                                case 2:
+                                    if(basePath[i].delivery_to=="0"){
+                                        html = '<a href="javascript:void(0)" class="order_submit sub-shouhuo btn-red" data-id="' + basePath[i].uuid + '">确认收货</a>';
+                                    }
+                                    else if(basePath[i].delivery_status=="2"){
+                                        html = '<a href="javascript:void(0)" class="order_submit sub-shouhuo btn-red" data-id="' + basePath[i].uuid + '">确认收货</a>';
+                                    }else {
+                                        html = ''
+                                    }
+                                    if (geex_dto == 52) {
+                                        html += '<a href="zhangDetail.html?sell_id=null&order_id='+basePath[i].uuid+'" class="btn-black" style="display:{{fengQi}}">分期账单</a>';
+                                        // html += '<a href="javascript:void(0)" class="geex_res" data-id="'+basePath[i].uuid+'">取消订单</a>';
+                                    }
+                                    break;
+                                case 3:
+                                    html = '<div class="shouhoubox" style="display:inline-block"></div>';
+                                    if (geex_dto == 52) {
+                                        html += '<a href="zhangDetail.html?sell_id=null&order_id='+basePath[i].uuid+'" class="btn-black" style="display:{{fengQi}}">分期账单</a>';
+                                        // html += '<a href="javascript:void(0)" class="geex_res" data-id="'+basePath[i].uuid+'">取消订单</a>';
+                                    } else {
+                                        html = ''
+                                    }
+                                    break;
+                                case 5 :
+                                    if (geex_dto == 51) {
+                                        html = '<a href="javascript:void(0)" class="geex_sub btn-black" data-id="' + basePath[i].uuid + '">前往认证</a>';
+                                        // html += '<a href="javascript:void(0)" class="geex_res" data-id="'+basePath[i].uuid+'">取消订单</a>';
+                                    } else {
+                                        html = ''
+                                    }
+                                    break;
+                                default:
+                                    html = '';
+                            }
+                            return html;
+                        }
+                    };
+                    template.config("escape", false);
+                    var html = template('page', regArr);
+                    $('#frame').append(html);
+                    shouhuoDom();
+                }
+                $.hideLoading();
+                noData()
+            }else if(ds.status == 501 || ds.status == 502 || ds.status == 600 ){
+                window.location.href = '../../../personal/land.html';
+            }else{
+                $.alert(ds.message_detail)
+            }})
+    }
+    function noData() {
+        if ($('#frame div').length == 0) {
+            $('.no-data').show()
+        } else {
+            $('.no-data').hide()
+        }
+    }
+    function shouhuoDom() {
+        $('.clearfix').each(function (e) {
+            var canAsApp = $(this).attr('data-canAs');
+            var html = '';
+            if (canAsApp == 0) {
+
+            } else if (canAsApp == 1) {
+                html = '<a href="javascript:void(0)"  class="order_submit noshouhou">保真险售后</a>';
+            } else if (canAsApp == 2) {
+                html = '<a href="javascript:void(0)" onclick="comed()" class="order_submit ">保真险售后</a>';
+            } else if (canAsApp == 3) {
+                html = '<span>售后处理完毕</span>'
+            } else if (canAsApp == 4) {
+                html = '<span>售后处理完毕</span>'
+            } else if (canAsApp == 5) {
+                html = '<span>售后处理中</span>'
+            } else if (canAsApp == 6) {
+                html = '<a href="javascript:void(0)" class="order_submit shouhou" >保真险售后</a>';
+            }
+            $(this).find('.shouhoubox').html(html)
+        })
+    }
+    $(document).on('click', '.re', function (e) {
+        var $this = $(this);
+        var reuuid = $(this).closest('.tuihuo').attr('data-reuuid');
+        window.location.href = '/wap/refund/redetail?re_uuid=' + reuuid;
+    });
+    $(document).on('click', '.noshouhou', function (e) {
+        var sdate = $(this).closest('.clearfix').attr('data-create');
+        var sdatearr = sdate.split(' ')[0].split('-');
+        var year = parseInt(sdatearr[0]);
+        var m = parseInt(sdatearr[1]);
+        var day = parseInt(sdatearr[2]);
+        var d = Date.parse(new Date(year + '/' + m + '/' + day)) / 1000;
+        var diyi = 30 * 24 * 60 * 60 + d;
+        var dier = 7 * 30 * 24 * 60 * 60 + d;
+        $.alert('保真险将于 ' + getLocalTime(diyi) + '生效,有效期截止为' + getLocalTime(dier) + '  ,请稍候申请')
+    });
+    $(document).on('click', '.shouhou', function (e) {
+        var uuid = $(this).closest('.span-10').attr('data-id');
+        window.location.href = '/wap/refund/detail?order_uuid=' + uuid;
+    });
+    $(document).on('click', '.tuikuan-btn', function (e) {
+        var uuid = $(this).closest('.span-10').attr('data-id');
+        var op_uuid = $(this).closest('.span-10').attr('data-op');
+        localStorage.setItem('re_apply_pic', $(this).closest('.span-10').attr('data-amount'));
+        window.location.href = '/wap/refund/apply?order_uuid=' + uuid + '&op_uuid=' + op_uuid;
+    });
+    function comed() {
+        $.alert('保真险有效期已过')
+    }
+    function getLocalTime(nS) {
+        var data = new Date(nS * 1000);
+        var year = data.getFullYear();//获取完整的年份(4位,1970)
+        var mouth = data.getMonth() + 1;//获取月份(0-11,0代表1月,用的时候记得加上1)
+        var data = data.getDate();//获取日(1-31)
+        return (year + '年' + mouth + '月' + data + '日')
+    }
+    $(document).on('click', '.sub-shouhuo', function (e) {
+        if(confirm("确定您是否收到货？")){
+            var id = $(this).attr('data-id');
+            var data = {
+                member_uuid: user.uuid  //GetQueryString('uuid')
+                , order_uuid: id
+            };
+            post('/adapter/wap/order/takeover', JSON.stringify(data), function (ds) {
+                if (ds.status == 0) {
+                    $.alert("收货成功")
+                    window.location.reload()
+                } else {
+                    $.alert('收货失败')
+                }
+            })
+        }
+    });
+    //待付款页面 支付  取消
+    $(document).on('click', '.order_pay', function (e) {
+        var payId = $(this).attr('data-id');
+        var paystep = $(this).attr('data-paystep');
+        productData.setuuid($(this).attr('data-proid'));
+       window.location.href = "../order/payment.html?id=" + payId+'&paystep='+paystep;
+    });
+
+    $(document).on('click', '.order_cancel', function (e) {
+        window.location.href = '../order/cancel.html?id=' + $(this).attr('data-id')
+    });
+
+    $(document).on('click', '.geex_sub', function (e) {
+        var payId = $(this).attr('data-id');
+        window.location.href = line+'/wap/toAuthPage?order_uuid=' + payId
+
+    });
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null)return unescape(r[2]);
+        return null;
+    }
+</script>
+</body>
+</html>

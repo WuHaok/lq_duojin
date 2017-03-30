@@ -1,0 +1,229 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/style.css">
+
+    <title>闲置商城</title>
+    <link rel="stylesheet" type="text/css" href="../s/c/shop/_index_filter.css">
+</head>
+<body class="body">
+<div class="nav" >
+    <ul id='nav'>
+        <li class='pull-left' id='status'><span class="text">最新</span></li>
+        <li class='pull-left' id='brank'><span class="text">品牌</span><span style="display: none;" id='brankNum' class="ring">0</span></li>
+        <li class='pull-left' id='classify'><span class="text">分类</span><span style="display: none;" id='classifyNum' class="ring">0</span></li>
+        <li class='pull-left' id='filter'><span class="text">筛选</span><span id='filterNum' class="ring" >0</span></li>
+    </ul>
+</div>
+<div class="box bodyer-new" id='statusBOX'>
+    <ul id=bodyerNew>
+        <li data-val=''>最新</li>
+        <li data-val='hit'>人气</li>
+        <li data-val='price_asc'>价格由低至高</li>
+        <li data-val='price_desc'>价格由高至低</li>
+    </ul>
+</div>
+<div class="box border-brank" style="display: none;" id='brankBOX'>
+    <div class="brank" id='branks'>
+        <script id = 'page' type='text/html'>
+            <p class="brank-title" id='{{letter}}'>{{letter}}</p>
+            <div class="brank-box">
+                {{each list as value }}
+                <img src="{{value.img}}" data-id='{{value.uuid}}' class=" brank-img clearJs" >
+                {{/each}}
+            </div>
+        </script>
+    </div>
+    <div class='brank-letter'>
+        <a href="#3">热</a>
+        <a href ='#A'>A</a>
+        <a href ='#B'>B</a>
+        <a href ='#C'>C</a>
+        <a href ='#D'>D</a>
+        <a href ='#E'>E</a>
+        <a href ='#F'>F</a>
+        <a href ='#G'>G</a>
+        <a href ='#H'>H</a>
+        <a href ='#I'>I</a>
+        <a href ='#J'>J</a>
+        <a href ='#K'>K</a>
+        <a href ='#L'>L</a>
+        <a href ='#M'>M</a>
+        <a href ='#N'>N</a>
+        <a href ='#O'>O</a>
+        <a href ='#P'>P</a>
+        <a href ='#Q'>Q</a>
+        <a href ='#R'>R</a>
+        <a href ='#S'>S</a>
+        <a href ='#T'>T</a>
+        <a href ='#U'>U</a>
+        <a href ='#V'>V</a>
+        <a href ='#W'>W</a>
+        <a href ='#S'>S</a>
+        <a href ='#Y'>Y</a>
+        <a href ='#Z'>Z</a>
+    </div>
+</div>
+
+<div class="box border-categories" id='classifyBOX'>
+    <div class="categories" id='categories'>
+        <script id='pageCate' type="text/html">
+            <p class="categories-title" >{{classify}}</p>
+            <div class="classsifies">
+                {{each list as value }}
+                <button class="classify clearJs" data-id='{{value.uuid}}' >{{value.text}}</button>
+                {{/each}}
+            </div>
+        </script>
+    </div>
+</div>
+
+<div class="box border-filter" id='filterBOX'>
+    <div class="qualities" id='qualities'>
+        <p class="chengse-title" >成色</p>
+        <div class="chengses" id="quality_uuids">
+
+
+        </div>
+        <p class="chengse-title" >价格</p>
+        <div class="pics" id='pics'>
+            <button class="pic clearJs" data-vl='0' data-vt='2000'>2千以下</button>
+            <button class="pic clearJs" data-vl='2000' data-vt='5000'>2千－5千</button>
+            <button class="pic clearJs" data-vl='5000' data-vt='10000'>5千－1万</button>
+            <button class="pic clearJs" data-vl='10000' data-vt='20000'>1万-2万</button>
+            <button class="pic clearJs" data-vl='20000' data-vt='50000'>2万-5万</button>
+            <button class="pic clearJs" data-vl='50000' data-vt=''>五万以上</button>
+        </div>
+        <p class="chengse-title" >适用人群</p>
+        <div id="fit_people">
+            <button class="pic clearJs people" data-id='2'>中&nbsp;&nbsp;性</button>
+            <button class="pic clearJs people" data-id='0'>适合男士</button>
+            <button class="pic clearJs people" data-id='1'>适合女士</button>
+        </div>
+    </div>
+</div>
+
+<div class="footer" style="">
+    <div class="weui-row weui-no-gutter ">
+        <div class="weui-col-40 bg-white">
+            <a  class="block" id='clear'>清除</a>
+        </div>
+        <div class="weui-col-60 bg-black">
+            <a class="block" id="submit">确认</a>
+        </div>
+    </div>
+</div>
+<script src="../s/j/li/dj.js"></script>
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/jquery-weui.min.js"></script>
+<script src="../s/j/fn/template.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script src="../s/j/li/dj.js"></script>
+<script src="../s/j/fn/template.js"></script>
+<script src="../s/j/shop/index_filter.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script type="text/javascript">
+
+    $('#nav').on('click','li',function(e){
+        $('.pull-left .text').removeClass('on')
+        var $this = $(this)
+        var $id = $this.attr('id')
+        $('.box').css('display','none')
+        $('#'+$id+ ' .text').addClass('on');
+        $('#'+$id+'BOX').css('display','block')
+        $id == 'status' ? $('.footer').css('display','none'):$('.footer').css('display','block')
+    })
+
+    init()
+    function init(){
+        $('.box').css('display','none')
+        var nav = localStorage.getItem('nav');
+        $('#'+nav + ' .text').addClass('on');
+        $('#'+nav+'BOX').css('display','block')
+        nav ==  'status' ? $('.footer').css('display','none'):$('.footer').css('display','block')
+        post('/adapter/wap/system/queryStaticBySeller',JSON.stringify({'member_seller_uuid':GetQueryString('id')}),function(ds){
+            var brands = ds.result.brands
+            for( var i in  brands){
+                var obj = {
+                    letter: i
+                    , list:[]
+                }
+                for(var j in brands[i]){
+                    obj.list.push({ 'uuid' :brands[i][j].uuid , 'img' :brands[i][j].brand_local_img})
+                }
+                var html = template('page',obj)
+                $('#branks').append(html)
+            }
+            $('#3').text('热门推荐')
+            var branks = eval(localStorage.getItem('brand_uuids'));
+            for(var a =0;a < branks.length ;a++){
+                var brank = branks[a]
+                $('.brank-img[data-id='+brank+']').addClass('on')
+            }
+            var categories = ds.result.categories
+            for( var i in  categories){
+                var obj = {
+                    classify: categories[i].name
+                    , list:[]
+                }
+                for(var j in categories[i].children){
+                    obj.list.push({ 'uuid' :categories[i].children[j].uuid , 'text' :categories[i].children[j].name})
+                }
+                var html = template('pageCate',obj)
+                $('#categories').append(html)
+            }
+            var categorys = eval(localStorage.getItem('category_uuids'));
+            for(var b =0;b< categorys.length ;b++){
+                var category = categorys[b]
+                $('.classify[data-id='+category+']').addClass('on')
+
+            }
+            var qualities = ds.result.qualities
+            for (var i =0;i<qualities.length;i++){
+                var $html =$('<button class="chengse btnon clearJs" data-id='+qualities[i].uuid+'>'+qualities[i].name+'</button>')
+                $('#quality_uuids').append($html)
+            }
+            var qualitys = eval(localStorage.getItem('quality_uuids'));
+            for(var b =0;b< qualitys.length ;b++){
+                var quality = qualitys[b]
+                $('.chengse[data-id='+quality+']').addClass('on')
+            }
+        })
+
+
+
+
+
+        var price = localStorage.getItem('price_low')
+        $('#pics .pic[data-vl='+price+']').addClass('on')
+        var people = localStorage.getItem('fit_people')
+        $('#fit_people .people[data-id='+people+']').addClass('on')
+        var brankNum = localStorage.getItem('brankNum')
+        var classifyNum = localStorage.getItem('classifyNum')
+        var filterNum = localStorage.getItem('filterNum')
+        if(brankNum != 0 && brankNum != null ){
+            $('#brankNum').css('display','inline-block')
+            $('#brankNum').text(brankNum)
+        }
+        if(classifyNum != "0" && classifyNum != null ){
+            $('#classifyNum').css('display','inline-block')
+            $('#classifyNum').text(classifyNum)
+        }
+        if(filterNum != "0" && filterNum != null ){
+            $('#filterNum').css('display','inline-block')
+            $('#filterNum').text(filterNum)
+        }
+    }
+</script>
+</body>
+</html>

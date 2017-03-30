@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/style.css">
+    <link rel="stylesheet" type="text/css" href="../s/c/personal/applyinfo.css">
+    <title>商户认证</title>
+    <script>
+        //清除缓存
+        var _tt=window.location.href;
+        if(_tt.indexOf("_tt")<0){
+            if(_tt.indexOf("?")<0){
+                window.location.href = window.location.href+"?_tt="+parseInt(Math.random()*1000);
+            }else{
+                window.location.href = window.location.href+"&_tt="+parseInt(Math.random()*1000);
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="hidden" id="member_uuid" value="${c_m.uuid}">
+<input type="hidden" id="apply_uuid" value="">
+<div class='navImg'>
+    <img id='imgList' src="../s/img/renZhen1@2x.png">
+</div>
+<div class="box box0" id="box0">
+    <p>朵金目前支持三种分期服务产品</p>
+    <table border="1px">
+        <tr>
+            <td>服务产品名称</td>
+            <td>朵金1号</td>
+            <td>朵金2号</td>
+            <td>朵金3号</td>
+        </tr>
+        <tr>
+            <td>分期订单商品 总价上限</td>
+            <td>20万元</td>
+            <td>6万元</td>
+            <td>1.2万元</td>
+        </tr>
+        <tr>
+            <td>结算资金是否走对公账户</td>
+            <td>是</td>
+            <td>否</td>
+            <td>否</td>
+        </tr>
+        <tr>
+            <td>商品是否需要寄到中转平台</td>
+            <td>是</td>
+            <td>否</td>
+            <td>否</td>
+        </tr>
+        <tr>
+            <td>服务开通周期</td>
+            <td>15个自然日</td>
+            <td>3个自然日</td>
+            <td>1个自然日</td>
+        </tr>
+        <tr>
+            <td>开通资质</td>
+            <td>有营业执照 有对公账户</td>
+            <td>有营业执照 无对公账户</td>
+            <td>无营业执照 有工作室&nbsp;&nbsp;</td>
+        </tr>
+    </table>
+    <div class="footer">
+        <div class="weui-row weui-no-gutter" style="bottom: -7px;background-color:#FF4C4E">
+            <div class="weui-col-100 ">
+                <a href="javascript:void (0);" id="submit0" class="weui_btn weui_btn_disabled fff">下一步</a>
+            </div>
+        </div>
+        <!-- 可以点击  清除 weui_btn_disabled-->
+    </div>
+</div>
+<div class="box box1" id="box1">
+    <div class="form-group " style="height: 35px;">
+        <label class='bianQian'>真实姓名:</label>
+        <input class="weui_input shuRu" style="width: calc(100% - 200px);" id="real_name" type="text" datatype="*" placeholder="必填">
+    </div>
+    <p class="red">*申请人姓名、身份证姓名以及营业执照法人姓名必须一致</p>
+    <div class="form-group" style="height: 35px;">
+        <label class="bianQian">身份证号:</label>
+        <input class="weui_input shuRu" style='width: calc(100% - 80px);' id="card_id" type="text" datatype="*" placeholder="必填">
+    </div>
+    <div class="card-box" >
+        <h5 style="background-color:#F8F8F8 ">身份证照片</h5>
+        <div class="weui-row" style="margin-top: 10px;">
+            <div class="weui-col-50">
+                <div class="img-sf-z" id="imgFZ"></div>
+                <div class="btn-upload">上传照片
+                    <input type="file" name="pic" style="" accept="image/*"
+                           onchange="imgChangeFZ(this);" multiple="multiple"
+                           data-role="none" class='btn-up' capture='camera'>
+                </div>
+            </div>
+            <div class="weui-col-50">
+                <div class="img-sf-f" id="imgFF"></div>
+                <div class="btn-upload">上传照片
+                    <input type="file" name="pic" style="" accept="image/*"
+                           onchange="imgChangeFF(this);" multiple="multiple"
+                           data-role="none" class='btn-up' capture='camera'>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group" style="position:relative;height: 35px;">
+        <label class="bianQian">联系电话:</label>
+        <input class="weui_input shuRu" style='width: calc(100% - 160px);' id="mobile" type="text" datatype="*" placeholder="必填">
+        <a href="javascript:void(0)" class="open-popup" id="getcode">获取验证码</a>
+    </div>
+    <div class="form-group" style="height: 35px;">
+        <label class='bianQian'>验证码:</label>
+        <input class="weui_input shuRu" style='width: calc(100% - 80px);' id="yanZheng" type="text" datatype="*" placeholder="必填">
+    </div>
+
+    <div class="sex-box" id="gender">
+        <button class="sex" value="0"><span class="inco click"></span>女士</button>
+        <button class="sex" value="1"><span class="inco"></span>先生</button>
+    </div>
+    <div class="footer">
+        <div class="weui-row weui-no-gutter" style="bottom: -7px;background-color:#FF4C4E">
+            <div class="weui-col-100 ">
+                <a href="javascript:void (0);" id="submit1" class="weui_btn weui_btn_disabled fff">下一步</a>
+            </div>
+        </div>
+        <!-- 可以点击  清除 weui_btn_disabled-->
+    </div>
+</div>
+<div class="box box3" id="box3">
+    <div class="form-group span-10" style="height: 35px;">
+        <label class='bianQian'>实体店:</label>
+        <div class="weui_input" id="shop_type">
+            <button class="shop" value="0"><span class="inco click"></span>有</button>
+            <button class="shop" value="1"><span class="inco"></span>无</button>
+        </div>
+    </div>
+    <div class="form-group shopchange" style="height: 35px;">
+        <label for="" class='bianQian' style="width:80px;">实体店地址:</label>
+        <input type="text" name="city" id="shop" data-icon="false" datatype="*" errormsg="实体店地址" nullmsg="实体店地址"
+               placeholder="请选择所在区域" class='shuRu' style="float: right;width:calc(100% - 95px); display: inline-block;">
+        <a href="javascript:void(0)" class="form-clear" onclick="inputClear(this)"><i class="icon-wrongback"></i></a>
+    </div>
+    <div class="form-group " style="height: 35px;">
+        <label for="" class='bianQian'></label>
+        <input class="weui_input shuRu" id="shop_detail" onclick="inputaddr(this)" type="text" placeholder="详细地址,必填"
+               style="float: right;width:calc(100% - 95px); display: inline-block;">
+    </div>
+    <div class="form-group yingyeId">
+        <label for="" class='bianQian' style="width:80px;">营业执照号:</label>
+        <input class="weui_input shuRu" id="yinye"  type="text" placeholder="必填"
+               style="float: right;width:calc(100% - 95px); display: inline-block;">
+    </div>
+    <div class="span-10  shopaddr zhizhao">
+        <p class="text" style="text-align: center;">
+            <label>营业执照照片（正副本均可）</label>
+        </p>
+        <div class="yingye">
+            <div class="img-ye" id="imgYY">
+            </div>
+            <div class="btn-uploads">上传照片
+                <input type="file" name="pic" style="" accept="image/*"
+                       onchange="imgChangeYY(this);" multiple="multiple"
+                       data-role="none" class='btn-up'>
+            </div>
+        </div>
+    </div>
+    <div class="form-group span-10 zhangHuType">
+        <label class='bianQian' style="width:110px;">是否有对公账户</label>
+        <div class="weui_input" id="zhanghu_type">
+            <button class="shop" value="1"><span class="inco click"></span>有</button>
+            <button class="shop" value="0"><span class="inco"></span>无</button>
+        </div>
+    </div>
+    <div class="span-10  zhangHuaddr zhizhao">
+        <p class="text" style="text-align: center;">
+            <label>开户许可证照片</label>
+        </p>
+        <div class="yingye">
+            <div class="img-ye" id="imgRZ">
+            </div>
+            <div class="btn-uploads">上传照片
+                <input type="file" name="pic" style="" accept="image/*"
+                       onchange="imgChangeRZ(this);" multiple="multiple"
+                       data-role="none" class='btn-up'>
+            </div>
+        </div>
+
+    </div>
+    <p class="red">*照片要求：图片上所有信息清晰可见</p>
+    <div class="footer">
+        <div class="weui-row weui-no-gutter" style="bottom: -7px;background-color:#FF4C4E">
+            <div class="weui-col-100 ">
+                <a href="javascript:;" class="weui_btn weui_btn_disabled  fff" id="submit3">下一步</a>
+            </div>
+        </div>
+        <!-- 可以点击  清除 weui_btn_disabled-->
+    </div>
+</div>
+<div class="box box4" id="box4">
+    <div class="form-group span-10">
+        <label class='bianQian'>微信号:</label>
+        <input class="weui_input shuRu" id="wechat_id" type="text" datatype="*" placeholder="必填" style='width: calc(100% - 85px);'>
+    </div>
+    <div class="form-group span-10">
+        <label class='bianQian'>从业年限:</label>
+        <!-- <input class="weui_input" id="period_year" type="number" datatype="*" placeholder="(必填) 年">年 -->
+        <select id="period_year" class='shuRu' style='width: 100px;background-color:#fff;' placeholder="必填">
+            <option value=''>请选择年份</option>
+            <option value='1年'>1年</option>
+            <option value='2年'>2年</option>
+            <option value='3年'>3年</option>
+            <option value='4年'>4年</option>
+            <option value='5年'>5年</option>
+            <option value='6年'>6年</option>
+            <option value='7年'>7年</option>
+            <option value='8年'>8年</option>
+            <option value='9年'>9年</option>
+            <option value='10年'>10年</option>
+            <option value='11年'>10年以上</option>
+        </select>&nbsp;&nbsp;年
+    </div>
+    <p>根据您之前的选择，朵金推荐您开通如下分期服务（认证资质不满足的选项不可选）</p>
+    <div class="form-group span-10 duojinType" style="border:none">
+        <div class="weui_input" id="duoJin_type">
+            <button class="shop" value="1" style="height: 30px;"><span class="inco yiHao"></span>朵金1号</button><br />
+            <button class="shop" value="2" style="height: 30px;"><span class="inco erHao"></span>朵金2号</button><br />
+            <button class="shop" value="3" style="height: 30px;"><span class="inco sanHao"></span>朵金3号</button>
+        </div>
+    </div>
+    <div style="height: 90px;"></div>
+    <div class="form-group span-10">
+        <label style="width:150px;">请输入销售经理编号:</label>
+        <input class="weui_input" id="xiaoshou_id" type="text" datatype="*" placeholder="选填" style='padding-left:5px;border:1px solid #ccc;height: 25px;width: calc(100% - 175px);'>
+    </div>
+
+    <div class="footer">
+        <div class="weui-row weui-no-gutter" style="bottom: -7px;background-color:#FF4C4E">
+            <div class="weui-col-100 ">
+                <a href="javascript:;" class="weui_btn weui_btn_disabled  fff" id="submit4">提交</a>
+            </div>
+        </div>
+        <!-- 可以点击  清除 weui_btn_disabled-->
+    </div>
+</div>
+<div id="box5">
+    <h3 style="font-size:20px;text-align: center;font-weight:bold">商户须知</h3>
+    <img class='quxiao' src="../s/img/yiguanbi@2x.png" />
+    <div style="line-height: 24px;margin-top:5px;">
+        <p>在分期交易过程中，朵金不向商家收取任何费用，如商家有如下行为：</p>
+        <li>（1）商家恶意售卖假货。</li>
+        <li>（2）商家恶意诈骗套现或协助买家诈骗套现。</li>
+        <li>导致的所有损失均由商家承担，朵金并追究商家的法律责任。</li>
+    </div>
+    <div style="margin-top: 50px">我保证不会有如上违规行为。请在如下空白处签名:</div>
+    <div id="qianMin">
+        <div style="padding:0 15px;height:40px;line-height:40px;font-size:15px;position: relative">
+            手写签名:
+        </div>
+        <div id="signature" style="width:100%;"></div>
+        <div id="someelement" style="display: none"></div>
+    </div>
+    <div id="buttonBox" style="height:40px;  width:100%; text-align: center;  position: fixed;  left:0;  bottom: 0;  line-height: 40px;">
+        <span id="reset" style="display: inline-block;  height:40px;  width:40%;  color:#131313;background-color: #fff;">重写</span>
+        <span id="submit5" style="display: inline-block;  height:40px;  width:58%;  color:#fff;  background-color: #FF4C4E;">同意并提交</span>
+    </div>
+</div>
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/jSignature.min.js"></script>
+<script src="../s/j/fn/jquery-weui.min.js"></script>
+<script src="../s/j/fn/formText.js"></script>
+<script src="../s/j/fn/city-picker.js" charset="utf-8"></script>
+<script src="../s/j/fn/Validform_v5.3.2_min.js"></script>
+<script type="text/javascript" src='../s/j/li/lookbigimg.js'></script>
+<script src="../s/j/li/base.js"></script>
+<script type="text/javascript" src='../s/j/personal/applyinfo.js?_tt=111'></script>
+</body>
+</html>

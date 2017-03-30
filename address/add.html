@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/style.css">
+    <title>新增地址</title>
+    <style>
+        .iocn-moren, .iocn-moren2 {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background-image: url("../s/img/moren2.png");
+            vertical-align: middle;
+            margin: 0 10px;
+        }
+        .iocn-moren {
+            background-image: url("../s/img/moren.png");
+        }
+        label {
+            font-size: 14px;
+            color: #999999;
+        }
+        .footer a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="form-group ">
+        <label for="">收件人</label>
+        <input type="text" name="receiver_name" id="username" v-model="name">
+        <a href="javascript:void(0)" class="form-clear" onclick="inputClear(this)">
+            <i class="icon-wrongback"></i>
+        </a>
+    </div>
+    <div class="form-group">
+        <label for="">手机号</label>
+        <input type="text" name="receiver_tel" id="phone" v-model="tel">
+        <a href="javascript:void(0)" class="form-clear" onclick="inputClear(this)">
+            <i class="icon-wrongback"></i>
+        </a>
+    </div>
+    <div class="form-group city">
+        <label for="">所在地区</label>
+        <input type="text" name="city" class="city" id="city" data-icon="false" v-model="city"
+               onclick="inputaddr(this)">
+        <a href="javascript:void(0)" class="form-clear" onclick="inputClear(this)">
+            <i class="icon-wrongback"></i>
+        </a>
+    </div>
+    <div class="form-group">
+        <label for="">详细地址</label>
+        <input type="text" name="address" id="address" v-model="detail">
+        <a href="javascript:void(0)" class="form-clear" onclick="inputClear(this)">
+            <i class="icon-wrongback"></i>
+        </a>
+    </div>
+    <a class="pick" href="javascript:void (0)" @click="picked">
+        <span class="iocn-moren2" :class="{'iocn-moren':is_main}"></span>默认地址
+    </a>
+    <div class="footer">
+        <div class="bg-red">
+            <a href="javascript:void(0)" @click="sub" class="btn fl">保存</a>
+        </div>
+    </div>
+</div>
+<script src="../s/j/li/dj.js"></script>
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/jquery-weui.min.js"></script>
+<script src="../s/j/fn/city-picker.js" charset="utf-8"></script>
+<script src="../s/j/fn/vue.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script>
+    $("#city").cityPicker({
+        title: "请选择收货地址"
+    });
+    function inputaddr(ele) {
+        $('input').blur()
+    }
+    var vuedata = {};
+    if (GetQueryString('edit') == 'yes') {
+        vuedata = {
+            uuid: change_addr.get().uuid
+            , name: change_addr.get().receiver_name
+            , tel: change_addr.get().receiver_tel
+            , city: change_addr.get().provice + '' + change_addr.get().city + ' ' + change_addr.get().area
+            , detail: change_addr.get().detail
+            , is_main: change_addr.get().is_main
+        }
+    } else {
+        vuedata = {
+            uuid: ''
+            , name: ''
+            , tel: ''
+            , city: ''
+            , detail: ''
+            , is_main: false
+        }
+    }
+    var vm = new Vue({
+        el: '#app'
+        , data: vuedata
+        , methods: {
+            sub: function () {
+                var cityArr = this.city.split(' ');
+                var data = {
+                    uuid: this.uuid,
+                    member_uuid: user.uuid,
+                    receiver_name: this.name,
+                    receiver_tel: this.tel,
+                    provice: cityArr[0],
+                    city: cityArr[1],
+                    area: cityArr[2],
+                    detail: this.detail
+                    , is_main: this.is_main == true ? 1 : 0
+                };
+                post('/adapter/wap/member/addressAdd', JSON.stringify(data), function (ds) {
+                    if (ds.status == 0) {
+                        window.location.href = "../address/manage.html"
+                    } else {
+                        $.alert(ds.message)
+                    }
+                })
+            }
+            , picked: function () {
+                if (this.is_main == true) {
+                    this.is_main = false
+                } else {
+                    this.is_main = true
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

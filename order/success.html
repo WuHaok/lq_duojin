@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/newstyle.css">
+    <link rel="stylesheet" href="../s/c/order/success.css">
+    <title>支付成功</title>
+</head>
+<body id="app">
+<div class="goods">
+    <img :src="img" alt="" >
+    <div>
+        <p class="success">支付成功 <span class="icon-success"></span</p>
+        <p>订单金额：￥{{pic}}</p>
+    </div>
+</div>
+<div class="addr">
+    <p >{{addr.name}} {{addr.tel}}</p>
+    <p class="title">
+        <template v-if="order.delivery_dto.provice != order.delivery_dto.city">{{addr.provice}}
+        </template>
+        {{addr.city}}{{addr.area}}{{addr.detail}}
+    </p>
+</div>
+<a href="javascript:void (0)" class="btn-ck" @clikc="chakan">查看订单</a>
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/jquery-weui.min.js"></script>
+<script src="../s/j/li/dj.js"></script>
+<script src="../s/j/fn/vue.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+      el:'#app'
+        ,data:{
+            img: 'http://ww4.sinaimg.cn/thumb180/7ca81567ly1faocdvbo2pj20f00qo0tl0.jpg'
+            ,pic:100
+            ,addr:{
+                name: s_addr.receiver_name
+                ,tel: s_addr.receiver_tel
+                ,city:s_addr.city
+                ,area:s_addr.area
+                ,detail:s_addr.detail
+            }
+        }
+    })
+</script>
+</body>
+</html>

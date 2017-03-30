@@ -1,0 +1,76 @@
+.payment{
+
+}
+.title{
+    padding: 0 .15rem 0 .1rem;
+    background-color: #ffffff;
+    height: .45rem;
+    line-height: .45rem;
+    font-size: .14rem;
+}
+.title span {
+    font-size: .17rem;
+    color: #FF4C4E;
+}
+.payment .zhifuImg{
+    display: block;
+    height: .6rem;
+    width: .6rem;
+    margin: .25rem auto .23rem;
+}
+.weiXinClass img{
+    /*display: block;*/
+    height: .6rem;
+    width: .6rem;
+    /*margin: .25rem auto .23rem;*/
+}
+p.payment{
+    font-size: .12rem;
+    text-align: center;
+    color: #FF4C4E;
+}
+.payment－btn{
+    margin: .27rem .13rem;
+}
+.payment－btn a{
+    display: block;
+    background-color: #FF4C4E;
+    height: .51rem;
+    line-height: .51rem;
+    text-align: center;
+    color: #ffffff;
+    font-size: .17rem;
+    border-radius: .05rem;
+}
+.icon-weixuanzhong{
+    display: inline-block;
+    width: .25rem;
+    background: url("../../img/icon_unselected@2x.png");
+    background-repeat: no-repeat;
+    background-size: .25rem;
+}
+.icon-xuanzhong{
+    width: .25rem;
+    background: url("../../img/icon_selected@2x.png");
+    background-repeat: no-repeat;
+    background-size: .25rem;
+}
+.weiXinClass,.qitaClass{
+    height:.7rem;
+    margin:10px 0;
+    padding:5px;
+    background-color:#fff;
+    display:flex;
+    justify-content: space-around;
+    align-items: center
+}
+.tiShiBox{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index: 10;
+    background-color:rgba(0,0,0,.7);
+    display:none;
+}

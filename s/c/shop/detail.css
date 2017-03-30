@@ -1,0 +1,155 @@
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #fff;
+}
+.swiper-wrapper img{
+  width: 3.75rem;
+  height: 3.75rem;
+}
+/*包阵线*/
+.shop_item{
+  background-color: #ffffff;
+  padding-bottom: .2rem;
+}
+.shop_item img{
+  height: .5rem;
+}
+.shop_item p{
+    font-size: .17rem;
+}
+.shop_item strong{
+  font-size: .18rem;
+}
+.shop_item del{
+  font-size: .14rem;
+  color: #cccccc;
+}
+/*fenqi*/
+.instalment{
+  text-align: left;
+  background-color: #ffffff;
+  margin-top: 1px;
+  height: .4rem;
+  line-height: .4rem;
+}
+
+/*商品*/
+.goods-detail{
+  text-align: left;
+  /*height: .7rem;*/
+  line-height: .50rem;
+  background-color: #ffffff;
+  margin-top: 0.1rem;
+  padding-top: .2rem;
+}
+.goods-detail .img-circle{
+  width: .5rem;
+  height: .5rem;
+  border-radius: .5rem;
+  /*vertical-align: middle;*/
+}
+.goods-detail .name{
+  width: 2rem;
+  overflow: hidden;
+}
+.goods-detail .line{
+  margin: 0 .15rem;
+  border-bottom: 1px solid #d2d2d2;
+  /*margin-top: -.1rem;*/
+}
+.goods-remark{
+  background-color: #ffffff;
+  padding: .15rem;
+}
+.goods-remark h4{
+  text-align: left;
+  font-size: .15rem;
+  font-weight: 600;
+}
+.goods-remark p {
+  text-align: left;
+  font-size: .14rem;
+  font-weight: normal;
+  color: #131313;
+}
+/*商品信息*/
+.ill{
+  margin-bottom: .22rem;
+}
+.ill ul{
+
+}
+.ill ul li {
+  text-align: left;
+  font-size: .15rem;
+  font-weight: normal;
+  height: .45rem;
+  line-height: .45rem;
+  margin-top: 1px;
+  background-color: #ffffff;
+}
+.ill ul li h4{
+  color: #131313;
+  font-size: .14rem;
+  margin: 0 .12rem;
+}
+.ill ul li span{
+  display: inline-block;
+  color: #999999;
+  font-size: .14rem;
+  margin: 0 .12rem;
+}
+.ill ul li:first-child{
+  text-align: center;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.col-ccc{
+  color: #999999;
+  width: 1.1rem;
+  margin-right: .1rem;
+}
+.icon-shouchu{
+  position: absolute;
+  background-image: url(../../img/yiShou@2x.png);
+  background-repeat: no-repeat;
+  background-size: .6rem .25rem;
+  top: 1.75rem;
+  left: 50%;
+  margin-left: -.35rem;
+  width: .6rem;
+  height: .25rem;
+  z-index: 9999999;
+}
+.styleBlock{
+  color:#ccc;
+  background-color:#999;
+}
+.detail{
+  height:.5rem;
+  display: inline-block;
+  width:1rem;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.spanJu{
+  background: url('../../img/jinru1.png') no-repeat 95% center;
+  background-size: .05rem .1rem;
+}
+.spanJu1{
+  background: url('../../img/jinru1.png') no-repeat 90% center;
+  background-size: .05rem .1rem;
+  text-align: center;
+  font-size: .12rem;
+}
+.instalment .icon-fenqi {
+  display: inline-block;
+  width: .22rem;
+  height: .19rem;
+  background-image: url("../../img/fenqitubiao@2x.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}

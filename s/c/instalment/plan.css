@@ -1,0 +1,156 @@
+.order-goods {
+    background-color: #FFFFFF;
+    padding: 0 .1rem;
+}
+
+.order-goods img {
+    display: inline-block;
+    width: .8rem;
+    height: .9rem;
+    vertical-align: middle;
+}
+
+.order-goods .title {
+    width: 1.1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 .1rem;
+}
+.order-goods .price {
+    float: right;
+    line-height: .8rem;
+}
+.order-goods div{
+    vertical-align: middle;
+    display: inline-block;
+}
+.bg-fahuopingtai{
+    margin: .20rem auto 0;
+    display: block;
+    width: 2.72rem;
+    height: .21rem;
+}
+.bg-fahuo{
+    margin: .20rem auto 0;
+    display: block;
+    width: 3rem;
+    height: .21rem;
+}
+.open_desc{
+    margin: .15rem auto;
+    text-align: center;
+    font-size:.12rem;
+    color: #CCCCCC;
+}
+.my_select{
+    height: .45rem;
+    line-height: .45rem;
+    background-color: #FFFFFF;
+    position: relative;
+}
+.paydown{
+    color: #FF4C4E;
+}
+.fenqiPage{
+
+}
+.iocn_xiaxuan {
+    /*position: absolute;*/
+    /*top: .16rem;*/
+    /*right: .35rem;*/
+    /*display: block;*/
+    display: inline-block;
+    width: .13rem;
+    height: .07rem;
+    background: url('../../img/btn_shifang.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.stages-box{
+    height: .76rem;
+    background-color: #FFFFFF;
+    border: none;
+    /*margin-top: .05rem;*/
+    padding: 0 .13rem;
+    border-bottom: 2px solid #f5f7f6;
+}
+.stages-box h5{
+    font-size: .14rem;
+    font-weight: 800;
+    text-align: center;
+}
+.stages-box span{
+    color: #FF4C4E;
+}
+.stages-box p{
+    font-size:.12rem;
+    color: #999999;
+    text-align: center;
+}
+
+.icon-weixuanzhong,.icon-xuanzhong{
+    display: inline-block;
+    width: .25rem;
+    background: url("../../img/icon_unselected@2x.png");
+    background-repeat: no-repeat;
+    background-size: .25rem;
+}
+.icon-xuanzhong{
+    width: .25rem;
+    background: url("../../img/icon_selected@2x.png");
+    background-repeat: no-repeat;
+    background-size: .25rem;
+}
+.stages-box div{
+    margin-top: 0.15rem;
+}
+.stages-box .icon{
+    margin-top: .3rem;
+}
+.weui_dialog_bd{
+    text-align: left;
+}
+.plan-text{
+    margin: 0 .2rem;
+}
+.weui_select{
+     padding-left: 0;
+}
+#paydownRate,#stagesList{
+    width:50%;
+    text-align: center;
+    position: relative;
+    /*margin-right: 5px;*/
+    background-color: #fff;
+    height: 45px;
+    line-height: 45px;
+}
+.fangAn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:5px 0;
+    width:100%;
+}
+#paydown,#stagesed{
+    color:#FF4C4E;
+    font-size: .14rem;
+}
+select{
+    outline: none;
+    line-height: 25px;
+    height: 25px;
+    /*width: calc(100% - 100px);*/
+    /*float: left;*/
+    font-family: 'Microsoft YaHei', Helvetica Neue, Helvetica, Arial, sans-serif;
+    /*font-size: 12px;*/
+    padding: 0 2px;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    /*background: url(../../img/btn_shifang.png) no-repeat calc(100% - 10px) center;*/
+    /*background-size: 10px;*/
+    background-color:#fff;
+    border:none;
+}

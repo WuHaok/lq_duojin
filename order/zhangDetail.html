@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>账单详情</title>
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <style>
+        /*@media screen and (min-device-width: 375px) {*/
+            /*html{font-size: 50px;}*/
+        /*}*/
+        /*@media screen and (min-device-width: 414px) {*/
+            /*html{font-size: 55.2px;}*/
+        /*}*/
+        /*!* iphone6 plus *!*/
+        html{
+            font-size:100px;
+        }
+    </style>
+    <script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+    <script>
+        var html = document.documentElement || document.body;
+        var designWidth = 750;
+        var deviceWidth = html.clientWidth;
+        html.style.fontSize = deviceWidth *100/ designWidth +"px";
+    </script>
+    <!--<script src="../s/j/li/init.js"></script>-->
+    <link href="../s/c/instalment/init.css" rel="stylesheet">
+    <link rel="stylesheet" href="../s/c/instalment/zhangDetail.css">
+</head>
+<body>
+    <div class="header">
+        <script type="text/html"  id="scriptObj">
+            <input type="hidden"  id="type" value="{{type}}">
+            <input type="hidden" name="" id="order_uuid" value="{{order_uuid}}">
+            <!-- 分期服务商 -->
+            <input type="hidden" name="" id="repay_name" value="{{repay_name}}">
+            <input type="hidden" name="" id="fenQiBiao" value="{{fenQiBiao}}">
+            <input type="hidden" name="" id="repay_desc" value="{{repay_desc}}">
+            <input type="hidden" name="" id="code" value="{{code}}">
+            <input type="hidden" name="" id="begin_repay_date" value="{{begin_repay_date}}">
+            <input type="hidden" name="" id="deadline_day" value="{{deadline_day}}">
+            <input type="hidden" name="" id="deadline_hour" value="{{deadline_hour}}">
+            <input type="hidden" name="" id="deadline_uuid" value="{{deadline_uuid}}">
+            <input type="hidden" name="" id="canRepay" value="{{canRepay}}">
+            <div class="zhangDan">
+                <p class="bianHao">账单编号：{{bianHao}}</p>
+                <p class="zhuanTai {{statuClass}}">{{status}}</p>
+            </div>
+            <div class="xiangQing">
+                <img  src="{{main_img}}"/>
+                <div class="typeName">
+                    <h3>{{brand_name}}</h3>
+                    <p class="chen_shop">
+                        <span class="chengSe">{{chenSe}}</span>
+                        <span class="shopName">{{product_name}}</span>
+                    </p>
+                </div>
+                <p class="jiaGe">
+                    ¥{{price}}
+                </p>
+            </div>
+            <div class="jinE">
+                <div>
+                        <h4>￥{{amount_total}}</h4>
+                        <p>应还金额</p>
+                </div>
+                <!--<div style="display: {{can_repay}}">-->
+                        <!--<h4 style="color:#FF4C4E;">￥{{amount_per}}</h4>-->
+                        <!--<p>每期还款</p>-->
+                <!--</div>-->
+                <div id="meiQiObj">
+                    <h4 style="color:#FF4C4E;">￥{{amount_per}}</h4>
+                    <p>每期还款</p>
+                </div>
+                <div style="display:{{can_repay}}">
+                    <h4 style="text-align:center;color:#FF4C4E;">￥{{amount_left}}</h4>
+                    <p style="text-align: center">待还金额</p>
+                </div>
+            </div>
+        </script>
+     </div>
+    <div class="qiShu">
+            <script type="text/html" id="scriptData">
+                <p class="shuList {{huanImags}} "  data-uuid='{{uuid}}' style="{{penaltydaClass}}">
+                    <span class="imgs"></span>
+                    <span class="list1">第{{num}}期</span>
+                    <span class="yinhuanbox" style="line-height:.5rem">
+                        <span class="yinhuan1">¥{{amount_per}}</span>
+                        <span class="zhina" style="display:{{penaltyClass}}">(含滞纳金¥{{penalty}})</span>
+                    </span>
+                    <span class="list1">还款日期:{{expire_date}}</span>
+                    <img src="../s/img/{{huanZhuang}}.png" style="width:.61rem;height:.61rem;" />
+                </p>
+            </script>
+    </div>
+    <div id="footer" style="display: none">
+        <p class="chaKan">查看订单</p>
+        <p class="liHuan" >立即还款</p>
+    </div>
+    <div id="footered" style="display: none">
+        <p class="chaKan">查看订单</p>
+    </div>
+    <div id="tiShi" >
+    </div>
+    <div id="tiShi_div">
+        <div class="tiShi_div1">
+            <p class="tiShi_p1">
+                <span class="tiShi_span1">提示</span>
+                <span class="tiShi_span2"></span>
+            </p>
+            <p class="tiShi_p2">
+                确定
+            </p>
+        </div>
+    </div>
+    <div id="tongZhi_div">
+        <div class="tongZhi_div1">
+            <p class="tongZhi_p1">
+                <span class="tongZhi_span1"></span>
+                <span class="tongZhi_span2"></span>
+            </p>
+            <p class="tongZhi_p2">
+                <span class="tongZhi_span3">我知道</span>
+                <em>|</em>
+                <span class="tongZhi_span4">稍后还款</span>
+            </p>
+        </div>
+    </div>
+</body>
+<script src="../s/j/li/dj.js"></script>
+<script src="../s/j/fn/template.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script src="../s/j/instalment/zhangDetail.js"></script>
+</html>

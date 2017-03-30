@@ -1,0 +1,92 @@
+.fs-15 {
+  font-size: 15px;
+}
+.fs-11 {
+  font-size: 11px;
+}
+.fs-13 {
+  font-size: 13px;
+}
+.c999 {
+  color: #999;
+}
+.ccfa {
+  color: #CFA972;
+}
+.c719 {
+  color: #7197BB;
+}
+.mar-10 {
+  margin: 10px 0 5px 0;
+}
+.fw-800 {
+  font-weight: 800;
+}
+.fen-table {
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #999;
+  background-color: #fff;
+}
+.fen-table div {
+  border-right: 1px solid #999;
+}
+.status {
+  position: absolute;
+  top: 1px;
+  right: 15px;
+}
+.inco {
+  float: left;
+  margin: 16px 15px 20px 25px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+  background-image: url(/resources/images/wap/icon-bukexuan@2x.png);
+  background-size: 100% 100%;
+}
+.bg-inco {
+  float: right;
+  margin: 10px 10px 10px 0px;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-image: url(/resources/images/wap/icon-yizhifu@2x.png);
+  background-size: 100% 100%;
+}
+.page2 {
+  margin-top: 10px;
+}
+.bill {
+  height: 50px;
+  line-height: 50px;
+  margin-bottom: 1px;
+  width: 100%;
+  background: #fff;
+}
+.bill-text,
+.bill-text1 {
+  margin-left: 40px;
+  vertical-align: middle;
+}
+.bill-text1 {
+  float: left;
+  margin-left: 0px;
+}
+/*逾期*/
+.billed .inco {
+  background-image: url(/resources/images/wap/icon-weixuanzhong@2x.png);
+}
+.billed .bg-inco {
+  background-image: url(/resources/images/wap/icon-yuqi@2x.png);
+}
+/*待还*/
+.billing .inco {
+  background-image: url(/resources/images/wap/icon-weixuanzhong@2x.png);
+}
+.billing .bg-inco {
+  background-image: url(/resources/images/wap/icon-daihuan@2x.png);
+}
+.click .inco {
+  background-image: url(/resources/images/wap/icon_selected@2x.png);
+}

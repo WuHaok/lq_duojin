@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/style.css">
+    <title>流水及联系人</title>
+    <link rel="stylesheet" type="text/css" href="../s/c/instalment/authPage.css">
+    <style type="text/css">
+        .decoration-underline {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="nav ">
+    <div class="nav-box"><p class="inco"></p>
+        <p class="text">个人基本信息</p></div>
+    <div class="nav-box "><p class="inco"></p>
+        <p class="text">工作信息</p></div>
+    <div class="nav-box on"><p class="inco"></p>
+        <p class="text">消费信息</p></div>
+</div>
+<div class='form-text'>
+    <p>紧急联系人1</p>
+</div>
+<div class="form-group">
+    <label style="width: 110px;">与申请人关系：</label>
+    <select class="renZhen3"  datatype="*" placeholder="" id="contact1_relation">
+        <option value="直系亲属（如：父母，夫妻）"  selected>直系亲属（如：父母，夫妻）</option>
+        <option value="同事或朋友">同事或朋友</option>
+    </select>
+</div>
+<div class="form-group ">
+    <label>姓名：</label>
+    <input class="weui_input" id="contact1_name" type="text" datatype="*" placeholder="必填">
+</div>
+<div class="form-group ">
+    <label>手机：</label>
+    <input class="weui_input" id="contact1_phone" type="text" datatype="*" placeholder="必填">
+</div>
+<!--     <div class='form-text'>
+        <p>紧急联系人2</p>
+    </div>
+    <div class="form-group">
+        <label style="width: 140px;">与申请人关系：</label>
+        <select class="weui_input" style="width: calc(100% - 140px);" datatype="*" placeholder="" id="contact2_relation">
+          <option value="直系亲属（如：父母，夫妻）">直系亲属（如：父母，夫妻）</option>
+          <option value="同事或朋友">同事或朋友</option>
+        </select>
+    </div>
+    <div class="form-group " >
+        <label>姓名：</label>
+        <input class="weui_input" id="contact2_name" type="text" datatype="*" placeholder="">
+    </div>
+    <div class="form-group " >
+        <label>手机：</label>
+        <input class="weui_input" id="contact2_phone" type="text" datatype="*" placeholder="">
+    </div> -->
+<!-- <p class="say">如下🔽信息必填，截图示例可查看样例</p> -->
+<!--<div class='form-text'>-->
+    <!--<p>支付宝流水及个人主页截图：(最多9张)</p>-->
+    <!--<a href="javascript:void(0)" id="handzhifubao">查看样例</a>-->
+<!--</div>-->
+<!--<div class="imgbox" id="zhifubaoUpBox">-->
+    <!--<div class='upimgs' id="zhifubaoUp" >-->
+        <!--<input type="file" name="pic" style="" accept="image/*"-->
+               <!--onchange="imgChangezhifubao(this);" multiple="multiple"-->
+               <!--data-role="none" class='btn img-btn'>-->
+
+    <!--</div>-->
+<!--</div>-->
+<!--<div class='form-text'>-->
+    <!--<p>微信流水截图：(最多9张)</p>-->
+    <!--<a href="javascript:void(0)" id="handweixin">查看样例</a>-->
+<!--</div>-->
+<!--<div class="imgbox" id="weixinUpBox">-->
+    <!--<div class='upimgs' id="weixinUp">-->
+
+        <!--<input type="file" name="pic" style="" accept="image/*"-->
+               <!--onchange="imgChangeweixin(this);" multiple="multiple"-->
+               <!--data-role="none" class='btn img-btn'>-->
+    <!--</div>-->
+
+</div>
+<!-- <p class="say">如下🔽银行卡信息非必填，可查看样例</p> -->
+<div class='form-text' style="margin-top: 10px;line-height: 15px;height:28px;">
+    <p style="font-size: 12px ;color:#ff0000;">🔽&nbsp;如下信息非必填，填写可提高通过率。<br>建议不经常使用支付宝,微信支付的用户填写</p>
+    <a href="javascript:void(0)" id="need">展开填写</a>
+</div>
+<div class='form-text unneed'>
+    <p>银行卡流水账单：（最多9张）</p>
+    <a href="javascript:void(0)" id="handyinhang">查看样例</a>
+</div>
+<!------<div class="imgbox unneed" id="yinhangUpBox">
+    <div class='upimgs' id="yinhangUp">
+
+        <input type="file" name="pic" style="" accept="image/*"
+               onchange="imgChangeyinhang(this);" multiple="multiple"
+               data-role="none" class='btn img-btn'>
+
+    </div>
+</div>--->
+<div class="imgbox unneed" id="yinhangUpBox">
+    <div class='upimgs' id="yinhangUp">
+
+        <input type="file" name="pic" style="" accept="image/*"
+               onchange="imgChangeyinhang(this);" multiple="multiple"
+               data-role="none" class='btn img-btn'>
+    </div>
+
+</div>
+<div id="zhifubaoPage" class="weui-popup-container shili">
+    <div class="weui-popup-overlay"></div>
+    <div class="weui-popup-modal">
+        <h5>支付宝流水及个人主页截图样例</h5>
+        <button class="close-popup popbtn">x</button>
+        <button class="close-popup">我知道了</button>
+        <p>所需材料：</p>
+        <p>支付宝账单消费情况截图、支付宝账单收入情况截图、支付宝主页截图</p>
+        <p>截图方法（以苹果手机截图为例，安卓系统手机流程相同）：</p>
+
+        <p>1.登录支付宝，点击【我的】，进入“我的”页面。点击【账单】</p>
+        <img src="../s/img/zhiFu_wode1.png">
+        <br>
+        <p>2.点击【账单】，进入“账单”页面，点击【查看月账单】</p>
+        <img src="../s/img/zhifu_zhangdan2.png">
+        <p>3.点击【查看月账单】，进入“月账单”页面，<sapn style="color:#f00;">截图保存以待上传！</sapn></p>
+        <img src="../s/img/zhiFu_xiaoFei4.png">
+        <p>4.点击【切换收入情况】，进入“月账单-收入情况”页面，<sapn style="color:#f00;">截图保存以待上传！</sapn></p>
+        <img src="../s/img/zhiFu_shouRu3.png">
+        <p>5.返回“我的”页面，点击个人信息，进入“个人主页”</p>
+        <img src="../s/img/zhiFu_woDe5.png">
+        <p>6.返回“我的”页面，点击个人信息，进入“个人中心”。点击【个人主页】</p>
+        <img src="../s/img/zhiFu_zhongXin6.png">
+        <p>7.进入“个人主页”，点击【显示更多】</p>
+        <img src="../s/img/zhiFu_xianShi7.png">
+        <p>8.展开更多信息，显示芝麻信用评分，<sapn style="color:#f00;">截图保存以待上传！</sapn></p>
+        <img src="../s/img/zhiFu_shouQi8.png">
+        <button class="close-popup">我知道了</button>
+
+    </div>
+</div>
+<div id="weixinPage" class="weui-popup-container shili">
+    <div class="weui-popup-overlay"></div>
+    <div class="weui-popup-modal">
+        <h5>微信流水及个人主页截图样例</h5>
+        <button class="close-popup popbtn">x</button>
+        <button class="close-popup">我知道了</button>
+        <p>所需材料：</p>
+        <p>近6个月的流水账单</p>
+        <p>截图方法（以苹果手机截图为例，安卓系统手机流程相同）：</p>
+        <p>1.登录微信，点击【我】，进入“我”页面。点击【钱包】</p>
+        <img src="../s/img/wx_wo1.png">
+        <br>
+        <p>2.进入“钱包”页面，点击右上角【···】</p>
+        <img src="../s/img/wx_qian2.png">
+        <p>3.弹出操作选项，选择【交易记录】</p>
+        <img src="../s/img/wx_jiao3.png">
+        <p>4.进入“交易记录”页面，查看本月收支情况，<sapn style="color:#f00;">截图保存以待上传！</sapn></p>
+        <img src="../s/img/wx_ji4.png">
+        <p>5.翻动页面，查看上一个月收支情况，<sapn style="color:#f00;">截图保存以待上传！</sapn></p>
+        <img src="../s/img/wx_ji5.png">
+        <p>6.以此类推，共需要截取最近六个月的收支情况，<sapn style="color:#f00;">截图保存以待上传！</sapn></p>
+        <button class="close-popup">我知道了</button>
+    </div>
+</div>
+<div id="shouquanshupage" class="weui-popup-container shili">
+    <div class="weui-popup-overlay"></div>
+    <div class="weui-popup-modal">
+        <h5>个人信息查询授权书</h5>
+        <button class="close-popup popbtn agreebtn">x</button>
+        <button class="close-popup agreebtn">我知道了</button>
+        <p>
+            一、本人授权同意与北京陆秦网络科技有限公司合作的第三方机构，依法合规地收集本人的个人信息，并向北京陆秦网络科技有限公司出具本人的信用评估报告。信用评估报告所载个人信息仅限贷前审批和贷后管理工作中使用，北京陆秦网络科技有限公司不向无关第三方提供或披露。</p>
+        <p>二、本人同意 北京陆秦网络科技有限公司向第三方机构（例如征信公司、银行等）提交本人的个人基本信息、借款申请信息、借款合同信息以及还款行为信息，并同意保存在第三方机构建设的信息数据库中。<span
+                class="decoration-underline">上述信息包含本人逾期还款信息在内的不良行为信息，一旦记录在第三方机构的信息数据库中，会对本人在日后的经济活动产生不同程度的不良影响，</span>在此北京陆秦网络科技有限公司已向本人特别提示与说明。
+        </p>
+    </div>
+</div>
+<div id="yinhangPage" class="weui-popup-container shili">
+    <div class="weui-popup-overlay"></div>
+    <div class="weui-popup-modal">
+        <h5>手持银行卡样例</h5>
+        <button class="close-popup popbtn">x</button>
+        <button class="close-popup">我知道了</button>
+
+        <p></p>
+        <p>示例：</p>
+        <img src="../s/img/sl-liushui.jpg">
+        <button class="close-popup">我知道了</button>
+    </div>
+</div>
+<p class="footed"><i class="weui_icon_circle" style="vertical-align: middle;" id="agree"></i>
+    <a href="javascript:void(0);" style="vertical-align: middle;font-size: 12px;" id="shouquanshu">同意个人信息查询授权书</a>
+</p>
+<p class="footed">如有疑问请致电朵金客服：400-8713677</p>
+<div class="footing">
+    <div class="weui-row weui-no-gutter">
+        <div class="weui-col-40" style="background-color:#fff">
+            <a id="goback" class="block" style="color:#131313">上一步</a>
+        </div>
+        <div class="weui-col-60 bg-black" style="background-color:#ff4c4e">
+            <a id="confirm" class="block" style="color:#fff">提交</a>
+        </div>
+    </div>
+</div>
+
+<script src="../s/j/li/dj.js"></script>
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/jquery-weui.min.js"></script>
+<script src="../s/j/fn/formText.js"></script>
+<script src="../s/j/fn/city-picker.js" charset="utf-8"></script>
+<script src="../s/j/fn/Validform_v5.3.2_min.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script src="../s/j/li/base.js"></script>
+<script type="text/javascript" src='../s/j/instalment/authPage3.js'></script>
+<script type="text/javascript">
+    $(function () {
+        $('.unneed').hide()
+
+       $('form').each(function (e) {
+           $(this).attr('action',line+$(this).attr('action'))
+       })
+
+
+    })
+    $('#need').on('click', function (e) {
+
+        if ($(this).hasClass('needed')) {
+            $('.unneed').hide()
+            $(this).removeClass('needed')
+            $(this).text('展开填写')
+        } else {
+            $('.unneed').show()
+            $(this).addClass('needed')
+            $(this).text('收起')
+        }
+    })
+    $('#agree').on('click', function (e) {
+        var e = $(this)
+        if (e.hasClass('weui_icon_success_circle')) {
+            e.removeClass('weui_icon_success_circle')
+            e.addClass('weui_icon_circle')
+        } else {
+            e.addClass('weui_icon_success_circle')
+            e.removeClass('weui_icon_circle')
+        }
+    })
+    $('.agreebtn').on('click', function (e) {
+        $('#agree').addClass('weui_icon_success_circle').removeClass('weui_icon_circle')
+    })
+</script>
+</body>
+</html>

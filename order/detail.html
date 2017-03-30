@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/newstyle.css">
+    <link rel="stylesheet" type="text/css" href="../s/c/order/detail.css">
+
+    <title>订单详情</title>
+</head>
+<body>
+<div id="app">
+    <div class="addr">
+        <p>{{order.delivery_dto.receiver_name}} {{order.delivery_dto.receiver_tel}}</p>
+        <p class="title">
+            <template v-if="order.delivery_dto.provice != order.delivery_dto.city">{{order.delivery_dto.provice}}
+            </template>
+            {{order.delivery_dto.city}}{{order.delivery_dto.area}}{{order.delivery_dto.detail}}
+        </p>
+    </div>
+    <div class="good_detail">
+        <img :src="product_dto.product_main_img" alt="">
+        <div class="good">
+            <h4>{{product_dto.brand_name}}</h4>
+            <p><span class="quality bg-red">{{product_dto.quality_name}}</span>{{product_dto.product_name}}</p>
+        </div>
+        <div class="amo">￥{{product_dto.amount}}</div>
+    </div>
+    <div class="ill">
+        <ul>
+            <li><span>订单编号：</span>{{order.order_id}}</li>
+            <li><span>下单时间：</span>{{order.create_date}}</li>
+            <li><span>合计金额：</span>{{order.amount}}</li>
+            <template v-if="order.is_interest">
+                <li><span>付款方案：</span>首付{{order.paydown_rate}}% {{order.stages}} 期 X {{order.instalment_amount_per}}元/月</li>
+                <li><span>首付金额：</span>{{order.paydown_amount}}</li>
+            </template>
+            <template v-if="!(order.is_interest)">
+                <li><span>付款方案：</span>全额付</li>
+            </template>
+            <li><span>实付金额：</span>{{order.finally_amount}}</li>
+        </ul>
+        <ul>
+            <li><span>备注信息：</span>{{order.remark}}</li>
+        </ul>
+    </div>
+
+    <div class="logistics" id="logistics">
+        <h5>订单跟踪</h5>
+        <ul>
+            <li v-for="li in track_list" class="log-box">
+                <p><span class="icon-route" :class="{'icon-route2':li.curre_route}"></span>{{li.create_date}}</p>
+                <div class="free"></div>
+                <div class="remark">
+                    <h4>{{li.name}}</h4>
+                    <p style="color:#999;font-size:.12rem;">{{li.remark}}</p>
+                </div>
+                <a href="javascript:void (0)" class="log-btn" :class="{'displayblock':li.lookWuliu}" @click="wuliu(li)">查看物流</a>
+            </li>
+        </ul>
+    </div>
+    <div class="footer">
+        <div class="weui-row weui-no-gutter">
+            <template v-if="status == 0"> <!-- 待支付 -->
+                <div class="weui-col-40 bg-white">
+                    <a @click="quxiao()" class="block">取消订单</a>
+                </div>
+                <div class="weui-col-60 bg-red">
+                    <a @click="buynow()" class="block">立即支付</a>
+                </div>
+            </template>
+            <template v-if="status == 1 && is_instalment== 1">
+                <div class="weui-col-100 bg-red">
+                    <a @click="fenQi1()" class="block">分期账单</a>
+                </div>
+            </template>
+            <!-- 待收获 发货 (status == 2 && (delivery_to==0 || delivery_status==2))-->
+            <template v-if="status_delivery && is_instalment== 1">
+                <div class="weui-col-40 bg-white">
+                    <a @click="confirm()" class="block">确认收货</a>
+                </div>
+                <div class="zhangFen weui-col-60 bg-red " >
+                    <a @click="fenQi()" class="block zhangFen">分期账单</a>
+                </div>
+            </template>
+            <template v-if="status_delivery && is_instalment!= 1">
+                <div class="weui-col-100 bg-red">
+                    <a @click="confirm()" class="block">确认收货</a>
+                </div>
+            </template>
+            <template v-if="status == 2 && !status_delivery && is_instalment== 1">
+                <div class="weui-col-100 bg-red " >
+                    <a @click="fenQi()" class="block zhangFen">分期账单</a>
+                </div>
+            </template>
+            <!-- 已完成 -->
+            <template v-if="status == 3 && is_instalment==1">
+                <div class="weui-col-100 bg-red">
+                    <a @click="fenQi()" class="block">分期账单</a>
+                </div>
+            </template>
+            <!-- 已关闭 -->
+            <template v-if="status == 4">
+
+            </template>
+            <!-- 信用审核 -->
+            <template v-if="status == 5 && geex_dto==51">
+                <div class="weui-col-100 bg-red">
+                    <a @click="geex_sub()" class="block">前往认证</a>
+                </div>
+            </template>
+        </div>
+    </div>
+</div>
+<script src="../s/j/li/dj.js"></script>
+<script type="text/javascript" src='../s/j/fn/jquery-1.11.1.min.js'></script>
+<script src="../s/j/fn/weixinpay.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="../s/j/fn/md5.js" type="text/javascript"></script>
+<script src="../s/j/li/dj.js"></script>
+<script src="../s/j/fn/vue.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script src="../s/j/order/detail.js"></script>
+<script type="text/javascript">
+    $('#logistics .free').each(function (e) {
+        $(this).css('height', parseInt($(this).closest('li').find('.remark').css('height')) +
+                parseInt($(this).closest('li').find('.remark').css('padding-bottom')))
+    })
+    $('#logistics .free').last(".free").css('border', 'none')
+//    if($("#ceShi").val()){
+//        $(".block").addClass(weui-col-100);
+//    }
+
+
+
+</script>
+</body>
+</html>

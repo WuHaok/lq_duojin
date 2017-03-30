@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!-- order_id -->
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/style.css">
+    <title>个人基本信息</title>
+    <link rel="stylesheet" type="text/css" href="../s/c/instalment/authPage.css">
+</head>
+<body>
+<div class="nav ">
+    <div class="nav-box on"><p class="inco"></p>
+        <p class="text">个人基本信息</p></div>
+    <div class="nav-box"><p class="inco"></p>
+        <p class="text">工作信息</p></div>
+    <div class="nav-box"><p class="inco"></p>
+        <p class="text">消费信息</p></div>
+</div>
+<p class="say">※请确保所填信息为同一人！</p>
+<div class="form-group ">
+    <label>姓名：</label>
+    <input class="weui_input" id="name" type="text" datatype="*" placeholder="必填">
+</div>
+<div class="form-group">
+    <label>身份证号：</label>
+    <input class="weui_input" id='card_id' type="text" datatype="*" placeholder="必填">
+</div>
+<div class='form-text'>
+    <p>手持身份证照片：(仅限1张)</p>
+    <a href="javascript:void(0)" id="handIdcard">查看样例</a>
+</div>
+<div class="imgbox" id="upXinxi">
+    <div class='upimgs' id="handUp">
+        <input type="file" name="pic" style="" accept="image/*"
+               onchange="imgChange(this);" multiple="multiple"
+               data-role="none" class='btn img-btn' capture='camera'>
+    </div>
+</div>
+<div class="form-group">
+    <label >开户银行：</label>
+    <!---class="weui_input"--->
+    <select  datatype="*" placeholder="" id="bank_name">
+        <option value="0">请选择开户银行</option>
+        <option value="中国工商银行">中国工商银行</option>
+        <option value="中国农业银行">中国农业银行</option>
+        <option value="中国银行">中国银行</option>
+        <option value="中国建设银行">中国建设银行</option>
+        <option value="中国邮政储蓄银行">中国邮政储蓄银行</option>
+        <option value="中国光大银行">中国光大银行</option>
+        <option value="平安银行">平安银行</option>
+        <option value="中信银行">中信银行</option>
+        <option value="兴业银行">兴业银行</option>
+        <option value="中国民生银行">中国民生银行</option>
+        <option value="浦发银行">浦发银行</option>
+        <option value="广发银行">广发银行</option>
+        <option value="交通银行">交通银行(只支持借记卡)</option>
+        <option value="招商银行">招商银行(只支持信用卡)</option>
+        <option value="华夏银行">华夏银行(只支持信用卡)</option>
+        <option value="北京银行">北京银行(只支持信用卡)</option>
+        <option value="上海银行">上海银行(只支持信用卡)</option>
+    </select>
+</div>
+<div class="form-group">
+    <label>银行卡号：</label>
+    <input class="weui_input" id="bank_num" type="number" datatype="*" placeholder="必填">
+</div>
+<p class="say">⏫&nbsp;此处提交信息只做信用审核用，不发生任何费用</p>
+
+
+<div class="form-group ">
+    <label for="">现居住地址：</label>
+    <input type="text" name="city" id="house_addr" onclick="clearinput()" data-icon="false" datatype="*" errormsg="工作地址"
+           nullmsg="工作地址" placeholder="所在区域">
+    <a href="javascript:void(0)" class="form-clear" onclick="inputClear(this)"><i class="icon-wrongback"></i></a>
+</div>
+<div class="form-group ">
+    <label for=""></label>
+    <input class="weui_input" id="home_detail" type="text" placeholder="详细地址">
+</div>
+<div class="form-group">
+    <label>微信号：</label>
+    <input class="weui_input" id="wxid" type="text" datatype="*" placeholder="必填">
+</div>
+<div class="form-group">
+    <label>手机号码：</label>
+    <input class="weui_input phone" id="phone" type="number" datatype="*" placeholder="银行卡预留手机号码">
+</div>
+<div class="form-group">
+    <label>验证码：</label>
+    <input class="weui_input" id="mobile_code" type="number" datatype="*" placeholder="">
+</div>
+<p class="say">⏫&nbsp;请确保15分钟之内，可通过手机和微信联系上您！</p>
+<a href="javascript:void(0)" class="yinhangka" id="handyinhangka">可用银行卡</a>
+<a href="javascript:void(0)" class="open-popup yanzheng" id="getcode">获取验证码</a>
+
+
+<div id="about" class="weui-popup-container shili">
+    <div class="weui-popup-overlay"></div>
+    <div class="weui-popup-modal">
+        <h5>手持身份证样例</h5>
+        <button class="close-popup popbtn">x</button>
+        <button class="close-popup">我知道了</button>
+        <p>规范：</p>
+        <p>1.手持身份证正面于胸前；</p>
+        <p>2.五官清晰无遮挡；</p>
+        <p>3.身份证资料清晰可辨</p>
+        <p></p>
+        <p>示例：</p>
+        <img src="../s/img/sl-shenfen.jpg">
+        <button class="close-popup">我知道了</button>
+    </div>
+</div>
+<div id="yinhangka" class="weui-popup-container shili">
+    <div class="weui-popup-overlay"></div>
+    <div class="weui-popup-modal">
+        <h5>支持银行卡</h5>
+        <button class="close-popup popbtn">x</button>
+        <button class="close-popup">我知道了</button>
+        <p>少铺支持如下十七家银行的银行卡认证，详见下文说明。</p>
+        <img src="../s/img/yinhang.png">
+        <button class="close-popup">我知道了</button>
+    </div>
+</div>
+
+<p class="footed">如有疑问请致电朵金客服：400-8713677</p>
+<div class="footing">
+    <div class="weui-row weui-no-gutter">
+        <div class="weui-col-100 bg-black">
+            <a id="confirm" class="block">下一步</a>
+        </div>
+    </div>
+</div>
+<script src="../s/j/li/dj.js"></script>
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/jquery-weui.min.js"></script>
+<script src="../s/j/fn/formText.js"></script>
+<script src="../s/j/fn/city-picker.js" charset="utf-8"></script>
+<script src="../s/j/fn/Validform_v5.3.2_min.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script src="../s/j/li/base.js"></script>
+<script type="text/javascript" src='../s/j/instalment/authPage1.js'></script>
+
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <script src="../s/j/li/dj.js" type="text/javascript"></script>
+    <script src="../s/j/li/ajax.js"></script>
+    <script>
+        if (browser() == 'weixin') {
+            if (GetQueryString('openid') == '' || GetQueryString('openid') == undefined || GetQueryString('openid') == null) {
+                debugger
+                window.location.href = 'http://dj.shopuu.com/dispatcher/goBaseLogin?state=9&base_login_uri=' + encodeURIComponent(window.location.href)+'&web=weixin'
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/newstyle.css">
+    <link rel="stylesheet" href="../s/c/order/payment.css">
+    <title>确认订单</title>
+</head>
+<body>
+<div id="app">
+    <div class="title">
+        本单请支付<span class="float-right">¥<em id="amount">{{amount}}</em></span>
+    </div>
+    <div class="payment">
+        <template v-if="wx" >
+            <div class="weiXinClass" @click="xuanZe">
+                <img src="../s/img/weixin.png" alt="微信支付"><span>（10000元以下推荐使用）</span>
+                <span class="icon-weixuanzhong icon-xuanzhong" style="height:.29rem;">
+                </span>
+            </div>
+            <div class="qitaClass" @click="xuanZe2">
+                <span>其他支付方式</span>
+                <span>（10000元以上推荐使用）</span>
+                <span class="icon-weixuanzhong" style="height:.29rem;">
+                </span>
+            </div>
+        </template>
+        <template v-else>
+            <img class='zhifuImg' src="../s/img/zhifubao.png" alt="支付宝支付">
+        </template>
+    </div>
+    <p class="payment">*如果支付遇到问题，可以关注微信公众号“朵金”联系客服解决</p>
+    <div class="payment－btn">
+        <a href="javascript:void (0)" @click="submit">确认支付</a>
+    </div>
+    <div class="tiShiBox" @click="tishi" style="text-align: center">
+        <img src="../s/img/tishi@2x.png" style="width:80%;">
+    </div>
+</div>
+
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/jquery-weui.min.js"></script>
+<script src="../s/j/fn/md5.js"></script>
+<script src="../s/j/fn/vue.js"></script>
+<script src="../s/j/fn/weixinpay.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+    var returnurl;
+    if (s_instalment.uuid == '' || s_instalment.uuid == undefined || s_instalment.uuid == null || s_instalment.uuid == 0) {
+            returnurl = lined+'/order/success.html?id=' + GetQueryString('id')
+    }else if(GetQueryString('paystep')==1){
+        returnurl = lined+'/order/success.html?id=' + GetQueryString('id')
+    }else{
+        returnurl = lined+'/instalment/success.html?id=' + GetQueryString('id')
+    }
+    var amount;
+    var datt={
+        order_uuid:GetQueryString('id'),
+        type:0
+    };
+    post('/adapter/wap/order/get',JSON.stringify(datt),function(ds){
+        if(ds.status==0){
+            amount = ds.result.order.finally_amount
+            $("#amount").html(amount)
+        }else if(ds.status == 600 ){
+            window.location.href = '../personal/land.html';
+        }else{
+            $.alert(ds.message_detail)
+        }
+
+    });
+
+    var data = productData.get();
+    var vm = new Vue({
+        el: '#app'
+        , data: {
+            wx: browser() == 'weixin' ? true : false
+            , isbrowser: browser() == 'weixin' ? 'wx' : 'ali'
+            , amount:amount
+            , return_url:returnurl
+            , show_url:lined+'/shop/detail?id='+productData.uuid
+        }
+        , methods: {
+            tishi:function(){
+                $('.tiShiBox').hide();
+            },
+            xuanZe:function(){
+                $('.qitaClass .icon-weixuanzhong').removeClass('icon-xuanzhong');
+                $('.weiXinClass .icon-weixuanzhong').addClass('icon-xuanzhong');
+            },
+            xuanZe2:function(){
+                $('.weiXinClass .icon-weixuanzhong').removeClass('icon-xuanzhong');
+                $('.qitaClass .icon-weixuanzhong').addClass('icon-xuanzhong');
+                $('.tiShiBox').show();
+            },
+            submit: function () {
+                if($('.qitaClass .icon-weixuanzhong').hasClass('icon-xuanzhong')){
+                      $('.tiShiBox').show();
+                }else{
+                    $.showLoading();
+                    var dat = {
+                        order_uuid: GetQueryString('id')
+                        , member_uuid: user.uuid
+                        , payway: this.isbrowser
+                        , openid: GetQueryString('openid')
+                        ,return_url:this.return_url
+                        ,show_url:this.show_url
+                    };
+                    if(dat.member_uuid==""){
+                        window.location.href = '../personal/land.html'
+                    }
+                    else{
+                        post('/adapter/wap/order/initPay', JSON.stringify(dat), function (ds) {
+                            if(ds.status == 0){
+                                if(browser() == 'weixin'){
+                                    startWXPay(ds.result)
+                                }else{
+                                    window.location.href = ds.result.signedUrl
+                                }
+                            }else if(ds.status == 501 || ds.status == 502 || ds.status == 600 ){
+                                window.location.href = '../../../personal/land.html';
+                            }else{
+                                $.hideLoading();
+                                $.alert(ds.message_detail)
+                            }
+                        })
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

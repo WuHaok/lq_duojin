@@ -1,0 +1,146 @@
+.headbody {
+    width: 100%;
+    z-index: 11;
+}
+
+.toper {
+    text-align: center;
+    background-image: url(../../img/shop-banner.png);
+    background-size: 100% 100%;
+    color: #fff;
+    position: relative;
+    z-index: 10;
+}
+
+.toper .goods-img {
+    width: .80rem;
+    height: .80rem;
+    border-radius: .50rem;
+    margin-top: .30rem;
+}
+
+.toper .goods-title {
+    padding: 10px 0;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.toper .goods-text {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 400;
+    margin: 5px 20px 0 20px;
+    color: rgba(250, 250, 250, 0.6);
+    padding: 0 0 20px 0;
+}
+
+.toper .goods-sp {
+    font-size: 12px;
+    font-weight: 200;
+    color: rgba(250, 250, 250, 0.6);
+}
+
+.toper .goods-cz {
+    text-align: right;
+    margin-top: 30px;
+}
+
+.nav {
+    background-color: #FFFFFF;
+    height: .45rem;
+    line-height: .45rem;
+    margin-bottom: .10rem;
+    box-shadow: 1px 0 11px 1px #e2e2e2;
+}
+
+.nav li {
+    display: inline-block;
+    width: 24%;
+    text-align: center;
+}
+
+.house {
+    text-align: left;
+    padding: 0 10px;
+}
+
+.house-box {
+    display: inline-block;
+    vertical-align: middle;
+    width: 50%;
+    margin-bottom: .2rem;
+    text-align: center;
+}
+
+.goods {
+    background-color: #FFFFFF;
+    margin: 0 .1rem;
+    border-radius: .07rem;
+}
+
+.house .shopImg {
+    display: inline-block;
+    /*width: 1.65rem;*/
+    width: 100%;
+    height: 1.65rem;
+    border-top-left-radius:.07rem;
+    border-top-right-radius:.07rem;
+}
+
+del {
+    color: #CCCCCC;
+}
+
+.icon-shouchu {
+    position: absolute;
+    background-image: url(../../img/yiShou@2x.png);
+    background-size: 100% 100%;
+    width: 60px;
+    height: 26px;
+    top: 50%;
+    left: 50%;
+    margin: -33px 0 0 -30px;
+}
+
+.icon-fenqi-sanjiao {
+    position: absolute;
+    display: block;
+    height: .30rem;
+    width: .30rem;
+    top: -.03rem;
+    left: 0.07rem;
+}
+
+.in-price {
+    color: #FF4C4E;
+    font-size: .11rem;
+    height: .19rem;
+    line-height: .19rem;
+}
+
+.icon-jiagetohigh, .icon-jiagetolow {
+    display: inline-block;
+    background: url(../../img/btn_jiagetohigh.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: .12rem;
+    height: .12rem;
+    background-size: 100% 100%;
+    margin-left: .02rem;
+}
+
+.icon-jiagetolow {
+    background: url(../../img/btn_jiagetolow.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.goods-info {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: .2rem;
+    line-height: .2rem;
+    margin: .04rem 0;
+}

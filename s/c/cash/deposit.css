@@ -1,0 +1,72 @@
+#chongZhi{
+    width:7.5rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding:.3rem;
+}
+#chongZhi span{
+    line-height: .9rem;
+    text-align: center;
+    display: inline-block;
+    width:1.62rem;
+    height:.9rem;
+    font-size: .3rem;
+    color:#404040;
+    margin:.24rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: .1rem;
+    border:.02rem solid #ccc;
+}
+#chongZhi .click {
+    border:.02rem solid #FF4C4E;
+    color:#f00;
+}
+#daiKuan{
+    display: flex;
+    width:7.5rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding:.3rem;
+    justify-content: space-around;
+}
+#daiKuan p{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ }
+#daiKuan em{
+    color:#FF4C4E;
+    font-size:.28rem;
+    margin-top:.25rem;
+    font-style: normal;
+}
+#daiKuan span{
+    font-size:.26rem;
+    color:#404040;
+}
+#footer{
+    margin-top:.5rem;
+    text-align: center;
+    width:7.5rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding:.3rem;
+}
+#footer p{
+    width:6.90rem;
+    height:.92rem;
+    line-height: .92rem;
+    background-color:#FF4C4E;
+    color:#fff;
+    font-size:.34rem;
+    border-radius: .1rem;
+}
+#jineInput{
+    width:6.9rem;
+    height:.79rem;
+    border:solid .02rem #999;
+    background-color: #F7F7F7;
+    display:none;
+}

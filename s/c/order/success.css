@@ -1,0 +1,46 @@
+.goods{
+    margin-top: .05rem;
+    background-color: #ffffff;
+}
+.goods img{
+    display: inline-block;
+    width: 1.01rem;
+    height: 1.01rem;
+    margin:0 .15rem;
+    vertical-align: middle;
+}
+.goods div{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: .1rem;
+}
+.success{
+    color: #64AB23;
+}
+.weui_icon_success{
+    margin:  0 .13rem;
+    width: .19rem;
+    height: .19rem;
+}
+.addr{
+    line-height: .35rem;
+    background-color: #ffffff;
+    padding: 0 .15rem;
+    margin-top: .05rem;
+    font-weight: 200;
+}
+.addr .title{
+    line-height: .25rem;
+    padding-bottom: .08rem;
+}
+a.btn-ck{
+    display: block;
+    margin: .32rem auto;
+    color: #FF4C4E;
+    border: 1px solid #999999;
+    height: .43rem;
+    line-height: .43rem;
+    width: 1.43rem;
+    text-align: center;
+    border-radius: .05rem;
+}

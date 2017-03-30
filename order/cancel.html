@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/newstyle.css">
+    <link rel="stylesheet" type="text/css" href="../s/c/order/cancel.css">
+    <title>取消订单</title>
+</head>
+<body>
+<div class="weui_cells weui_cells_form">
+    <div class="weui_cell">
+        <div class="weui_cell_bd weui_cell_primary">
+            <textarea class="weui_textarea" placeholder="请填写取消原因，如：商品已售出" rows="3" onchange="gbcount(this);"
+                      onkeyup="gbcount(this);" id='rank'></textarea>
+            <div class="weui_textarea_counter"><span id='num'>0</span>/200</div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="weui-row weui-no-gutter">
+        <div class="weui-col-100 bg-red">
+            <!--隐藏取消订单的属性-->
+            <form action="/adapter/wap/order/cancel" id='cancel'>
+                <input type="hidden" name="member_uuid" value="${c_m.uuid}">
+                <input type="hidden" name="type" value="0">
+                <a class="block" id="submit" onclick="sub()">取消订单</a>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="../s/j/li/dj.js" type="text/javascript"></script>
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/jquery-weui.min.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script type="text/javascript">
+    function gbcount(message) {
+        var lenE = message.value.length;
+        var lenC = 0;
+        var CJK = message.value.match(/[^\x00-\xff]/g);
+        var enter = message.value.match(/\r\n/g);
+        if (CJK != null) lenC += CJK.length;
+        if (enter != null) lenC -= enter.length;
+        var len = lenE + lenC;
+        $('#num').text(len)
+        if (len > 200) {
+            $('.weui_textarea_counter').addClass('weui_cell_warn')
+        } else {
+            $('.weui_textarea_counter').removeClass('weui_cell_warn')
+        }
+    }
+    function sub() {
+        var len = $('#num').text()
+        if (len != 0 && len < 200) {
+            var data = {
+                member_uuid: user.uuid
+                , order_uuid: GetQueryString('id')
+                , type: 0
+                , remark: $('#rank').val()
+            }
+            post('/adapter/wap/order/cancel', JSON.stringify(data), function (data) {
+                if (data.status == 0) {
+                    window.location.href = '../order/list.html'
+                } else {
+                    $.alert(data.message)
+                }
+            })
+        } else {
+            $('.weui_textarea_counter').addClass('weui_cell_warn')
+
+        }
+    }
+</script>
+</body>
+</html>

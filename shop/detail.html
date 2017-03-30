@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/newstyle.css">
+    <link rel="stylesheet" type="text/css" href="../s/c/shop/detail.css">
+    <title>商品</title>
+</head>
+<body>
+<div id="app" style="display:none">
+    <div class="{{storage_status}} {{storage}}"></div>
+    <div class="text-center clearfix frame">
+        <div style="position: relative; background-color: #ffffff">
+            <div class="swiper-container" data-space-between='10' data-pagination='.swiper-pagination'
+                 data-autoplay="1000">
+                <div class="swiper-wrapper">
+                    <template v-for="img in imgslist">
+                        <div class="swiper-slide">
+                            <img :src="img" class="img-responsive center-block"
+                                 class="swiperimgs">
+                        </div>
+                    </template>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <div class="shop_item">
+            <img :src="product.brand_info.brand_local_img">
+            <p>{{product.product_name}}</p>
+            <p class="goods-info">
+                <span class="quality bg-red">{{product.quality_info.name}}</span>
+                <strong>￥{{product.price}}</strong>
+                <del>￥{{product.ori_price}}</del>
+            </p>
+        </div>
+        <div v-show="product.can_instalment" class="instalment">
+            <a href="javascript:void (0)" @click="shoping">
+                <span class="icon-fenqi mar-15"></span>
+                <span class="font-red">分期 -首付{{product.instalment_amount}}元即可拥有</span>
+                <!--<span class="float-right spanJu">查看详情</span>-->
+                <span class="float-right col-ccc spanJu1" style="text-align: right;padding-right:16px;width: 70px;">查看详情
+                    <!--<span class="icon-jinru mar-15"></span>-->
+                </span>
+            </a>
+        </div>
+        <div class="goods-detail">
+            <a class="goods-detail-head clearfix"
+               href="../shop/index.html?id={{product.publish_member_info.uuid}}  ">
+                <img :src="product.publish_member_info.head_img" class="img-circle mar-15">
+                <span class="block pull-left detail">{{product.publish_member_info.nick_name}}</span>
+                <!-- 卖家信息链接 /shop/index?publish_member_uuid=${product.publish_member_info.uuid} -->
+                <span class="float-right col-ccc spanJu1">查看卖家信息
+                    <!--<span class="icon-jinru mar-15"></span>-->
+                </span>
+            </a>
+            <p class="line"></p>
+        </div>
+        <div class="goods-remark">
+            <h4>卖家寄语：</h4>
+            <p class="font-light">{{product.remark}}</p>
+        </div>
+        <div class="ill">
+            <ul>
+                <li><h4>商品信息</h4></li>
+                <li><span>商品品牌</span>{{product.brand_info.brand_name}}</li>
+                <li><span>商品品类</span>{{product.category_info.name }}</li>
+                <li class="spanJu"><span>商品成色</span>{{product.quality_info.name }}
+                    <a style="color: #999999; float: right; margin-right: 30px; font-size: .12rem; font-weight: 100;" href="../help/chengse.html">
+                        查看成色规则
+                        <!--<span class="mar-15"></span>-->
+                    </a>
+                </li>
+                <li><span>适用人群</span>
+                    <template v-if="product.fit_people == '0'">男士</template>
+                    <template v-if="product.fit_people == '1'">女士</template>
+                    <template v-if="product.fit_people == '2'">中性</template>
+                </li>
+                <li style="margin-bottom:.5rem; "><span>包含配件</span>
+                    <template v-if="product.partlist.length <=0 ">无</template>
+                    <template v-for="part in product.partlist">&nbsp;{{part}}&nbsp;</template>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="weui-row weui-no-gutter">
+            <div class="weui-col-100 bg-red">
+                <a @click="shoping()" class="block {{storage_status1}}">立即购买</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../s/j/li/dj.js"></script>
+<script src="../s/j/fn/vue.js"></script>
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/jquery-weui.min.js"></script>
+<script src="../s/j/fn/swiper.js"></script>
+<script src="../s/j/li/jquery-weui-confirm.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script type="text/javascript">
+    if (GetQueryString('web') == '' || GetQueryString('web') == null || GetQueryString('web') == undefined) {
+        window.location.href = window.location.href + web.set
+    }
+    var data = {
+        'product_uuid': GetQueryString('id')
+    };
+    //debugger
+    productData.setuuid(GetQueryString('id'));
+    post('/adapter/wap/product/get', JSON.stringify(data), function (ds) {
+        if(ds.status==0){
+            $('#app').show();
+            var objList = ds.result.product_info;
+            vuePage(objList)
+        }else if(ds.status == 600 ){
+            s_href.set(curr_href);
+            window.location.href = '../personal/land.html';
+        }else {
+            $.alert(ds.message);
+            $("#app").hide();
+        }
+    });
+    var vuePage = function (ol) {
+        var imgList = [];
+        for(var i = 0 ; i< ol.img_list.length ;i++){
+            imgList.push(ol.img_list[i]+'-dj2')
+        }
+        var vm = new Vue({
+            el: '#app'
+            , data: {
+                imgslist: imgList
+                , product: {
+                    uuid: ol.uuid
+                    , product_name: ol.product_name
+                    , brand_info: {
+                        brand_local_img: ol.brand_info.brand_local_img
+                        , brand_name: ol.brand_info.brand_name
+                    }
+                    , category_info: {
+                        name: ol.category_info.name
+                    }
+
+                    , quality_info: {
+                        name: ol.quality_info.name
+                    }
+                    , price: ol.price
+                    , ori_price: ol.ori_price
+                    , can_instalment: ol.can_instalment == 0 ? false : true   //0 不可以分期 1可以分期
+                    , instalment_amount: ol.instalment_amount
+                    , publish_member_info: {
+                        uuid: ol.publish_member_uuid
+                        ,
+                        head_img: ol.publish_member_info.head_img || '../s/img/handimg.png'
+                        ,
+                        nick_name: ol.publish_member_info.nick_name
+                    }
+                    , remark: ol.remark
+                    , fit_people: ol.fit_people
+                    , partlist: ol.part_list || '无'
+                }
+                , storage: ol.storage   //库存
+                , storage_status: ol.storage <= 0 ? 'icon-shouchu' : ''
+                , storage_status1: ol.storage <= 0 ? 'styleBlock' : ''
+            }
+            , methods: {
+                shoping: function () {
+                    if(this.storage > 0) {
+                        s_instalment.clear();
+                        var num = this.product.can_instalment;
+                        if (num == true) {
+                            window.location.href = '../instalment/plan.html?id=' + this.product.uuid + '&web=' + GetQueryString('web')
+                        } else {
+                            window.location.href = "../order/submit.html?id=" + this.product.uuid + '&web=' + GetQueryString('web')
+                        }
+                    }
+                }
+            }
+        });
+        var mySwiper = new Swiper('.swiper-container', {
+            autoplay: 5000, //可选选项，自动滑动
+            pagination: '.swiper-pagination'
+        })
+    }
+</script>
+</body>
+
+</html>

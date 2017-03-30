@@ -1,0 +1,222 @@
+/*轮播部分*/
+body {
+  font-size: 12px;
+  color: #333;
+  font-family: 'Microsoft YaHei';
+  background-color: #F3F5F7;
+}
+a {
+  color: #333;
+}
+.top .swiper-slide {
+  width: 100%;
+  height: 252px;
+}
+.top .swiperimgs {
+  width: 100%;
+  height: 252px;
+}
+.top .swiper-pagination-bullet {
+  background-color: #fff;
+}
+/*导航栏*/
+.navs {
+  background: #fff;
+}
+.nav {
+  width: 24%;
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 200;
+  height: 95px;
+  position: relative;
+  /*	.icon{
+		position: absolute;
+	}*/
+}
+.nav p {
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  text-align: center;
+}
+.nav p span {
+  display: inline-block;
+  width: 2px;
+  height: 12px;
+  color: #F54848;
+  background-color: #F54848;
+  vertical-align: middle;
+  margin-right: 2px;
+}
+.nav .icon_fuli,
+.nav .icon_baozhen,
+.nav .icon_new,
+.nav .icon_peishi,
+.nav .icon_xiangbao,
+.nav .icon_xiexue,
+.nav .icon_shoushi,
+.nav .icon_fushi {
+  width: 100%;
+  height: 90px;
+  background-image: url('/resources/images/wap/btn_ent_fuli@2x.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.nav .icon_baozhen {
+  background-image: url('/resources/images/wap/btn_ent_ture@2x.png');
+}
+.nav .icon_new {
+  background-image: url('/resources/images/wap/btn_ent_new@2x.png');
+}
+.nav .icon_peishi {
+  background-image: url('/resources/images/wap/btn_ent_peishi@2x.png');
+}
+.nav .icon_xiangbao {
+  background-image: url('/resources/images/wap/btn_ent_xiangbao@2x.png');
+}
+.nav .icon_xiexue {
+  background-image: url('/resources/images/wap/btn_ent_xiexue@2x.png');
+}
+.nav .icon_shoushi {
+  background-image: url('/resources/images/wap/btn_ent_shoushi@2x.png');
+}
+.nav .icon_fushi {
+  background-image: url('/resources/images/wap/btn_ent_fushi@2x.png');
+}
+/*秒杀*/
+.todaykill {
+  margin-top: 6px;
+  background: #fff;
+  position: relative;
+}
+.todaykill .top .icon_todaykill {
+  width: 70px;
+  height: 23px;
+  background-image: url('/resources/images/wap/icon_todaytruekill.png');
+  background-size: 100% 100%;
+}
+.todaykill .top p {
+  position: absolute;
+  top: 3px;
+  left: 60px;
+  border-bottom: 1px solid #F54848;
+  padding-left: 20px;
+}
+.todaykill .top span {
+  background: #333;
+  color: #fff;
+  padding: 1px 2px;
+  margin: 1px ;
+}
+.todaykill .top a {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 15px;
+  color: #666;
+}
+.todaykill .bot .swiper-slide {
+  width: 320px;
+}
+.todaykill .bot .swiper-pagination {
+  position: relative;
+}
+.todaykill .bot .swiper-today {
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.todaykill .bot a.box {
+  display: inline-block;
+  width: 320px;
+}
+.todaykill .bot img {
+  width: 128px;
+  height: 128px;
+  display: inline-block;
+  margin: 10px;
+  vertical-align: middle;
+}
+.todaykill .bot .right-box {
+  width: 150px;
+  margin-left: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+}
+.todaykill .bot .right-box h4 {
+  white-space: nowrap;
+  font-size: 18px;
+  font-weight: 400;
+  overflow: hidden;
+}
+.todaykill .bot .right-box p {
+  white-space: nowrap;
+  font-size: 12px;
+  color: #666;
+  overflow: hidden;
+  height: 30px;
+  line-height: 30px;
+}
+.todaykill .bot .right-box .xj {
+  font-size: 18px;
+  color: #F54848;
+  margin-right: 4px;
+}
+.todaykill .bot .right-box .yj {
+  font-size: 15px;
+}
+.todaykill .bot .right-box .bzx {
+  font-size: 10px;
+  border: 1px solid #F54848;
+  color: #F54848;
+  padding: 2px;
+  margin-right: 4px;
+}
+.todaykill .bot .right-box .cs {
+  font-size: 10px;
+  border: 1px solid #333;
+  padding: 2px;
+}
+.zhekou {
+  background: #fff;
+}
+.zhekou .main {
+  width: 100%;
+  height: 188px;
+}
+.zhekou .top {
+  padding-top: 2px;
+  background-color: #fff;
+}
+.zhekou .list {
+  display: inline-block;
+  width: 100px;
+}
+.zhekou .zhe-img {
+  width: 100px;
+  height: 100px;
+}
+.zhekou p {
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+}
+.zhekou del {
+  font-size: 10px;
+  color: #999;
+}
+.zhekou span {
+  display: inline-block;
+  background-color: #F54848;
+  color: #fff;
+  font-size: 10px;
+  width: 13px;
+  height: 13px;
+  line-height: 15px;
+}
+.zhekou .swiper-slide {
+  height: 180px;
+}

@@ -1,0 +1,301 @@
+html {
+    font-size: 100px;
+}
+
+@media only screen and (min-width: 339px) {
+    html {
+        font-size: 91px !important;
+    }
+}
+
+@media only screen and (min-width: 359px) {
+    html {
+        font-size: 97.02px !important;
+    }
+}
+
+@media only screen and (min-width: 374px) {
+    html {
+        font-size: 101.08px !important;
+    }
+}
+
+@media only screen and (min-width: 413px) {
+    html {
+        font-size: 111.62px !important;
+    }
+}
+
+@media only screen and (min-width: 479px) {
+    html {
+        font-size: 129px !important;
+    }
+}
+
+@media only screen and (min-width: 539px) {
+    html {
+        font-size: 145.75px !important;
+    }
+}
+
+@media only screen and (min-width: 559px) {
+    html {
+        font-size: 151px !important;
+    }
+}
+
+@media only screen and (min-width: 639px) {
+    html {
+        font-size: 172.7px !important;
+    }
+}
+
+@media only screen and (min-width: 719px) {
+    html {
+        font-size: 194.32px !important;
+    }
+}
+
+@media only screen and (min-width: 749px) {
+    html {
+        font-size: 202.43px !important;
+    }
+}
+
+@media only screen and (min-width: 1079px) {
+    html {
+        font-size: 291.62px !important;
+    }
+}
+
+@media only screen and (min-width: 1439px) {
+    html {
+        font-size: 388.91px !important;
+    }
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6,  input, textarea, p,th, td, hr, button {
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    color: #131313;
+}
+ul li {
+    list-style: none;
+}
+body {
+    font-size: .14rem;
+    background-color: #F3F5F7;
+
+}
+#app{
+    visibility: hidden;
+    /*隐藏了所有的标签 因为vue 加载页面，有延迟现象出现乱码 加载完成后...*/
+}
+/* 表单 */
+.form-group {
+    position: relative;
+    height: .25rem;
+    border-bottom: #ddd 0.01rem solid;
+    background: #fff;
+    padding: .10rem;
+}
+
+.form-group.has-error label {
+    color: #E64340;
+}
+
+.form-group label {
+    display: block;
+    line-height: .25rem;
+    height: .25rem;
+    float: left;
+    width: .70rem;
+    font-weight: 100;
+}
+
+.form-group [type=text],
+.form-group [type=email],
+.form-group [type=password],
+.form-group input {
+    outline: none;
+    border: none;
+    line-height: .25rem;
+    height: .25rem;
+    width: calc(100% - .70rem);
+    float: left;
+    font-size: .14rem;
+}
+
+.form-clear {
+    display: none;
+    position: absolute;
+    right: .10rem;
+    top: .10rem;
+    height: .25rem;
+    width: .25rem;
+}
+
+/*底部*/
+.footer:before {
+    content: "";
+    display: block;
+    height: .50rem;
+}
+
+.footer > div {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: .50rem;
+    line-height: .50rem;
+    text-align: center;
+}
+.footer a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: .17rem;
+}
+
+/*背景*/
+.bg-black {
+    background: #000;
+    color: #fff;
+}
+.bg-red{
+    background-color: #FF4C4E;
+    color: #fff;
+}
+.bg-red a{
+    color: #fff;
+}
+.bg-white{
+    background-color: #ffffff;
+}
+.bg-black a{
+    color: #333;
+}
+/*ziti*/
+.font-red{
+    color:  #FF4C4E;
+}
+/*通用*/
+.text-center {
+    text-align: center;
+}
+
+.float-right{
+    float: right;
+}
+
+
+.mar-15{
+    margin: 0 .15rem;
+}
+/*图标*/
+
+.icon-fenqi{
+    display: inline-block;
+    width: .22rem;
+    height: .19rem;
+    background-image: url("../img/fenqi.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+.icon-route,.icon-route2{
+    display: inline-block;
+    width: .25rem;
+    height: .17rem;
+    background-image: url('../img/zuobiao@2x.png');
+    background-size:.14rem;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+.icon-route2{
+    background-image: url('../img/zuobiao2@2x.png');
+    background-repeat: no-repeat;
+}
+.icon-jinru{
+    display: inline-block;
+    background-image: url('../img/jinru.png');
+    background-repeat: no-repeat;
+    width:.07rem;
+    height: .13rem;
+}
+.icon-user,.icon-phone,.icon-location{
+    display: inline-block;
+    width: .12rem;
+    height: .15rem;
+    margin: 0 .15rem;
+    vertical-align: middle;
+}
+.icon-user{
+    background-image: url("../img/lianxiren.png") ;
+    background-repeat: no-repeat;
+}
+.icon-phone{
+    background-image: url("../img/dianhua.png") ;
+    background-repeat: no-repeat;
+}
+.icon-location {
+    background-image: url("../img/dizhi.png");
+    background-repeat: no-repeat;
+}
+.icon-success {
+    display: inline-block;
+    background-image: url("../img/success.png");
+    background-repeat: no-repeat;
+    width: .19rem;
+    height: .19rem;
+    margin: .10rem;
+    vertical-align: middle;
+}
+.icon-fenqi-sanjiao{
+    background-image:url("../img/fenqi2@2x.png");
+    background-repeat: no-repeat;
+    background-size: .3rem;
+}
+/*商品*/
+/*几成新 商品*/
+.quality{
+    display: inline-block;
+    font-size: .12rem;
+    height: .15rem;
+    line-height: .15rem;
+    width: .40rem;
+    border-radius: .03rem;
+    vertical-align: middle;
+    text-align: center;
+    margin-right: .05rem;
+}
+/*clear*/
+
+/*没数据情况下*/
+.no-data{
+    text-align: center;
+    margin: 2rem auto;
+    color: #FF4C4E;
+}
+
+/*fencheng*/
+.label-default{
+    text-align: center;
+    display: inline-block;
+    background-color: #FF4C4E;
+    color: #ffffff;
+    margin-right: .10rem;
+    font-size: .12rem;
+    height: .13rem;
+    line-height: .13rem;
+    width: .33rem;
+}
+.on{
+    color:#FF4C4E;
+    border-bottom: 3px solid #ff4c4e;
+    padding-bottom: 10px;
+}

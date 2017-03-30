@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/newstyle.css">
+    <title>店铺</title>
+    <link rel="stylesheet" type="text/css" href="../s/c/shop/index.css">
+    <script type="text/javascript"></script>
+    <style>
+        .ring{
+            display: inline-block;
+            background: #333;
+            font-size: 8px;
+            border: 1px solid #333;
+            border-radius: 50px;
+            color: #fff;
+            width: 15px;
+            height: 15px;
+            line-height: 19px;
+            margin-left: 2px;
+        }
+    </style>
+</head>
+<body>
+<input id="totalPage" type="hidden">
+<input id="currentPage" type="hidden">
+<div class="headbody">
+    <div class="toper" id="toper">
+        <script type="text/html" id="toperPage">
+            <!-- <a href="/wap/shop/house" class="goods-header" style="z-index:999;"></a> -->
+            <img class="goods-img" src="{{topimg}}" alt="">
+            <h4 class="goods-title">{{title}}</h4>
+            <p class="goods-text">{{text}}</p>
+        </script>
+    </div>
+    <div class="nav" id='nav'>
+        <ul>
+            <a>
+                <li class='pull-left' id='status'><span class="text on">最新</span><span class="icon-rqzx"></span></li>
+            </a>
+            <a>
+                <li class='pull-left' id='brank'><span class="text">品牌</span><span style="display: none;" id='brankNum'
+                                                                                   class="ring">0</span></li>
+            </a>
+            <a>
+                <li class='pull-left' id='classify'><span class="text">分类</span><span style="display: none;"
+                                                                                      id='classifyNum'
+                                                                                      class="ring">0</span></li>
+            </a>
+            <a>
+                <li class='pull-left' id='filter'><span class="text">筛选</span><span id='filterNum'
+                                                                                    style="display: none;" class="ring">0</span>
+                </li>
+            </a>
+        </ul>
+    </div>
+</div>
+<div class="h">
+    <div class="house" id="goods_list">
+        <script id='page' type='text/html'>
+            <div class="house-box status-js" style="position: relative;" data-id='{{status}}'>
+                <div class="goods">
+                    <div class="{{storage_status}}"></div>
+                    <duv class="{{in_status}}"></duv>
+                    <a href="{{product_url}}">
+                        <img src="{{image}}-dj1" class="shopImg">
+                        <p class="goods-info"><span class="label label-default">{{quality_name}}</span>{{product_name}}
+                        </p>
+                        <p><strong style="font-size: .15rem;">¥{{price}}</strong>
+                            <del style="font-size: .13rem;">{{old_price}}</del>
+                        </p>
+                        <p class="in-price">{{in_price}}</p>
+                    </a>
+                </div>
+            </div>
+        </script>
+    </div>
+</div>
+</div>
+
+<div class="weui-infinite-scroll" id="scroll_wait" style="display:none">
+    <div class="infinite-preloader"></div>
+    正在加载...
+</div>
+<div class="weui-infinite-scroll" id="scroll_over" style="display:none"><i class="weui_icon_success_no_circle"></i>全部加载完成
+</div>
+
+<script src="../s/j/li/dj.js"></script>
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/jquery-weui.min.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script src='../s/j/fn/jweixin-1.0.0.js'></script>
+<script src="../s/j/fn/template.js"></script>
+<script src="../s/j/shop/index.js"></script>
+</body>
+</html>

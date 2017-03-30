@@ -1,0 +1,105 @@
+.header {
+    width: 100%;
+    overflow-y: hidden;
+}
+
+.order-nav {
+    background-color: #ffffff;
+    width: 6rem;
+}
+
+.order-nav li {
+    display: inline-block;
+    width: .80rem;
+    text-align: center;
+    height: .50rem;
+    line-height: .50rem;
+}
+
+.order-nav a {
+    display: inline-block;
+    height: 0.48rem;
+}
+
+.order-nav .check {
+    border-bottom: 2px solid #FF4C4E;
+}
+
+.image {
+    display: inline-block;
+    width: .75rem;
+    height: .75rem;
+    overflow: hidden;
+}
+
+.image img {
+    width: .75rem;
+    height: .75rem;
+}
+
+.goods {
+    display: inline-block;
+    width: calc(100% - 1rem);
+    vertical-align: middle;
+}
+
+.span-5 {
+    margin: .05rem 0 0 0;
+    position: relative;
+}
+
+.pull-right {
+    float: right;
+    margin-right: .15rem;
+}
+
+.order-btn {
+    height: .5rem;
+    line-height: .5rem;
+    margin-top: 1px;
+    background-color: #ffffff;
+}
+
+.order-goods-list {
+    padding: .10rem 0 .10rem .15rem;
+    background-color: #ffffff;
+}
+
+/*按钮*/
+.btn-red,.btn-black{
+    display: inline-block;
+    height: .30rem;
+    line-height: .30rem;
+    width: .76rem;
+    text-align: center;
+    color: #FF4C4E;
+    border:1px solid #FF4C4E;
+    border-radius: .03rem;
+    margin-left: .15rem;
+}
+.btn-black{
+    color: #404040;
+    border:1px solid #404040;
+}
+
+.brand{
+    font-size: .15rem;
+}
+.icon-jinru{
+    position: absolute;
+    top:.4rem;
+    right:.1rem;
+}
+.icon-fenqi-sanjiao{
+    position: absolute;
+    top: .09rem;
+    left: .13rem;
+    display: inline-block;
+    width: .30rem;
+    height: .30rem;
+}
+.no-data{
+    text-align: center;
+    margin: 2rem auto;
+    color: #FF4C4E;
+}

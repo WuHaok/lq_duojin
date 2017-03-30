@@ -1,0 +1,155 @@
+body{
+    background-color:#f6f6f6;
+}
+.chen_shop{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top:.17rem;
+}
+.moRen{
+    margin-top:3.16rem;
+    width:7.5rem;
+    height:2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: center;
+}
+.moRen img{
+    width:1.06rem;
+    height:1.06rem;
+}
+.moRen h4{
+    color:#FF4C4E;
+    font-size:.28rem;
+}
+#nav{
+    width:7.5rem;
+    height:0.99rem;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    background-color:#fff;
+    margin-top:.02rem;
+    font-family: AdobeHeitiStd-Regular;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding:0 .5rem;
+}
+#nav p{
+    height:0.8rem;
+    font-size:.3rem;
+    color:#404040;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-align-items: center;
+    -webkit-justify-content: center;
+}
+.bianSe{
+    color:#FF4C4E;
+    border-bottom: .06rem #FF4C4E solid;
+    width:1.3rem;
+}
+#articleId{
+    width:7.5rem;
+    margin-top:.1rem;
+}
+.sectionTop{
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding:0 .3rem;
+    height:1rem;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    -webkit-align-items: center;
+    -webkit-justify-content: space-between;
+    background-color:#fff;
+    margin-top:.05rem;
+}
+.sectionTop p:nth-of-type(2){
+    font-size:.28rem;
+    padding-left: .35rem;
+}
+.sectionTop p:nth-of-type(1){
+    font-size:.28rem;
+}
+.sectionBottom{
+    margin-top:.02rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding:0 .3rem;
+    height:2.01rem;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    -webkit-align-items: center;
+    -webkit-justify-content: space-between;
+    background-color:#fff;
+}
+.sectionBottom .tuPian{
+    width:2.01rem;
+    height:2.01rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-align-items: center;
+    -webkit-justify-content: center;
+}
+.tuPian img{
+    width:2.01rem;
+    height:2.01rem;
+
+}
+.sectionBottom div{
+   height:1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    -webkit-align-items: flex-start;
+    -webkit-justify-content: space-around;
+    margin:0.2rem;
+
+}
+.sectionBottom .shopName{
+    font-size:.3rem;
+}
+.sectionBottom .chengSe{
+    font-size:.2rem;
+    background-color:#FF4C4E;
+    color:#fff;
+    margin-right:.11rem;
+    text-align: center;
+    padding:.04rem;
+    width:.75rem;
+}
+.sectionBottom .shopType{
+    font-size:.28rem;
+}
+.sectionBottom .jiaGe{
+    font-size:.28em;
+}
+.huanKuan{
+    color:#FF4C4E;
+    background:url(../../img/huankuanzhong@2x.png) no-repeat left .025rem;
+    background-size:.28rem .27rem;
+}
+.huanQing{
+    color:#64AB23;
+    background:url(../../img/yihuanqing@2x.png) no-repeat left .025rem;
+    background-size:.28rem .27rem;
+}
+.guanBi{
+    color:#999999;
+    background:url(../../img/yiguanbi@2x.png) no-repeat left .025rem;
+    background-size:.28rem .27rem;
+}
+.detail{
+    display: inline-block;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}

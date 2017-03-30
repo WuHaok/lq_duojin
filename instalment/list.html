@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/newstyle.css">
+    <link rel="stylesheet" href="../s/c/instalment/list.css">
+    <title>我的分期</title>
+</head>
+<body>
+<div id="app">
+    <ul class="nav" id="nav">
+        <li><a href="javascript:;" data-id='0' class="on" >近期待还</a></li>
+        <li><a href="javascript:;" data-id='1'>全部还款</a></li>
+
+    </ul>
+    <div v-for="i in items" class="sell">
+        <p class="header">商品编号：{{i.seller_id}}
+            <span><i class="icon {{i.icon_status}}"></i>{{i.status}}</span>
+        </p>
+        <a :href="i.href">
+            <div class="bodyer">
+                <img :src="i.goodsimg" alt="">
+                <div class="goods">
+                    <h5>{{i.brand_name}}</h5>
+                    <p><span class="label-default">{{i.quality_name}}</span>{{i.product_name}}</p>
+                </div>
+                <div class="pic">￥{{i.order_amount}}</div>
+            </div>
+        </a>
+    </div>
+    <div class="no-data">
+        <img src="../s/img/tishi.png">
+        <h4>您还没有近期待还账单</h4>
+    </div>
+    <div class="weui-infinite-scroll" id="scroll_wait" style="">
+        <div class="infinite-preloader"></div>
+        正在加载...
+    </div>
+</div>
+<div class="weui-infinite-scroll" id="scroll_over" style="display:none"><i class="weui_icon_success_no_circle"></i>全部加载完成
+</div>
+<script src="../s/j/li/dj.js"></script>
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/jquery-weui.min.js"></script>
+<script src="../s/j/fn/vue.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script>
+    $(function () {
+
+        var data = {
+            type: 0
+            , member_uuid: user.uuid
+            , rows: 10
+            , page: 1
+        }
+        var inlist = getData(data)
+        if (inlist.length == 0) {
+            $('.no-data').show()
+            $('.sell').hide()
+            $('#scroll_wait').hide()
+        }else {
+            VuePage(inlist)
+            $('.no-data').hide()
+        }
+    })
+
+
+    function getData(data) {
+        postasync('/adapter/wap/instalment/getBillList', JSON.stringify(data), function (ds) {
+            inlist = ds.result.bill_list
+        })
+        return inlist
+    }
+    function VuePage(inlist) {
+        var vm = new Vue({
+            el: '#app'
+            , data: {
+                items: [
+                    {
+                        seller_id: '12321214124'
+                        , status: '没支付'
+                        , icon_status: 'icon-dh'
+                        , href: 'baidu'
+                        , goodsimg: 'http://ww4.sinaimg.cn/thumb180/5fe0e4fbgw1fapewa3npaj20qo0zkgub.jpg'
+                        , brand_name: '基友鸨'
+                        , quality_name: '7成新'
+                        , product_name: '基友万岁'
+                        , order_amount: 170
+                    }
+                ]
+            }
+            ,methods:{
+
+            }
+        })
+    }
+    $('#nav a')
+
+    $(window).scroll(function () {
+        if ($(document).scrollTop() + $(window).height() >= $(document).height()) {
+            $('#scroll_wait').css('display', 'block');
+            data.page = data.page + 1
+            queryData(data)
+        }
+    });
+
+
+</script>
+</body>
+</html>

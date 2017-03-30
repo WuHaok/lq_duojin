@@ -1,0 +1,94 @@
+.nav{
+  background: #FFFFFF;
+  height: .45rem;
+  line-height: .45rem;
+  margin-bottom: 1px;
+}
+.nav li{
+  float: left;
+  width: 25%;
+  text-align: center;
+}
+.box{
+  background: #FFFFFF;
+  display: none;
+}
+.dip-black{
+  display: block;
+}
+.brank-title{
+  height: .30rem;
+  line-height: .3rem;
+  margin: 0 .1rem;
+}
+.brank-img{
+  display: inline-block;
+  width: 28%;
+  margin: 0 .05rem;
+}
+.brank-letter{
+  position: fixed;
+  width: .11rem;
+  font-size: 12px;
+  right: 0.05rem;
+  top: .6rem;
+  word-wrap: break-word;
+}
+.brank-letter a{
+  display:block;
+  width: .11rem;
+}
+.cate{
+  margin: 0 .10rem;
+}
+.cate h4{
+  font-size: .16rem;
+  height: .6rem;
+  line-height: .6rem;
+}
+.cate a {
+  display: inline-block;
+  width: 24%;
+  text-align: left;
+  margin-top: .03rem;
+}
+.qualities{
+  margin: 0 .1rem;
+}
+.qualities p{
+  display: inline-block;
+  width: 24%;
+}
+.chengses a ,.pics a{
+  display: inline-block;
+  width: 24%;
+}
+
+/*on*/
+.brank .on{
+  border:1px solid #333;
+}
+.cate .on{
+  border-left: 2px solid #333333;
+}
+.qualities .on{
+  border-left: 2px solid #333333;
+}
+
+
+.icon-jiagetohigh, .icon-jiagetolow {
+  display: inline-block;
+  background: url(../../img/btn_jiagetohigh.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: .12rem;
+  height: .12rem;
+  background-size: 100% 100%;
+  margin-left: .02rem;
+}
+
+.icon-jiagetolow {
+  background: url(../../img/btn_jiagetolow.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}

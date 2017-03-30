@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/newstyle.css">
+    <style>
+        body {
+            height: 100%;
+        }
+        .bc {
+            position: fixed;
+            bottom: 0;
+            background: url("../s/img/dw-ditu.png");
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: 100% auto;
+            width: 100%;
+            z-index: -1;
+        }
+        .shouji {
+            margin: .37rem auto;
+            display: block;
+            width: 1.94rem;
+            height: 4.10rem;
+        }
+        .title {
+            text-align: center;
+            margin-top: .40rem;
+            font-size: .2rem;
+            font-weight: 800;
+        }
+        .btn{
+            display: block;
+            color:#FF4C4E;
+            width: 1.40rem;
+            height: .43rem;
+            line-height: .43rem;
+            font-size: .15rem;
+            background: #FFFFFF;
+            text-align: center;
+            margin: 0 auto;
+            border-radius: .15rem;
+        }
+    </style>
+</head>
+<body>
+<div class="bc">
+</div>
+<div>
+    <h4 class="title">朵金-奢侈品商家服务平台</h4>
+    <img src="../s/img/dw-shouji.png" alt="" class="shouji"></div>
+    <a href="http://a.app.qq.com/o/simple.jsp?pkgname=shopuu.luqin.com.duojin" class="btn">点击下载app</a>
+<script src="../s/j/fn/jquery-3.1.0.min.js"></script>
+<script>
+    $('.bc').css('height', $(document).height());
+    function is_weixin() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    var isWeixin = is_weixin();
+    var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight;
+    var weixinTip = $('<div id="weixinTip"><p><img src="../s/img/help.png" alt="微信打开"/></p></div>');
+    if(isWeixin){
+        $("body").append(weixinTip);
+    }
+    $("#weixinTip").css({
+        "position":"fixed",
+        "left":"0",
+        "top":"0",
+        "height":winHeight,
+        "width":"100%",
+        "z-index":"1000",
+        "background-color":"rgba(0,0,0,0.8)",
+        "filter":"alpha(opacity=80)"
+    });
+    $("#weixinTip p").css({
+        "text-align":"center",
+        "margin-top":"3%",
+        "padding-left":"5%",
+        "padding-right":"5%",
+        "color":"#fff"
+    });
+    $("#weixinTip img").css({
+        'width':'93%'
+    });
+</script>
+</body>
+</html>

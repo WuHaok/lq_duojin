@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="/bucket/css/weui/weui.min.css">
+    <link rel="stylesheet" href="/bucket/css/weui/jquery-weui.css">
+    <link rel="stylesheet" href="/bucket/css/style.css">
+    <title>支付方式</title>
+    <link rel="stylesheet" type="text/css" href="/bucket/css/instalment/plan.css">
+    <link rel="stylesheet" type="text/css" href="/bucket/css/instalment/submit.css">
+</head>
+<body>
+<input type="hidden" name="" id="order_uuid" value="">
+<p class="list">账单编号：<span id="bill_id">00000000000000000</span></p>
+<div id="page">
+    <script type="text/html" id="List">
+        <p class="list li {{uuid}}">
+            <span class="pull-left">第{{index}}期</span>
+            <span class="pull-left marl-35">¥<span class="pic">{{pic}}</span></span>
+            <span class="pull-right">还款期限：{{data}}</span>
+        </p>
+    </script>
+</div>
+<div class="text-center huankuan-box {{uuid}}">
+    <p class="huankuan-t">还款金额</p>
+    <p class="huankuan">¥ <span id="huankuan"></span></p>
+</div>
+</div>
+
+<div class="frame">
+    <h4 class="title">支付方式</h4>
+</div>
+<ul class="span-10">
+    <li class="pay-way check" data-pay-style="wx" @click="paywx">
+        <img src="/bucket/images/icon_tanchu_wechatpay.png"> <span>微信支付</span>
+        <span class="icon" v-bind:class="{'check':isCheckW}"></span>
+    </li>
+    <li class="pay-way" data-pay-style="ali" @click="payzfb" v-if="isweixin">
+        <img src="/bucket/images/icon_tanchu_zhifubao.png">
+        <span>支付宝</span>
+        <span class="icon" v-bind:class="{'check':isCheckZ}"></span>
+    </li>
+    <!--<li data-pay-style="union">-->
+    <!--<img src="/resources/images/wap/icon_tanchu_unionpay.png">-->
+    <!--<span>银联支付</span>-->
+    <!--</li>-->
+</ul>
+</div>
+
+<div class="footer">
+    <div class="weui-row weui-no-gutter">
+        <div class="weui-col-100 bg-black">
+            <a onclick="submit()" class="block">支付</a>
+        </div>
+    </div>
+</div>
+
+<script src="/bucket/js/fn/jquery-1.11.1.min.js"></script>
+<script src="/bucket/js/fn/jquery-weui.min.js"></script>
+<script src="/bucket/js/fn/weixinpay.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/bucket/js/fn/template.js"></script>
+<script type="text/javascript" src='/bucket/js/instalment/plan.js'></script>
+<script type="text/javascript">
+    // 页面加载部分
+    var data = {
+        bill_uuid: GetQueryString('id')
+        , member_uuid: '${c_m.uuid}'
+    }
+    query(data)
+    function query(data) {
+        $.post('/adapter/wap/instalment/getBillDetailList', JSON.stringify(data), function (ds) {
+            var detail = ds.result.detail_list
+            $('#bill_id').text(ds.result.bill_id)
+            $('#order_uuid').val(ds.result.order_uuid)
+            for (var i = 0; i < detail.length; i++) {
+                var listdata = {
+                    status: detail[i].status - 0 == 0 ? 'billing' : detail[i].status == 1 ? '' : 'billed'
+                    , index: detail[i].num
+                    , data: detail[i].expire_date
+                    , uuid: detail[i].uuid
+                    , pic: ds.result.amount_per
+                }
+                var html = template('List', listdata)
+                $('#page').append(html)
+            }
+            $('.li').hide()
+            var period = localStorage.getItem('period').split(",")
+            var huankuan = 0;
+            for (var i = 0; i < period.length; i++) {
+                $('.' + period[i]).show()
+                huankuan += ($('.' + period[i] + ' .pic').text() - 0)
+            }
+            $('#huankuan').text(huankuan)
+        })
+    }
+    function submit() {
+        var period = localStorage.getItem('period')
+        alert(period)
+        $.post("/wap/order/initPay?instalment_uuid=" + period, function (data) {
+            if (data.status == "0") {
+                startWXPay(data);
+                order_uuid = data.order_uuid;
+            } else {
+                $.alert(data.message)
+            }
+        });
+    }
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null)return unescape(r[2]);
+        return null;
+    }
+</script>
+<style >
+    .pay-style>li.check{
+        background-image: url(/bucket/images/icon_select.png);
+    }
+    .pay-way{
+        background-color: #ffffff;
+        position: relative;
+        padding: 10px;
+        vertical-align: middle;
+        line-height: 50px;
+        border-bottom: #F3F5F7 1px solid;
+    }
+    .pay-way img{
+        width: 50px;
+        height: 50px;
+        vertical-align: middle;
+    }
+    .pay-way span{
+        display: inline-block;
+        margin-left: 10px;
+        vertical-align: middle;
+    }
+    .pay-way .icon{
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        margin-top: -8px;
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url(/bucket/images/icon_unselect.png)
+    }
+    .pay-way .check{
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        margin-top: -8px;
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url(/bucket/images/icon_select.png)
+    }
+</style>
+</body>
+</html>

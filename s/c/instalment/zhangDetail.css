@@ -1,0 +1,402 @@
+body{
+    background-color:#f6f6f6;
+}
+.header{
+    width:7.5rem;
+}
+.zhangDan{
+    width:7.5rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding:0 .3rem;
+    height:1rem;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    -webkit-align-items: center;
+    -webkit-justify-content: space-between;
+    background-color: #fff;
+    margin-top:.05rem;
+}
+.bianHao{
+    font-size:.28rem;
+}
+.zhuanTai{
+    font-size:.28rem;
+}
+.xiangQing{
+    margin-top:.02rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding:0 .3rem;
+    height:2.01rem;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    -webkit-align-items: center;
+    -webkit-justify-content: space-between;
+    background-color:#fff;
+}
+.xiangQing img{
+    width:2.01rem;
+    height:2.01rem;
+}
+.typeName{
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    align-items: flex-start;
+}
+.typeName h3{
+    font-size:.28rem;
+}
+.chengSe{
+    padding:.03rem;
+    background-color:#FF4C4E;
+    font-size:.2rem;
+    color:#fff;
+    margin-right:.1rem;
+}
+.shopName{
+    font-size:.28rem;
+}
+.jiaGe{
+    font-size:.28rem;
+}
+.jinE{
+    width:7.5rem;
+    height:1.43rem;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    -webkit-align-items: center;
+    -webkit-justify-content: space-around;
+    background-color:#fff;
+    margin-top:.03rem;
+}
+.jinE div{
+    width:3.5rem;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    -webkit-align-items: center;
+    -webkit-justify-content: center;
+
+}
+.jinE h4{
+    font-size:.36rem;
+    line-height:.7rem;
+}
+.jinE p{
+    font-size:.24rem;
+    color:#999999;
+}
+.qiShu{
+    width:7.5rem;
+    margin-top:.05rem;
+    margin-bottom:1.05rem;
+}
+.qiShu .shuList{
+    width:7.5rem;
+    height:1.01rem;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    -webkit-align-items: center;
+    -webkit-justify-content: space-around;
+    border-top:.01rem solid #f6f6f6;
+    background-color:#fff;
+}
+.list1{
+    font-size: .28rem;
+    color:#404040;
+}
+.chen_shop{
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    -webkit-align-items: flex-start;
+    -webkit-justify-content: center;
+    margin-top:.17rem;
+}
+/*.listShuo{
+    width:.65rem;
+    height:.65rem;
+    border-radius: 50%;
+    border:.01rem solid #999999;
+    color:#999999;
+    font-size:.13rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+}*/
+#footer,#footered{
+    width:7.5rem;
+    height:1.03rem;
+    position: fixed;
+    bottom: 0;
+    left:0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-align-items: center;
+    -webkit-justify-content: center;
+}
+#footer p{
+    font-size:.34rem;
+    line-height: 1.03rem;
+    text-align: center;
+    height:1.03rem;
+}
+#footered p{
+    font-size:.34rem;
+    line-height: 1.03rem;
+    text-align: center;
+    height:1.03rem;
+    width:100%;
+    color:#333333;
+    background-color: #fff;
+
+}
+#footer p:nth-of-type(1){
+    width:2.83rem;
+    color:#333333;
+    background-color: #fff;
+}
+#footer p:nth-of-type(2){
+    width:4.67rem;
+    color:#fff;
+    background-color: #FF4C4E;
+}
+.huanKuan{
+    color:#FF4C4E;
+    background:url(../../img/huankuanzhong@2x.png) no-repeat left .025rem;
+    background-size:.28rem .27rem;
+}
+.huanQing{
+    color:#64AB23;
+    background:url(../../img/yihuanqing@2x.png) no-repeat left .025rem;
+    background-size:.28rem .27rem;
+}
+.guanBi{
+    color:#999999;
+    background:url(../../img/yiguanbi@2x.png) no-repeat left .025rem;
+    background-size:.28rem .27rem;
+}
+.zhangDan p:nth-of-type(2){
+    font-size:.28rem;
+    padding-left: .35rem;
+}
+.imgs{
+    width:.42rem;
+    height:.42rem;
+}
+.weiXuan .imgs{
+   /*border:.02rem solid #000;*/
+   background:url(../../img/icon_unselected@2x.png) no-repeat center center;
+    background-size: .43rem .43rem;
+
+}
+.wanChen .imgs{
+    /*background-color:#D3D3D3;*/
+    background:url(../../img/wanChen.png) no-repeat center center;
+}
+.xuanZhong .imgs{
+    background:url(../../img/icon_selected@2x.png) no-repeat center center;
+    background-size: .43rem .43rem;
+    /*border-color: #fff;*/
+}
+#tiShi{
+    width:100%;
+    position:fixed;
+    left:0;
+    top:0;
+    height:1000px;
+    background:#000;
+    filter:alpha(opacity=60);
+    opacity:.6;
+    z-index:50;
+    display: none;
+}
+#tiShi_div{
+    display: none;
+}
+#tongZhi_div{
+    display: none;
+}
+.tiShi_div1,.tongZhi_div1{
+    width:6rem;
+    border-radius: 20px;
+    position: fixed;
+    left:50%;
+    top:50%;
+    margin-left:-3rem;
+    margin-top:-2rem;
+    z-index: 100;
+}
+.tiShi_p1{
+    width:6rem;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+    background-color:#fff;
+}
+.tongZhi_p1{
+    width:6rem;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:#fff;
+    -webkit-flex-direction: column;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+}
+.tiShi_span1{
+    font-size:.3rem;
+    height:.9rem;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+}
+.tongZhi_span1{
+    height:.3rem;
+}
+.tiShi_span2{
+    font-size:.3rem;
+    color:#999;
+    padding:.4rem .3rem;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+}
+.tongZhi_span2{
+    font-size:.3rem;
+    color:#999;
+    padding:.4rem .3rem;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+}
+.tiShi_p2{
+    background-color:#fff;
+    font-size:.3rem;
+    color:#0bb20c;
+    height:.8rem;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+    border-top:.01rem solid #ccc;
+}
+.tongZhi_p2{
+    background-color:#fff;
+    height:.8rem;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    -webkit-justify-content: space-around;
+    -webkit-align-items: center;
+    border-top:.01rem solid #ccc;
+}
+.tongZhi_span3{
+    font-size:.3rem;
+}
+.tongZhi_span4{
+    font-size:.3rem;
+    color:#0bb20c;
+}
+em{
+    font-style: normal;
+    font-size:.3rem;
+    color:#999
+}
+.yinhuanbox{
+    font-size:.3rem;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+

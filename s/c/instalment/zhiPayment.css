@@ -1,0 +1,215 @@
+body{
+    background-color:#f6f6f6;
+}
+.header{
+    margin-top:.09rem;
+    background-color:#fff;
+    width:7.5rem;
+    height:2.22rem;
+    display: flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+}
+.header p:nth-child(1){
+    font-size:.3rem;
+    color:#999;
+}
+.header p:nth-child(2){
+    font-size:.6rem;
+    margin-top:.2rem;
+}
+.acctu{
+    font-size:.28rem;
+    background-color:#fff;
+    margin-top:.09rem;
+    color:#131313;
+    height:1.01rem;
+    line-height:1.01rem;
+    padding-left:.29rem;
+}
+.qiShu{
+    background-color:#fff;
+    margin-top:.02rem;
+}
+.qiShu_list{
+    font-size:.28rem;
+    padding-left:.29rem;
+    line-height:1.01rem;
+}
+.qiShu_list span:nth-child(2){
+    font-size:.30rem;
+    margin:0 1.3rem 0 .48rem;
+}
+
+.imgClass img{
+    margin:.46rem 3.15rem;
+}
+.imgClassp3{
+    font-size:.24rem;
+    color:#FF4C4E;
+    text-align: center;
+}
+.zhiFu{
+    margin:.53rem .25rem;
+    background-color:#FF4C4E;
+    height:1.03rem;
+    width:7rem;
+    line-height:1.03rem;
+    text-align: center;
+    font-size:.34rem;
+    color:#fff;
+    border-radius: 10px;
+    font-weight: bolder;
+}
+#tiShi{
+    width:100%;
+    position:fixed;
+    left:0;
+    top:0;
+    height:1000px;
+    background:#000;
+    filter:alpha(opacity=60);
+    opacity:.6;
+    z-index:50;
+    display: none;
+}
+#tiShi_div{
+    display: none;
+}
+.tiShi_div1{
+    width:6rem;
+    border-radius: 20px;
+    position: fixed;
+    left:50%;
+    top:50%;
+    margin-left:-3rem;
+    margin-top:-2rem;
+    z-index: 100;
+}
+.tiShi_p1{
+    width:6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+    background-color:#fff;
+}
+.tiShi_span1{
+    font-size:.3rem;
+    height:.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+}
+.tiShi_span2{
+    font-size:.3rem;
+    color:#999;
+    padding:.4rem .3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+}
+.tiShi_p2{
+    background-color:#fff;
+    font-size:.3rem;
+    color:#0bb20c;
+    height:.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+    border-top:.01rem solid #ccc;
+}
+
+#hintBig{
+    width:100%;
+    height:100%;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 100;
+    background-color: #131313;
+    opacity: .1;
+    display: none;
+}
+#hintBox{
+    font-size:.3rem;
+    width:80%;
+    position: fixed;
+    top:30%;
+    left:10%;
+    z-index: 200;
+    text-align: center;
+    background-color: #fff;
+    border:#131313 solid .01rem;
+    display: none;
+}
+.hintHeader{
+    border-bottom:#000 solid .01rem;
+    height:.7rem;
+    line-height: .7rem;
+    font-weight: bolder;
+}
+.hintCopy{
+    height:.5rem;
+    line-height: .5rem;
+    font-size:.2rem;
+}
+#hintBox input{
+    border:#131313 solid .01rem;
+    height:.4rem;
+    outline:none;
+    width:2rem;
+}
+#hintBox button{
+    border-radius: .1rem;
+    border:#131313 solid .01rem;
+    height:.5rem;
+    width:1.7rem;
+    outline:none;
+    background-color:#fff;
+}
+.hintBnt{
+    margin-top:.05rem;
+    height:.8rem;
+    display: flex;
+    justify-content:space-around;
+    align-items:center;
+}
+.zhiNaBox{
+    position: relative;
+    height:.6rem;
+}
+.yinhuanbox{
+    font-size:.3rem;
+}
+
+.dabutton{
+    height:1.5rem
+}
+.checked {
+    font-size:.3rem;
+    color:#131313;
+    width: 7.5rem;
+    height:1.21rem;
+    background-color: #E4EAED;
+    margin:.2rem 0;
+    padding-left:.3rem;
+    line-height: 1.21rem;
+    background: #E4EAED url("../../img/icon_selected@2x.png") no-repeat  6rem center;
+}
+.checked img{
+    margin-top:.41rem;
+    margin-right:.4rem;
+}

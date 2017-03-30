@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!-- order_id -->
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/style.css">
+    <title>还款账户</title>
+    <link rel="stylesheet" type="text/css" href="../s/c/instalment/authPageTn.css">
+</head>
+<body>
+<p>
+<div class="nav">
+    <img src="../s/img/tn4@2x.png">
+</div>
+<div class="form-group groupClass" style="display: flex">
+    <label>还款方式：</label>
+    <input class="weui_input inputClass" id="name1" type="text" datatype="*" disabled="disabled" value="手动还款+自动扣款" style="border:none;width: calc(100% - 220px)">
+    <img id="yiwen" src="../s/img/bangzhu@2x.png" style="width:20px;height:20px;margin: auto 0">
+</div>
+<div class="form-group groupClass">
+    <label>姓名：</label>
+    <input class="weui_input inputClass" id="name" type="text" disabled="disabled" datatype="*" value="" style="border:none;">
+</div>
+<div class="form-group groupClass">
+    <label>身份证号：</label>
+    <input class="weui_input inputClass" id='card_id' type="text" disabled="disabled" datatype="*" value="" style="border:none;">
+</div>
+
+<div class="form-group groupClass">
+    <label >开户银行：</label>
+    <!---class="weui_input"--->
+    <select  datatype="*" placeholder="" id="bank_name" class="inputClass">
+        <option value="0">请选择开户银行</option>
+        <option value="中国银行 BOC">中国银行 BOC</option>
+        <option value="农业银行 ABC">农业银行 ABC</option>
+        <option value="交通银行 COMM">交通银行 COMM</option>
+        <option value="招商银行 CMB">招商银行 CMB</option>
+        <option value="光大银行 CEB">光大银行 CEB</option>
+        <option value="广东发展银行 GDB">广东发展银行 GDB</option>
+        <option value="平安银行 SPAB">平安银行 SPAB</option>
+        <option value="工商银行 ICBC">工商银行 ICBC</option>
+        <option value="建设银行 CCB">建设银行 CCB</option>
+        <option value="中信银行 CITIC">中信银行 CITIC</option>
+        <option value="兴业银行 CIB">兴业银行 CIB</option>
+    </select>
+</div>
+<div class="form-group groupClass">
+    <label>银行卡号：</label>
+    <input class="weui_input inputClass" id="bank_num" type="number" datatype="*" placeholder="必填，仅支持借记卡">
+</div>
+
+<div class="form-group groupClass">
+    <label>手机号码：</label>
+    <input class="weui_input phone inputClass" id="phone2" type="number" datatype="*" placeholder="必填，必须是银行卡预留手机号码">
+</div>
+<input type="hidden" value="" id="tn-uuid">
+<a href="javascript:void(0)" class="open-popup" id="bianji" style="font-size: 10px;display:none;position: absolute;top: 47px;right: 10px;width:60px;border: 1px solid #666;border-radius: 10px;padding: 4px 7px;">编辑还款卡</a>
+    <div style="margin: 30px;font-size:12px;display: flex;justify-content: center;align-items: flex-end">
+    <!--<input type="checkbox" id="checkbox" checked="checked">-->
+        <div class='xuanZe' style="display: flex;align-items: center">
+            <span class="icon-weixuanzhong icon-xuanzhong"></span>
+            &nbsp;&nbsp;我已仔细阅读并同意
+        </div>
+        <a href="../help/entrust.html" style="vertical-align: middle;color:#0090FF">《委托代扣款授权书》</a>
+    </div>
+<p class="footed">如有疑问请致电朵金客服：400-8713677</p>
+<!--<div class="footing" style="margin-top:280px;">-->
+    <!--<div class="weui-row weui-no-gutter">-->
+        <!--<div class="weui-col-40" style='background-color:#fff;'>-->
+            <!--<a id="goback" class="block" style='color:#131313;'>上一步</a>-->
+        <!--</div>-->
+        <!--<div class="weui-col-60" style='background-color:#FF4C4E'>-->
+            <!--<a id="confirm" class="block" style='color:#fff;'>同意开通并提交</a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<div id="buttonBox" style="box-shadow: 1px 0 7px 4px ;#e2e2e2height:40px;  width:100%; text-align: center;  position: fixed;  left:0;  bottom: 0;  line-height: 40px;">
+    <span id="goback" style="display: inline-block;  height:40px;  width:40%;  color:#131313;background-color: #fff;">上一步</span>
+    <span id="confirm" style="display: inline-block;  height:40px;  width:58%;  color:#fff;  background-color: #000;">同意开通并提交</span>
+</div>
+<div id="loadingBox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:#000;opacity: .2;z-index:100;"></div>
+<div id="loading" style="display:none;position:fixed;top:35%;left:23%;z-index:200;width:50%;height:20%;text-align: center;" >
+    <img src="../s/img/load.gif" style="width:.6rem">
+</div>
+<div id="qianMinBox"></div>
+<div id="qianMin">
+    <div style="height:40px;text-align: center;line-height:40px;font-size:18px;border-bottom: 1px solid #000;position: relative">
+        申请人手写签名
+        <button id='qianQu'>取消</button>
+    </div>
+
+    <div id="signature" style="width:100%;"></div>
+    <div id="someelement" style="display: none"></div>
+    <div id="qianButton">
+        <input type="button" value="重写" id="reset"/>
+        <input type="button" value="提交" id="yes"/>
+    </div>
+</div>
+<script src="../s/j/li/dj.js"></script>
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/jSignature.min.js"></script>
+<script src="../s/j/fn/jquery-weui.min.js"></script>
+<script src="../s/j/fn/formText.js"></script>
+<script src="../s/j/fn/city-picker.js" charset="utf-8"></script>
+<script src="../s/j/fn/Validform_v5.3.2_min.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script src="../s/j/li/base.js"></script>
+<script type="text/javascript" src='../s/j/instalment/authPage-tn4.js'></script>
+
+
+</body>
+</html>

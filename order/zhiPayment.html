@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>支付</title>
+    <meta name="viewport"content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <script src="../s/j/li/init.js"></script>
+    <script src="../s/j/li/dj.js"></script>
+    <script>
+        //判断是在那种环境下支付
+        var liuType=browser();
+        if(liuType=="weixin"){
+            if (GetQueryString('openid') == '' || GetQueryString('openid') == undefined || GetQueryString('openid') == null) {
+                window.location.href = 'http://dj.shopuu.com/dispatcher/goBaseLogin?state=9&base_login_uri=' + window.location.href+'&web='+'weixin';
+            }
+        }
+        //判断如果是浏览器，重新登录，保存当前的用户标示和token
+        if(liuType=='liulanqi'){
+            var _dd=window.location.href
+            if(_dd.indexOf("_dd")<0){
+                window.location.href='zhangDetail.html?sell_id='+GetQueryString("sell_id")+'&order_id='+GetQueryString("order_id");
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="../s/c/instalment/init.css" >
+    <link rel="stylesheet" href="../s/c/instalment/zhiPayment.css">
+</head>
+<body>
+<input type="hidden" name="" id="order_uuid" value="">
+<div id="main">
+    <div class="header">
+        <p>还款金额</p>
+        <p class="jinE"></p>
+    </div>
+    <p class="acctu">
+    </p>
+    <div class="qiShu">
+        <script type="text/html" id="List">
+            <p class="qiShu_list {{uuid}} {{penaltydaClass}}">
+                <span>第{{index}}期</span>
+                <span class="jiaGe">{{pic}}</span>
+                <span>还款期限：{{data}}</span>
+                <sapn class="zhiNa" style="display:{{penaltyClass}};position: absolute;left:1.3rem;top:.6rem;">(含滞纳金¥{{penalty}})</sapn>
+            </p>
+        </script>
+    </div>
+    <div class="imgClass">
+        <script type="text/html" id="zhiFutypeList">
+            <input type="hidden" value="{{code}}" id="codeType">
+            <img style="display:{{codetype}}">
+            <p class="checked"  style="display:{{codetypetn}}">
+                {{repayment_bank_name}}({{repayment_bank_card}})
+            </p>
+        </script>
+
+    </div>
+    <p class="imgClassp3">*如遇支付限额问题，可以关注微信公众号“朵金”联系客服解决</p>
+    <p class="zhiFu">确认支付</p>
+</div>
+<div id="tiShi" >
+</div>
+<div id="tiShi_div">
+    <div class="tiShi_div1">
+        <p class="tiShi_p1">
+            <span class="tiShi_span1">提示</span>
+            <span class="tiShi_span2"></span>
+        </p>
+        <p class="tiShi_p2">
+            确定
+        </p>
+    </div>
+</div>
+<div id="hintBig"></div>
+<div id="hintBox">
+    <p class="hintHeader">确认支付3333333.00元</p>
+    <p class="hintCopy">请输入手机位号3333收到的短信验证码</p>
+    <input type="text" id="yanzhengtext">
+    <button id="yanZheng">获取验证码</button>
+    <p class="hintBnt">
+        <button id="quxiao">取消</button>
+        <button id="queren">确认</button>
+    </p>
+</div>
+<div id="loadingBox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:#000;opacity: .2;z-index:100;"></div>
+<div id="loading" style="display:none;position:fixed;top:35%;left:23%;z-index:200;width:50%;height:20%;text-align: center;" >
+    <img src="../s/img/load.gif" style="width:.6rem">
+</div>
+</body>
+<script src="../s/j/li/dj.js"></script>
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/template.js"></script>
+<script src="../s/j/fn/weixinpay-instalment.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script type="text/javascript" src="../s/j/order/zhiPayment.js"></script>
+</html>

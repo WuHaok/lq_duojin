@@ -1,0 +1,154 @@
+/*图标*/
+.icon-jiagetohigh {
+    background: url('../../img/btn_jiagetohigh.png');
+    width: 12px;
+    height: 12px;
+    background-size: 100% 100%;
+    margin-left: 2px;
+}
+.icon-jiagetolow {
+    background: url('../../img/btn_jiagetolow.png');
+    width: 12px;
+    height: 12px;
+    background-size: 100% 100%;
+    margin-left: 2px;
+}
+.icon-rqzx {
+    background: url('../../img/rqzx.png');
+    width: 12px;
+    height: 12px;
+    background-size: 100% 100%;
+    margin-left: 2px;
+}
+.nav {
+    height: 45px;
+    background: #fff;
+    clear: both;
+    margin-bottom: 2px;
+}
+.nav li {
+    width: 25%;
+    line-height: 45px;
+    text-align: center;
+}
+.nav .ring {
+    display: none;
+    background: #333;
+    font-size: 8px;
+    border: 1px solid #333;
+    border-radius: 50px;
+    color: #fff;
+    width: 15px;
+    height: 15px;
+    line-height: 19px;
+    margin-left: 2px;
+}
+.nav .on {
+    border-bottom: 2px solid #333;
+    padding-bottom: 7px;
+}
+/*最新*/
+.bodyer-new {
+    background: #fff;
+    padding: 0 30px;
+    font-size: 12px;
+    font-weight: 400;
+}
+.bodyer-new li {
+    height: 45px;
+    line-height: 45px;
+}
+/*品牌*/
+.border-brank {
+    background: #fff;
+}
+.border-brank .brank-fl {
+    display: inline-block;
+    width: 90%;
+    vertical-align: top;
+    padding-left: 10px;
+}
+.border-brank .brank-title {
+    font-size: 15px;
+    padding-left: 20px;
+    height: 45px;
+    line-height: 45px;
+}
+.border-brank .brank_box {
+    margin: 0 20px;
+}
+.border-brank .brank-img {
+    width: 30%;
+}
+.border-brank .brank-box {
+    margin: 0 20px;
+}
+.border-brank .brank-letter {
+    position: fixed;
+    width: 10px;
+    font-size: 12px;
+    right: 5px;
+    top: 60px;
+}
+.border-brank .brank-img {
+    margin-bottom: 10px;
+    border: 1px solid #d2d2d2;
+}
+.border-brank .on {
+    border: 1px solid #333;
+}
+.bg-white {
+    background: #fff;
+}
+/*分类*/
+.border-categories {
+    display: none;
+    background-color: #fff;
+    padding: 0 20px;
+}
+.border-categories .classify {
+    display: inline-block;
+    width: 23%;
+    font-size: 12px;
+}
+.border-categories .on {
+    border-left: 2px solid #333;
+    height: 12px;
+    line-height: 12px;
+}
+.border-categories .categories-title {
+    height: 60px;
+    line-height: 60px;
+}
+/*成色*/
+.border-filter {
+    display: none;
+    background-color: #fff;
+    padding: 0 20px;
+}
+.border-filter .chengse,
+.border-filter .pic,
+.border-filter .crowd {
+    display: inline-block;
+    width: 22%;
+    font-size: 12px;
+}
+.border-filter .chengse-title {
+    font-size: 12px;
+    font-weight: 800;
+    height: 60px;
+    line-height: 60px;
+}
+.border-filter .pic {
+    width: 30%;
+}
+.border-filter .on {
+    border-left: 2px solid #333;
+    padding: -2px 0;
+}
+.body {
+    background-color: #fff;
+}
+button {
+    text-align: left;
+}

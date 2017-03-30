@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/newstyle.css">
+    <title>付款方案</title>
+    <link rel="stylesheet" type="text/css" href="../s/c/instalment/plan.css">
+</head>
+<body>
+<div id="page">
+    <script id="goods" type="text/html">
+        <div class="order-goods">
+            <input type="hidden" name="" id="goods_uuid" value="{{productUuid}}">
+            <a href="javascript:void (0)" class="goods">
+                <img src="{{main_img}}-dj3">
+                <div class="title">
+                    <span>{{product_name}}</span><br>
+                    <span class="label label-default">{{quality_info_name}}</span>
+                    <span>{{brand_info_brand_name}}</span>
+                </div>
+                <div class="price">￥{{product_price}}</div>
+            </a>
+        </div>
+    </script>
+</div>
+
+<div class="fangAn">
+    <div id='paydownRate' style="margin-right:2.5px;">
+        <label for="paydown">首付选择</label>
+        <select name="" id="paydown"></select>
+        <span class="iocn_xiaxuan"></span>
+    </div>
+    <div id='stagesList' style="margin-left:2.5px;">
+        <label for="stagesed">分期选择</label>
+        <select name="" id="stagesed"></select>
+        <span class="iocn_xiaxuan"></span>
+    </div>
+</div>
+<div id="fenqiPage" class="fenqiPage">
+    <script type="text/html" id="fenqi">
+        <a href="javascript:void (0)" class="weui-row stages-box stages {{shoufu}} {{index}}" data-sf="{{sf}}" data-num='{{shoufu}}'
+           data-index='{{index}}' data-yuan='{{index_yuan}}' data-shoufuyuan='{{shoufu_yuan}} ' data-fuwuname="{{fuwuname}}" data-paystep="{{paystep}}">
+            <div class="weui-col-23 text-left">
+                <h5><span style="font-size:.12rem;">{{describe}}</span></h5>
+                <p>({{fuwuname}})</p>
+            </div>
+            <div class="weui-col-55 text-right">
+                <h5 style="text-align: left">首付 ¥ {{shoufu_yuan}}</h5>
+                <p style="font-size:.1rem;">
+                    <em style="font-style: normal;font-weight: bold;font-size:.12rem;color:#131313;">{{index_yuan}}元/月</em>
+                    (已含手续费
+                    <em style="font-style: normal;color:#404040;"> {{yuelixi}}</em>
+                   元/月)
+                </p>
+            </div>
+            <div class="weui-col-16 text-right icon">
+                <span class="icon-weixuanzhong" style="height:.29rem;">
+                    <input type="hidden" id="remark" value="{{remark}}">
+                </span>
+            </div>
+        </a>
+        <div class="shenHe" style="display: none">
+            <img src="{{imgsrc}}" class="bg-fahuo">
+            <p class="open_desc">{{check_desc}}</p>
+        </div>
+    </script>
+</div>
+<script type="text/html" id="footerPage">
+    <div class="footer">
+        <div class="weui-row weui-no-gutter">
+            <div class="weui-col-40 bg-white">
+                <a id="payMent" href='javascript:void(0)' class="block">全额付款</a>
+            </div>
+            <div class="weui-col-60 bg-red">
+                <a id="confirm" href='javascript:void(0)' class="block">确认分期</a>
+            </div>
+        </div>
+    </div>
+</script>
+<script src="../s/j/li/dj.js"></script>
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/jquery-weui.min.js"></script>
+<script type="text/javascript" src="../s/j/li/jquery-weui-confirm.js"></script>
+<script src="../s/j/fn/template.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script type="text/javascript" src='../s/j/instalment/plan.js'></script>
+</body>
+</html>

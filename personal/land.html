@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/newstyle.css">
+    <link rel="stylesheet" href="../s/c/personal/land.css">
+    <title>登录</title>
+</head>
+<body>
+<div class="header">
+    <img src="../s/img/logo@2x.png" alt="logo">
+</div>
+<div id="app">
+    <div class="form-group ">
+        <input id="tel"class="weui_input" type="number" v-model="tel" placeholder="手机号码">
+    </div>
+    <div class="form-group ">
+        <input class="weui_input" type="number" v-model="code" placeholder="验证码">
+        <a href="javascript:void (0)" class="code" id="code" @click="getcode">获取验证码</a>
+    </div>
+    <div>
+        <a href="javascript:void (0)" class="land" v-bind:class="{'landok' :landbol}" @click="land">一键登录/注册</a>
+    </div>
+</div>
+<script src="../s/j/li/dj.js"></script>
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/jquery-weui.min.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script src="../s/j/fn/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app'
+        , data: {
+            tel: ''
+            , code: ''
+            , landbol: false
+        }
+        , methods: {
+            getcode: function () {
+                if($('#code').hasClass('disabled')){
+
+                } else if (this.tel == '') {
+                    $.alert('请填写手机号码')
+                } else if (!/^(13[0-9]|14[0-9]|15[0-9]|17[0-9]|18[0-9])\d{8}$/i.test(this.tel)) {
+                    $.alert('您输入的号码不存在')
+                } else {
+                    post('/adapter/wap/message/sendMobileCode', JSON.stringify({value1: this.tel}), function (ds) {
+                        if (ds.status == 0) {
+                            var s = 60, t;
+                            times()
+                            if (ds.result.mobile_code) {
+                                $.alert(ds.result.mobile_code);
+                                this.code = ds.result.mobile_code
+                            }
+                            function times() {
+                                s--;
+                                $('#code').addClass('disabled')
+                                $('#code').text(s + 's')
+                                t = setTimeout(times, 1000);
+                                if (s <= 0) {
+                                    s = 60;
+                                    clearTimeout(t);
+                                    $('#code').removeClass('disabled')
+                                    $('#code').text('获取验证码')
+                                }
+                            }
+
+                        }else{
+                            $.alert(ds.message_detail)
+                        }
+                    })
+                }
+            }
+            , land: function () {
+                if(this.landbol == true){
+                    post('/adapter/wap/member/loginByCode', JSON.stringify({mobile: this.tel, mobile_code: this.code}), function (ds) {
+                        if(ds.status == 0){
+                            s_addr.clear()
+                            localStorage.setItem('tel',$("#tel").val())
+                            user.set(ds.result.token,ds.result.member_info.uuid)
+                            window.location.href = s_href.get()
+                        }else{
+                            $.alert(ds.message)
+                        }
+                    })
+                }
+            }
+            , issubmit:function(){
+                if(this.code != '' && this.tel != '' && /^(13[0-9]|14[0-9]|15[0-9]|17[0-9]|18[0-9])\d{8}$/i.test(this.tel)) {
+                    this.landbol = true
+                }else{
+                    this.landbol = false
+                }
+            }
+        }
+        , watch: {
+            tel: 'issubmit'
+            , code: 'issubmit'
+        }
+    })
+</script>
+</body>
+</html>

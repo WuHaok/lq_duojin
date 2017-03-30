@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/newstyle.css">
+    <title>闲置商城</title>
+    <link rel="stylesheet" type="text/css" href="../s/c/shop/house_filter.css">
+</head>
+<body>
+<div id="app">
+    <ul id='nav' class="nav">
+        <li class='pull-left' @click="nav(1)" id='status'>{{nav_status}}</li>
+        <li class='pull-left' @click="nav(2)" id='brank'>品牌</li>
+        <li class='pull-left' @click="nav(3)" id='classify'>分类</li>
+        <li class='pull-left' @click="nav(4)" id='filter'>筛选</li>
+    </ul>
+    <div class="box" :class="{'dip-black':page1}" id='page1'>
+        <ul>
+            <li @click="navStatus('最新')">最新</li>
+            <li @click="navStatus('人气')">人气</li>
+            <li @click="navStatus('价格↑')">价格由低至高</li>
+            <li @click="navStatus('价格↓')">价格由高至低</li>
+        </ul>
+    </div>
+    <div class="box " :class="{'dip-black':page2}" id="page2">
+        <div class="brank">
+            <template v-for="b in brank">
+                <p class="brank-title" id="{{b.le}}">{{b.le}}</p>
+                <template v-for="l in b.list">
+                    <img class="brank-img" :class="{'on':l.on}" :src="l.brand_local_img" alt="" @click="onbrank(l)">
+                </template>
+            </template>
+        </div>
+        <div class="brank-letter">
+            <template v-for="c in brankLetter">
+                <a href="#{{c}}">{{c}}</a>
+            </template>
+        </div>
+    </div>
+    <div class="box " :class="{'dip-black':page3}" id="page3">
+        <div class="cate">
+            <template v-for="c in cate">
+                <h4>{{c.name}}</h4>
+                <template v-for="cc in c.children">
+                    <a href="javascript:void (0)" :class="{'on':cc.on}" @click="onCate(cc)">{{cc.name}}</a>
+                </template>
+            </template>
+        </div>
+    </div>
+    <div class="box " :class="{'dip-black':page4}" id='page4'>
+        <div class="qualities" id='qualities'>
+            <p class="chengse-title">成色</p>
+            <div class="chengses" id="quality_uuids">
+                <template v-for="q in qual ">
+                    <a :class="{'on':q.on}" @click="onQual(q)">{{q.name}}</a>
+                </template>
+
+            </div>
+            <p class="chengse-title">价格</p>
+            <div class="pics" id='pics'>
+                <template v-for="v in pic">
+                    <a href="javascript:void (0)" @click="onpic(v)" :class="{'on':v.on}">{{v.name}}</a>
+                </template>
+            </div>
+            <p class="chengse-title">适用人群</p>
+            <div id="fit_people">
+                <a :class="{'on':prople_on1}" value='2' @ckick="onpro(2)">中&nbsp;&nbsp;性</a>
+                <a :class="{'on':prople_on2}" value='0' @ckick="onpro(0)">适合男士</a>
+                <a :class="{'on':prople_on3}" value='1' @ckick="onpro(1)">适合女士</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer" style="">
+        <div class="weui-row weui-no-gutter ">
+            <div class="weui-col-40 bg-white">
+                <a class="block" id='clear'>清除</a>
+            </div>
+            <div class="weui-col-60 bg-red">
+                <a class="block" id="submit">确认</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../s/j/li/dj.js"></script>
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/jquery-weui.min.js"></script>
+<script src="../s/j/fn/template.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script src="../s/j/fn/vue.js"></script>
+<script type="text/javascript">
+    var ds;
+    postasync('/adapter/wap/system/queryStatic', {}, function (data) {
+        ds = data
+    })
+    var brank = ds.result.brands
+    var brankList = []
+    for (var i in brank) {
+        var bklist = []
+        for (var j = 0; j < brank[i].length; j++) {
+            brank[i][j].on = false
+            bklist.push(brank[i][j])
+        }
+        var obj = {
+            le: i
+            , list: bklist
+        }
+        brankList.push(obj)
+    }
+    var cate = ds.result.categories
+    var cateList = []
+    for (var i in cate) {
+        var ch = cate[i].children
+        for (var j = 0; j < ch.length; j++) {
+            ch[j].on = false
+        }
+        cate[i].children = ch
+        cateList.push(cate[i])
+    }
+    var qual = ds.result.qualities
+    var brankLetter = []
+    for (var p in brank) {
+        brankLetter.push(p)
+    }
+    var vm = new Vue({
+        el: '#app'
+        , data: {
+            brank: brankList
+            , cate: cateList
+            , qual: qual
+            , brankLetter: brankLetter
+            , page1: true
+            , page2: false
+            , page3: false
+            , page4: false
+            , nav_status: '最新'
+            , brankList: []
+            , cateList: []
+            , people: '' //使用人群
+            , prople_on1: false
+            , prople_on2: false
+            , prople_on3: false
+            , pic : [
+                {vl:'0' ,vt:'2000' ,name:'2千以下',on:false}
+                ,{vl:'2000', vt:'5000',name :'2千－5千',on:false}
+                ,{vl:'5000'  ,vt:'10000' ,name:'5千－1万',on:false}
+                ,{vl:'10000' ,vt:'20000' ,name:'1万-2万',on:false}
+                ,{vl:'20000' ,vt:'50000' ,name:'2万-5万',on:false}
+                ,{vl:'50000' ,vt:'' ,name:'五万以上',on:false}
+            ]
+        }
+        , methods: {
+            nav: function (p) {
+                this.page1 = false
+                this.page2 = false
+                this.page3 = false
+                this.page4 = false
+                switch (p) {
+                    case 1:
+                        this.page1 = true
+                        break
+                    case 2:
+                        this.page2 = true
+                        break
+                    case 3:
+                        this.page3 = true
+                        break
+                    case 4:
+                        this.page4 = true
+                        break
+                }
+
+            }
+            , navStatus: function (status) {
+                this.nav_status = status
+            }
+            , onbrank: function (l) {
+                this.brankList.push(l.uuid)
+                l.on = true
+            }
+            , onCate: function (cc) {
+                this.cateList.push(cc.uuid)
+                cc.on = true
+            }
+            , onpic : function (v) {
+               for(var i= 0;i< this.pic.length;i++){
+                   this.pic[i].on= false
+               }
+               v.on =true
+            }
+            ,onQual:function (q) {
+                this.on =true
+            }
+        }
+    })
+
+
+</script>
+</body>
+</html>

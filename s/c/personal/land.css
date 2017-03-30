@@ -1,0 +1,48 @@
+body{
+    background-color: #ffffff;
+}
+
+.form-group{
+    margin: .1rem .15rem;
+    border-bottom: #ddd 1px solid;
+}
+.form-group label{
+    font-size: .15rem;
+    color: #cccccc;
+}
+.form-group input{
+    color: #404040;
+    width: 100%;
+}
+.header img{
+    display: block;
+    width: .85rem;
+    height:.85rem;
+    margin: .75rem auto .4rem;
+}
+.code{
+    position: absolute;
+    top: .05rem;
+    right: 0.1rem;
+    font-size: .12rem;
+    height: .12rem;
+    line-height: .12rem;
+    color: #fff;
+    background-color: #F43507;
+    padding: .12rem .14rem ;
+    border-radius: .05rem;
+}
+.land{
+    height: .50rem;
+    line-height: .50rem;
+    margin: .38rem .15rem;
+    background-color: #EEEEEE;
+    color: #cccccc;
+    display: block;
+    text-align: center;
+    border-radius: .05rem;
+}
+.landok{
+    background-color: #FF4C4E;
+    color: #ffffff;
+}

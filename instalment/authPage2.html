@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/style.css">
+    <title>工作及固定资产</title>
+    <link rel="stylesheet" type="text/css" href="../s/c/instalment/authPage.css">
+</head>
+<body>
+<div class="nav ">
+    <div class="nav-box"><p class="inco"></p>
+        <p class="text">个人基本信息</p></div>
+    <div class="nav-box on"><p class="inco"></p>
+        <p class="text">工作信息</p></div>
+    <div class="nav-box"><p class="inco"></p>
+        <p class="text">消费信息</p></div>
+</div>
+<div class="form-group">
+    <label style="width: 140px;">是否有固定工作岗位：</label>
+    <select class="renZhen2"  datatype="*" placeholder="" id="workIng">
+        <option value="0" selected >有固定工作（包含个体工商户）</option>
+        <option value="1">无固定工作</option>
+        <option value="2">在校学生</option>
+    </select>
+</div>
+<div class="form-group work">
+    <label>单位名称：</label>
+    <input class="weui_input" id="work_name" type="text" datatype="*" placeholder="必填">
+</div>
+<div class="form-group work">
+    <label for="">单位地址：</label>
+    <input type="text" name="city" id="work_addr" data-icon="false" datatype="*" onclick="clearinput()" errormsg="单位地址"
+           nullmsg="单位地址" placeholder="所在区域">
+    <a href="javascript:void(0)" class="form-clear" onclick="inputClear(this)"><i class="icon-wrongback"></i></a>
+</div>
+<div class="form-group work">
+    <label for=""></label>
+    <input class="weui_input" id="work_detail" type="text" placeholder="详细地址">
+</div>
+<div class="form-group work">
+    <label>单位电话：</label>
+    <input class="weui_input" id="work_mobile" type="text" datatype="*" placeholder="固定电话号码">
+</div>
+
+
+<div class="form-group student">
+    <label>学校名称：</label>
+    <input class="weui_input" id="school_name" type="text" datatype="*" placeholder="必填">
+</div>
+<div class="form-group student">
+    <label for="">学校地址：</label>
+    <input type="text" name="city" id="school_addr" onclick="clearinput()" data-icon="false" datatype="*"
+           errormsg="学校地址" nullmsg="学校地址" placeholder="所在区域">
+    <a href="javascript:void(0)" class="form-clear" onclick="inputClear(this)"><i class="icon-wrongback"></i></a>
+</div>
+<div class="form-group student">
+    <label for=""></label>
+    <input class="weui_input" id="school_detail" type="text" placeholder="详细地址">
+</div>
+<div class='form-text student'>
+    <p>学信网学籍信息截图：(仅限1张）</p>
+    <a href="javascript:void(0)" id="handstudent">查看样例</a>
+</div>
+<div class="imgbox student" id="studentBox">
+    <div class='upimgs' id="studentUp">
+
+        <input type="file" name="pic" style="" accept="image/*"
+               onchange="imgChangestudent(this);" multiple="multiple"
+               data-role="none" class='btn img-btn' capture='camera'>
+
+    </div>
+</div>
+<!-- <p class="say">如下🔽个人资产信息非必填，填写会提高通过率哦！</p> -->
+<div class='form-text' style="margin-top: 10px;line-height: 15px;height:28px;">
+    <p style="font-size: 12px;color:#ff0000;">🔽&nbsp;如下信息非必填,填写可提高通过率<br>建议无固定工作或商品总价4万元以上用户填写</p>
+    <a href="javascript:void(0)" id="need">展开填写</a>
+</div>
+<div class='form-text unneed'>
+    <p>手持本人车辆行驶证照片：(仅限1张）</p>
+    <a href="javascript:void(0)" id="handcar">查看样例</a>
+</div>
+<div class="imgbox unneed" id="carUpBox">
+    <div class='upimgs' id="carUp">
+        <!---->
+        <input type="file" name="pic" style="" accept="image/*"
+               onchange="imgChangecar(this);" multiple="multiple"
+               data-role="none" class='btn img-btn' capture='camera'>
+
+    </div>
+</div>
+<div class='form-text unneed'>
+    <p>手持本人房产证照片：(仅限1张)</p>
+    <a href="javascript:void(0)" id="handhouse">查看样例</a>
+</div>
+<div class="imgbox unneed" id="houseUpBox">
+    <div class='upimgs' id="houseUp">
+
+        <input type="file" name="pic" style="" accept="image/*"
+               onchange="imgChangehouse(this);" multiple="multiple"
+               data-role="none" class='btn img-btn' capture='camera'>
+
+    </div>
+</div>
+<!--     <div class='form-text'>
+        <p>其他固定资产：（最多9张）</p>
+        <a href="javascript:void(0)" id="handIdcard">查看案例</a>
+    </div>
+   <div class="imgbox" id="otherUpBox">
+        <div class='upimgs' id="otherUp">
+            <form id="uploadImageForm" name="uploadForm"
+                action="${root }/upload/wap/uploadCallbackother?is_cut=1" method="post"
+                enctype="multipart/form-data" target="tar_i">
+                <input type="file" name="pic" style="" accept="image/*"
+                    onchange="imgChangeother(this);" multiple="multiple"
+                    data-role="none" class='btn img-btn' >
+            </form>
+            <iframe id="tar_i" name="tar_i" style="display: none"></iframe>
+        </div>
+    </div>
+    </div> -->
+
+
+<div id="handcarPage" class="weui-popup-container shili">
+    <div class="weui-popup-overlay"></div>
+    <div class="weui-popup-modal">
+        <h5>手持车辆行驶证样例</h5>
+        <button class="close-popup popbtn">x</button>
+        <button class="close-popup">我知道了</button>
+        <p>规范：</p>
+        <p>1.手持车辆行驶证正面于胸前；</p>
+        <p>2.五官清晰无遮挡；</p>
+        <p>3.行驶证资料(所有人,住址,使用性质,品牌,型号等)清晰可辨;</p>
+        <p>4.证件必须为本人证件</p>
+        <p>示例：</p>
+        <img src="../s/img/sl-jiashi.jpg">
+        <button class="close-popup">我知道了</button>
+    </div>
+</div>
+<div id="handhousePage" class="weui-popup-container shili">
+    <div class="weui-popup-overlay"></div>
+    <div class="weui-popup-modal">
+        <h5>手持房产证样例</h5>
+        <button class="close-popup popbtn">x</button>
+        <button class="close-popup">我知道了</button>
+        <p>规范：</p>
+        <p>1.手持房产证证于胸前，拍摄次页信息；</p>
+        <p>2.五官清晰无遮挡；</p>
+        <p>3.房产证资料(房屋所有权人,共有情况,房屋坐落地址,房屋状况等)清晰可辨;</p>
+        <p>4.证件必须为本人证件</p>
+        <p>示例：</p>
+        <img src="../s/img/sl-fangchan.jpg">
+        <button class="close-popup">我知道了</button>
+
+    </div>
+</div>
+<div id="handstudentPage" class="weui-popup-container shili">
+    <div class="weui-popup-overlay"></div>
+    <div class="weui-popup-modal">
+        <h5>学信网</h5>
+        <button class="close-popup popbtn">x</button>
+        <button class="close-popup">我知道了</button>
+        <p>截图方法:</p>
+        <p>1.学信网址：http://www.chsi.com.cn</p>
+        <p>2.学信网-学信档案-学籍信息</p>
+        <p>规范：</p>
+        <p>1.截取全部学籍信息，包括照片,不得遮挡模糊个人信息</p>
+        <p>示例：</p>
+        <img src="../s/img/sl-xueji.jpg">
+        <button class="close-popup">我知道了</button>
+
+    </div>
+</div>
+
+
+<p class="footed">如有疑问请致电朵金客服：400-8713677</p>
+<div class="footing">
+    <div class="weui-row weui-no-gutter">
+        <div class="weui-col-100 bg-black">
+            <a id="confirm" class="block">下一步</a>
+        </div>
+    </div>
+</div>
+<div class="footing">
+    <div class="weui-row weui-no-gutter">
+        <div class="weui-col-100 bg-black">
+            <a id="goback" class="block">上一步</a>
+        </div>
+    </div>
+</div>
+<script src="../s/j/li/dj.js"></script>
+
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/jquery-weui.min.js"></script>
+<script src="../s/j/fn/formText.js"></script>
+<script src="../s/j/fn/city-picker.js" charset="utf-8"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script src="../s/j/li/base.js"></script>
+<script type="text/javascript" src='../s/j/instalment/authPage2.js'></script>
+<script type="text/javascript">
+    $(function () {
+        $('.unneed').hide()
+
+    })
+    $('#need').on('click', function (e) {
+
+        if ($(this).hasClass('needed')) {
+            $('.unneed').hide()
+            $(this).removeClass('needed')
+            $(this).text('展开填写')
+        } else {
+            $('.unneed').show()
+            $(this).addClass('needed')
+            $(this).text('收起')
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../s/c/weui/weui.min.css">
+    <link rel="stylesheet" href="../s/c/weui/jquery-weui.css">
+    <link rel="stylesheet" href="../s/c/newstyle.css">
+    <link rel="stylesheet" href="../s/c/order/submit.css">
+    <title>确认订单</title>
+</head>
+<body>
+<div id="app">
+    <div class="tap" v-if="instalment.can">
+        <h4> ¥ {{pic.sj_price}}</h4>
+        <p class="paystep"></p>
+    </div>
+
+    <div class="order-header spanJu">
+        <a onclick="selectaddr()">
+            <template v-if="addr_null">
+                <div class="weui-row">
+                    <div class="weui-col-50">
+                        <i class="icon-user"></i><span id='addr_name'>{{address.receiver_name }}</span>
+                    </div>
+                    <div class="weui-col-50">
+                        <i class="icon-phone"></i><span id='addr_tel'>{{address.receiver_tel }}</span>
+                    </div>
+                    <div class="weui-col-100 ellipsis">
+                        <i class="icon-location"></i>
+                        <span class='addr_addr'>
+                <template v-if="address.provice != address.city">
+                {{address.provice}}
+                </template>
+                {{address.city}} {{address.area}} {{address.detail}}</span>
+                    </div>
+                </div>
+            </template>
+            <template v-else>
+                <div class="weui-row" style="height: .8rem;line-height: .8rem;text-align: center;display: block">
+                    请添加收货地址
+                </div>
+            </template>
+        </a>
+        <!--<i class="icon-jinru"></i>-->
+    </div>
+    <div class="order-goods">
+        <h4 class="title">商品详情</h4>
+        <div class="good_detail">
+            <img :src="main_img" alt="">
+            <div class="good">
+                <h4>{{product.brand_info.brand_name}}</h4>
+                <p class="detail"><span class="quality bg-red">{{product.quality_info.name}}</span>{{product.product_name}}</p>
+            </div>
+            <div class="amo">￥{{pic.price}}</div>
+        </div>
+    </div>
+    <div class="ill">
+        <ul>
+            <li><span>合计金额：</span>￥{{pic.price}}</li>
+            <li><span>付款方案：</span>
+                <e v-html="pic.pay_wap"></e>
+            </li>
+            <li v-if="instalment.can"><span>首付金额：</span>￥{{instalment.shoufu}}</li>
+            <li><span>实际金额：</span>￥{{pic.sj_price}}</li>
+        </ul>
+    </div>
+
+    <h4 class="remark_title">备注</h4>
+    <div class="remark">
+        <textarea v-model="remark" placeholder="请填写您备注信息"></textarea>
+    </div>
+
+    <div class="footer">
+        <div class="bg-red">
+            <a href="javascript:void (0)" @click="submityanzheng">提交订单</a>
+        </div>
+    </div>
+</div>
+<script src="../s/j/li/dj.js" type="text/javascript"></script>
+<script src="../s/j/fn/jquery-1.11.1.min.js"></script>
+<script src="../s/j/fn/jquery-weui.min.js"></script>
+<script src="../s/j/fn/md5.js"></script>
+<script src="../s/j/fn/vue.js"></script>
+<script src="../s/j/fn/weixinpay.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="../s/j/li/ajax.js"></script>
+<script>
+    $(function(){
+        if(GetQueryString('paystep')==1){
+            $('.paystep').html('先进行分期信用审核，再支付首付')
+        }else{
+            $('.paystep').html('若信用审核没通过,首付款会立即原路退回')
+        }
+    })
+    function selectaddr(e) {
+        s_href.set(curr_href);
+        location.href = "../address/manage.html";
+    }
+
+    var addr;
+    postasync('/adapter/wap/member/addressGetDefault', JSON.stringify({member_uuid: user.uuid}), function (ds) {
+        if (ds.status == 0) {
+            addr = ds.result.address
+        } else {
+            $.alert(ds.message)
+        }
+    });
+    var ol = '';
+    postasync('/adapter/wap/product/get', JSON.stringify({'product_uuid': GetQueryString('id')}), function (ds) {
+        ol = ds.result.product_info
+    });
+    var address = {
+        receiver_name: s_addr.receiver_name || addr.receiver_name
+        , receiver_tel: s_addr.receiver_tel || addr.receiver_tel
+        , provice: s_addr.provice || addr.provice
+        , city: s_addr.city || addr.city
+        , area: s_addr.area || addr.area
+        , detail: s_addr.detail || addr.detail
+        , uuid: s_addr.uuid || addr.uuid
+    };
+    debugger;
+    var vm = new Vue({
+        el: '#app'
+        , data: {
+            addr_null: address.uuid == null ? false : true
+            , address: address
+            , product: {
+                uuid: ol.uuid
+                , product_name: ol.publish_member_info.nick_name
+                , brand_info: {
+                    brand_local_img: ol.brand_info.brand_local_img
+                    , brand_name: ol.brand_info.brand_name
+                }
+                , category_info: {
+                    name: ol.category_info.name
+                }
+
+                , quality_info: {
+                    name: ol.quality_info.name
+                }
+            }
+            , main_img: ol.main_img
+            , instalment: {
+                can: (s_instalment.uuid || 0) == 0 ? false : true
+                , shoufu: s_instalment.shoufu || ''
+            }
+            , pic: {
+                price: ol.price //hejijine
+                ,
+                pay_wap: (s_instalment.uuid || 0) == 0 ? '全额付' : +s_instalment.bili + '%首付    ' + s_instalment.qishu + '期x' + s_instalment.meiqiqianshu + '/月</e>'
+                ,
+                sj_price: (s_instalment.shoufu || 0) == 0 ? ol.price : s_instalment.shoufu
+            }
+            , textarea: ''
+            , textarea_num: 0
+            , browser: browser
+        }
+        , methods: {
+            submityanzheng: function () {
+                if (this.textarea_num >= 100) {
+                    $.alert('备注信息请在100字以内')
+                } else {
+                    s_addr.uuid = this.address.uuid;
+                    localStorage.setItem('dj_zf_pic', this.sj_price);
+                    productData.amountset(this.pic.sj_price);
+                    productData.set(this.textarea, this.product.uuid, this.product.product_name);
+                    var product_list = [{
+                        product_uuid: this.product.uuid
+                        , product_name: this.product.name
+                    }];
+                    var wxdata = {
+                        member_buyer_uuid: user.uuid
+                        , remark: this.remark
+                        , product_list: product_list
+                        , delivery_uuid: address.uuid
+                        , provider_uuid: s_instalment.uuid
+                        , paydown_rate: s_instalment.bili
+                        , stages_num: s_instalment.qishu
+                   };
+                    post('/adapter/wap/order/submitNew', JSON.stringify(wxdata), function (ds) {
+                        if (ds.status == '0') {
+                            if(ds.result.payOrAuth==1){
+                                window.location.href = line+'/wap/toAuthPage?order_uuid='+ ds.result.uuid
+                            }else if(ds.result.payOrAuth==0){
+//                                startWXPay(ds.result)
+                                window.location.href = '../order/payment.html?id=' + ds.result.uuid +'&paystep='+GetQueryString('paystep');
+                            }
+                        } else if (ds.status == '600') {
+                            s_href.set(window.location.href);
+                            window.location.href = '../personal/land.html' + '?web=' + GetQueryString(web)
+                        } else {
+                            $.alert(ds.message)
+                        }
+                        $.hideLoading();
+                    })
+                }
+            }
+        }
+        , watch: {
+            textarea: function (curVal, oldVal) {
+                this.textarea_num = curVal.length;
+                if (this.textarea_num >= 100) {
+                    $.alert('备注信息请在100字以内')
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

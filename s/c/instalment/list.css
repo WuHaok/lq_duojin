@@ -1,0 +1,71 @@
+.nav{
+    height: .50rem;
+    line-height: .50rem;
+    background-color: #FFFFFF;
+}
+.nav li{
+    display: inline-block;
+    width: 49%;
+    text-align: center;
+    font-size: .15rem;
+}
+.nav .on{
+    color: #FF4C4E;
+    padding-bottom: .12rem;
+    border-bottom: 2px solid #FF4C4E;
+}
+.sell{
+    margin: .05rem 0 0 0 ;
+}
+.sell .header{
+    padding: 0 .15rem;
+    background-color: #FFFFFF;
+    height: .5rem;
+    line-height: .5rem;
+}
+.sell .header span {
+    float: right;
+    vertical-align: middle;
+}
+.icon-dh,.icon-yh,.icon-gb{
+    display: inline-block;
+    vertical-align: middle;
+    height: .15rem;
+    width: .15rem;
+    background-image: url("../../img/huankuanzhong.png");
+    background-repeat: no-repeat;
+}
+.icon-yh{
+    background-image: url("../../img/yihuanqing.png");
+}
+.icon-gb{
+    background-image: url('../../img/yiguanbi.png')
+}
+.sell .bodyer{
+    background-color: #FFFFFF;
+    padding: 0 .15rem;
+}
+.sell .bodyer img {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    vertical-align: middle;
+    margin-right: .1rem;
+}
+.sell .bodyer .goods{
+    display: inline-block;
+    width: 1.7rem;
+    vertical-align: middle;
+}
+.sell .bodyer h5{
+    font-size: .15rem;
+}
+.bodyer p {
+    font-size: .14rem;
+}
+.pic{
+    float: right;
+    display: inline-block;
+    height: 1rem;
+    line-height: 1rem;
+}
